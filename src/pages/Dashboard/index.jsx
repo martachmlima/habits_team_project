@@ -1,5 +1,12 @@
+import Header from "../../components/Header";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <Header path="dashboard" userName="Marta Lima" />
+      Dashboard
+    </div>
+  );
 };
 
 export default Dashboard;
