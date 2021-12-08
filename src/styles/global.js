@@ -17,7 +17,9 @@ const GlobalStyle = createGlobalStyle`
       --rosa-claro: #E7ABAB;
       --roxo-escuro: #9320C2
       --cinza: #C1D1E8;
-        --cinza-claro: #E0E9F8;
+      --cinza-claro: #E0E9F8;
+      --preto-opacity: rgba(0, 0, 0, 0.25);
+      --cinza-placeholder: #867F7F;
       }
 
     h1, h2, h3, h4, h5, h6{
