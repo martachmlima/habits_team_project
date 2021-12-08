@@ -10,6 +10,16 @@ const GlobalStyle = createGlobalStyle`
         outline:0;
     }
     :root{
+      --branco: #FFFFFF;
+      --roxo: #B13AC6;
+      --rosa-pink: #CC68BE;
+      --rosa: #EE92B9;
+      --rosa-claro: #E7ABAB;
+      --roxo-escuro: #9320C2
+      --cinza: #C1D1E8;
+      --cinza-claro: #E0E9F8;
+      --preto-opacity: rgba(0, 0, 0, 0.25);
+      --cinza-placeholder: #867F7F;
       --white: #f2f2f2;
       --purple: #DFC2EB;
       --dark-purple: #9320C2;
