@@ -1,5 +1,12 @@
+import Header from "../../components/Header";
+
 const AllGroups = () => {
-  return <div>All Groups</div>;
+  return (
+    <div>
+      <Header path="groups" />
+      All Groups
+    </div>
+  );
 };
 
 export default AllGroups;

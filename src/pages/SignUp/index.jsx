@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import image from "../SignUp/SvgCabeça.png";
 import api from "../../services/api";
 import toast from "react-hot-toast";
@@ -13,8 +13,9 @@ import {
   ConteinerTitle,
   ConteinerForm,
   ConteinerFormGradient,
-  Button,
 } from "./styles";
+import BasicButtons from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const history = useHistory();
@@ -207,11 +208,11 @@ const SignUp = () => {
                   : "Confirme sua senha"
               }
               error={errors.confirmPassword?.message}
-              id="fullWidth"
               {...register("confirmPassword")}
             />
 
-            <Button type="submit">Enviar</Button>
+            <button type="submit">Enviar</button>
+            <Link to="/login">Possui conta? Faça LOGIN</Link>
           </form>
         </ConteinerFormGradient>
       </ConteinerForm>

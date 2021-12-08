@@ -20,6 +20,19 @@ const GlobalStyle = createGlobalStyle`
       --cinza-claro: #E0E9F8;
       --preto-opacity: rgba(0, 0, 0, 0.25);
       --cinza-placeholder: #867F7F;
+      --white: #f2f2f2;
+      --purple: #DFC2EB;
+      --dark-purple: #9320C2;
+      --secondary-purple: #d8bbe3;
+      --light-purple: #E8D8F1;
+      --very-ligtht-purle: #EEE3F3;
+      --pink: #FFB8B8;
+      --light-pink:#E9D5F1;
+      --very-light-pink:#EDDFF2;
+      --dark-pink: #cc68be;
+      --fuscia: #b54bfa;
+      --gray: #CCCCCC;
+      --dark-gray: #867f7f;
       }
 
     h1, h2, h3, h4, h5, h6{

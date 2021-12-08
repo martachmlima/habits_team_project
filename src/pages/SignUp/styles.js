@@ -66,27 +66,28 @@ export const ConteinerTitle = styled.div`
       left: 44%;
     }
     @media screen and (min-width: 500px) {
-    h1 {
-      top: -16%;
-      left: 35%;
+      h1 {
+        top: -16%;
+        left: 35%;
+      }
+      h2 {
+        top: -8%;
+        left: 54%;
+      }
     }
-    h2 {
-      top: -8%;
-      left: 54%;
-    }
-  }
-  @media screen and (min-width: 600px) {
-    h2 {
-      position: absolute;
-      top: 18%;
-      left: 35%;
-      font-size: 72px;
-    }
-    h1 {
-      position: absolute;
-      top: 10%;
-      left: 20%;
-      font-size: 72px;
+    @media screen and (min-width: 600px) {
+      h2 {
+        position: absolute;
+        top: 18%;
+        left: 35%;
+        font-size: 72px;
+      }
+      h1 {
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        font-size: 72px;
+      }
     }
   }
 `;
@@ -106,6 +107,28 @@ export const ConteinerForm = styled.div`
     height: 80%;
     width: 80%;
     margin: 0 auto;
+    button {
+      background: #9c27b0;
+      border-radius: 8px;
+      color: var(--branco);
+      border: none;
+      height: 70px;
+      margin: 18px auto;
+      width: 96%;
+      cursor: pointer;
+      font-size: large;
+      :hover {
+        background-color: var(--white);
+        color: #9c27b0;
+        border: solid 1px #9c27b0;
+      }
+    }
+    a {
+      margin: 12px auto;
+      :hover {
+        color: #9c27b0;
+      }
+    }
     label {
       line-height: 1.8;
       padding: 4px;
@@ -130,16 +153,4 @@ export const ConteinerFormGradient = styled.div`
   justify-content: center;
   align-content: center;
   border-radius: 16px;
-`;
-
-export const Button = styled.button`
-  background: #9c27b0;
-  border-radius: 8px;
-  color: var(--branco);
-  border: none;
-  height: 70px;
-  margin: 18px auto;
-  width: 99%;
-  cursor: pointer;
-  font-size: large;
 `;
