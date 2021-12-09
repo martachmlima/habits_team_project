@@ -1,4 +1,4 @@
-import { HeaderContainer, ProfileContainer, SearchContainer } from "./style";
+import { HeaderContainer, ProfileContainer, SearchContainer } from "./styles";
 import { BiSearch } from "react-icons/bi";
 import { Avatar } from "@mui/material";
 import { useHistory } from "react-router";

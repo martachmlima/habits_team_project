@@ -1,11 +1,12 @@
 import Header from "../../components/Header";
-
+import { DashboardContainer } from "./styles";
+import HabitDisplay from "../../components/HabitsDisplay";
 const Dashboard = () => {
   return (
-    <div>
+    <DashboardContainer>
       <Header path="dashboard" userName="Marta Lima" />
-      Dashboard
-    </div>
+      <HabitDisplay />
+    </DashboardContainer>
   );
 };
 
