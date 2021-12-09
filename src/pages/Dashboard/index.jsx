@@ -4,7 +4,6 @@ const Dashboard = () => {
   return (
     <div>
       <Header path="dashboard" userName="Marta Lima" />
-      Dashboard
     </div>
   );
 };

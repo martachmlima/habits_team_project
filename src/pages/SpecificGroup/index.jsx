@@ -6,7 +6,7 @@ const SpecificGroup = () => {
 
   return (
     <div>
-      <Header path="groups" />
+      <Header />
       SpecificGroup
     </div>
   );
