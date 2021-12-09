@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   width: ${(props) => (props.path === "dashboard" ? "60%" : "90%")};
-  height: 100px;
+  min-height: 100px;
   background-color: var(--white);
   display: flex;
   align-items: center;
