@@ -8,13 +8,56 @@ export const Container = styled.div`
   margin: 30px 0 20px 20px;
   padding: 15px;
   border-radius: 8px;
-  background-color: pink;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   @media (min-width: 1100px) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .aside_header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-bottom: 2px solid #8d8d8d;
+    padding-bottom: 10px;
+    margin-bottom: 35px;
+    svg {
+      font-size: 60px;
+      color: #8d8d8d;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #8d8d8d;
+    }
+  }
+  section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  footer {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #8d8d8d;
+    margin-top: 20px;
+    h3 {
+      font-size: 1.5rem;
+      color: #9d6fe1;
+    }
   }
 `;
 
@@ -23,17 +66,21 @@ export const Card = styled.div`
   padding: 10px;
   margin-bottom: 15px;
   display: flex;
+  background-color: #f5fcfb;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: nowrap;
   .card_icon {
-    padding-right: 10px;
+    margin-right: 10px;
     border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #32c5aa;
+    background-color: #9d6fe1;
+    svg {
+      color: white;
+    }
   }
   h3 {
     font-size: 13px;
