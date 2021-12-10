@@ -5,7 +5,7 @@ import {
   ProfileContainer,
   SearchContainer,
   SectionMobile,
-} from "./style";
+} from "./styles";
 import { BiSearch } from "react-icons/bi";
 import { Avatar } from "@mui/material";
 import { useHistory } from "react-router";
