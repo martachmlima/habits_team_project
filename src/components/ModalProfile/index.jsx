@@ -6,13 +6,19 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ModalRight from "../ModalTop";
 import { ConteinerNav } from "./styles";
-import { ProfileContainer } from "../Header/style";
-import { Avatar } from "@mui/material";
+import { ButtonNav } from "../ModalTop/styles";
+import { useHistory } from "react-router-dom";
+
 const ModalProfile = ({ children }) => {
+  const history = useHistory();
+  const handleClear = () => {
+    localStorage.clear();
+    history.push("/login");
+  };
   return (
     <>
       <ConteinerNav>
-        <Accordion onClick={console.log("oi")}>
+        <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -24,6 +30,7 @@ const ModalProfile = ({ children }) => {
           <AccordionDetails>
             <Typography>
               <ModalRight anchor={"Alterar dados da conta"} />
+              <ButtonNav onClick={handleClear}>Sair</ButtonNav>
             </Typography>
           </AccordionDetails>
         </Accordion>

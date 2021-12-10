@@ -12,12 +12,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from "react";
 import { TextField } from "@mui/material";
 import { ButtonNav, ButtonChange } from "./styles";
+import jwt_decode from "jwt-decode";
+import api from "../../services/api";
+import toast from "react-hot-toast";
 
 export default function SwipeableTemporaryDrawer({ anchor }) {
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
     right: false,
   });
   const formSchema = yup.object().shape({
@@ -46,9 +46,6 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-  const handleChange = (value) => {
-    console.log(value);
-  };
 
   const list = (anchor) => (
     <Box
@@ -123,7 +120,6 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
                   id="fullWidth"
                   {...register("email")}
                 />
-                {/* onClick={toggleDrawer(anchor, false)} */}
               </ListItemIcon>
             </ListItem>
           }
@@ -135,6 +131,22 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
       </form>
     </Box>
   );
+
+  const handleChange = (value) => {
+    const token = JSON.parse(localStorage.getItem("@KenzieHabits:token")) || "";
+    const decoded = jwt_decode(token);
+    const id = String(decoded.user_id);
+
+    api
+      .patch(`/users/${id}/`, value, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        toast.success("Dados atualizados!");
+        setState({ right: false });
+      })
+      .catch((err) => toast.error("Erro na alteração!"));
+  };
 
   return (
     <div>

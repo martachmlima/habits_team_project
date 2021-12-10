@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
       --cinza-claro: #E0E9F8;
       --preto-opacity: rgba(0, 0, 0, 0.25);
       --cinza-placeholder: #867F7F;
-      --white: #f2f2f2;
+      --white: #fafafa;
       --purple: #DFC2EB;
       --dark-purple: #9320C2;
       --secondary-purple: #d8bbe3;

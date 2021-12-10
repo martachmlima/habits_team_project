@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const ButtonNav = styled.button`
   background-color: #ffffff;
   border: none;
-  margin: 0 auto;
+  margin: 12px auto;
+  padding: 4px;
   color: var(--dark-purple);
   :hover {
     color: var(--roxo);

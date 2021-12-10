@@ -1,16 +1,21 @@
-import { Avatar } from "@mui/material";
-import { useState } from "react";
 import Header from "../../components/Header";
-import { ProfileContainer } from "../../components/Header/style";
-import ModalProfile from "../../components/ModalProfile";
-import ModalRight from "../../components/ModalTop";
-import SwipeableTemporaryDrawer from "../../components/ModalTop";
+import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const token = JSON.parse(localStorage.getItem("@KenzieHabits:token")) || null;
+
+  const history = useHistory();
+  useEffect(() => {
+    if (!token) {
+      history.push("/login");
+    }
+  }, [token]);
+
   return (
     <div>
       <Header path="dashboard" userName="Marta Lima" />
-      Dashboard
     </div>
   );
 };
