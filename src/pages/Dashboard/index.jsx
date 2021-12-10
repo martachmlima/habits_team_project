@@ -1,14 +1,16 @@
 import Header from "../../components/Header";
+import { DashboardContainer } from "./styles";
+import HabitDisplay from "../../components/HabitsDisplay";
 import { useUser } from "../../providers/User";
 
 const Dashboard = () => {
   const { signOut } = useUser();
   return (
-    <div>
+    <DashboardContainer>
       <Header path="dashboard" userName="Marta Lima" />
-      Dashboard
+      <HabitDisplay />
       <button onClick={signOut}> Sair </button>
-    </div>
+    </DashboardContainer>
   );
 };
 

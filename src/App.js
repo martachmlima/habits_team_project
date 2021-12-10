@@ -5,7 +5,7 @@ import GlobalStyle from "./styles/global";
 function App() {
   return (
     <>
-      <Toaster />
+      <Toaster position="top-right" reverseOrder={false} />
       <GlobalStyle />
       <Routes />
     </>
