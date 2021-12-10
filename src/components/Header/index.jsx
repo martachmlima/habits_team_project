@@ -9,6 +9,7 @@ import {
 import { BiSearch } from "react-icons/bi";
 import { Avatar } from "@mui/material";
 import { useHistory } from "react-router";
+import ModalProfile from "../ModalProfile";
 
 const Header = ({ path, userName }) => {
   const history = useHistory();
@@ -25,12 +26,14 @@ const Header = ({ path, userName }) => {
             ></input>
             <BiSearch />
           </SearchContainer>
-          <ProfileContainer>
-            <Avatar
-              sx={{ bgcolor: "var(--light-purple)", cursor: "pointer" }}
-            />
-            <p>{userName}</p>
-          </ProfileContainer>
+          <ModalProfile>
+            <ProfileContainer>
+              <Avatar
+                sx={{ bgcolor: "var(--light-purple)", cursor: "pointer" }}
+              />
+              <p>{userName}</p>
+            </ProfileContainer>
+          </ModalProfile>
         </Section>
         <>
           {path === "dashboard" ? (
