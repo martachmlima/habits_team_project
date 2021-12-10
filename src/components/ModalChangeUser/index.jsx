@@ -50,7 +50,8 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
   const list = (anchor) => (
     <Box
       sx={{
-        width: anchor === "top" || anchor === "bottom" ? "auto" : 500,
+        maxWidth: anchor === "top" || anchor === "bottom" ? "auto" : 500,
+        textAlign: "center",
       }}
       role="presentation"
     >
