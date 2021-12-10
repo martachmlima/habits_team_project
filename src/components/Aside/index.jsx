@@ -5,14 +5,20 @@ import { Link } from "react-router-dom";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { Container, Card } from "./styles";
 import api from "../../services/api";
+import jwt_decode from "jwt-decode";
 import { useState, useEffect } from "react";
 import BasicButtons from "../Button";
 
 function Aside() {
   const [subscribedGroups, setSubscribedGroups] = useState([]);
-  const [token] = useState(
-    () => JSON.parse(localStorage.getItem("KenzieHabits:token")) || ""
-  );
+  const [token] = useState(() => {
+    // JSON.parse(localStorage.getItem("KenzieHabits:token")) || ""
+    const decoded = localStorage.getItem("@KenzieHabits:token") || "";
+
+    // const decoded = localStorage.getItem("@KenzieHabits:token") || "";
+    console.log("token", decoded);
+    return decoded;
+  });
 
   const openModal = () => {
     console.log("abrir modal");
