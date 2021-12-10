@@ -11,11 +11,17 @@ import { useUser } from "../../providers/User";
 
 const ModalProfile = ({ children }) => {
   const { signOut } = useUser();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(!open);
+  };
   return (
     <>
-      <ConteinerNav>
+      <ConteinerNav open={open}>
         <Accordion>
           <AccordionSummary
+            aria-expanded={open}
+            onClick={handleOpen}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
             id="panel2a-header"

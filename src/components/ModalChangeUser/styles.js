@@ -15,7 +15,7 @@ export const ButtonChange = styled.button`
   margin: 0 auto;
   justify-content: center;
   border: none;
-  width: 100%;
+  width: 80%;
   height: 70px;
   color: #ffffff;
   background-color: #5500ab;
