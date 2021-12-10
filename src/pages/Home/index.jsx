@@ -2,6 +2,8 @@ import { useHistory } from "react-router-dom";
 import { Container } from "./styles";
 import { GitHub, LinkedIn } from "@mui/icons-material";
 import { Box, Avatar } from "@mui/material";
+import CardContact from "../../components/CardContact";
+import Button from "../../components/Button";
 
 function Home() {
   const history = useHistory();
@@ -17,12 +19,12 @@ function Home() {
       <main>
         <h2>Gerencie seus Hábitos</h2>
         <div className="menu_bottoes">
-          <button onClick={() => handleClick("/login")} variant="contained">
-            Login
-          </button>
-          <button onClick={() => handleClick("/signup")} variant="contained">
-            SignUp
-          </button>
+          <div className="botao1">
+            <Button onClick={() => handleClick("/login")}>Login</Button>
+          </div>
+          <div className="botao1">
+            <Button onClick={() => handleClick("/signup")}>SignUp</Button>
+          </div>
         </div>
       </main>
       <Box
@@ -35,195 +37,41 @@ function Home() {
           width: "100%",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-            p: "10px",
-            width: "200px",
-            height: "205px",
-            borderRadius: "12px",
-            boxShadow: "2px 0px 30px 0px rgba(0,0,0,0.7)",
-            m: "20px 20px 0",
-          }}
-        >
-          <Avatar>A</Avatar>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              p: "10px 0",
-            }}
-          >
-            <h3>Allan</h3>
-            <p>Scrum Master</p>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <GitHub sx={{ fontSize: 40, color: "#161b22" }} />
-              <LinkedIn sx={{ fontSize: 40, color: "#dfc2ea" }} />
-            </Box>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            p: "10px",
-            width: "200px",
-            height: "205px",
-            borderRadius: "12px",
-            boxShadow: "2px 0px 30px 0px rgba(0,0,0,0.7)",
-            m: "20px 20px 0",
-          }}
-        >
-          <Avatar>F</Avatar>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              p: "10px 0",
-            }}
-          >
-            <h3>Filipe</h3>
-            <p>Product Owner</p>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <GitHub sx={{ fontSize: 40, color: "#161b22" }} />
-              <LinkedIn sx={{ fontSize: 40, color: "#dfc2ea" }} />
-            </Box>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            p: "10px",
-            width: "200px",
-            height: "205px",
-            borderRadius: "12px",
-            boxShadow: "2px 0px 30px 0px rgba(0,0,0,0.7)",
-            m: "20px 20px 0",
-          }}
-        >
-          <Avatar>G</Avatar>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              p: "10px 0",
-            }}
-          >
-            <h3>Gustavo</h3>
-            <p>Quality Assurance</p>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <GitHub sx={{ fontSize: 40, color: "#161b22" }} />
-              <LinkedIn sx={{ fontSize: 40, color: "#dfc2ea" }} />
-            </Box>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            p: "10px",
-            width: "200px",
-            height: "205px",
-            borderRadius: "12px",
-            boxShadow: "2px 0px 30px 0px rgba(0,0,0,0.7)",
-            m: "20px 20px 0",
-          }}
-        >
-          <Avatar>H</Avatar>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              p: "10px 0",
-            }}
-          >
-            <h3>Heitor</h3>
-            <p>Quality Assurance</p>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <GitHub sx={{ fontSize: 40, color: "#161b22" }} />
-              <LinkedIn sx={{ fontSize: 40, color: "#dfc2ea" }} />
-            </Box>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            p: "10px",
-            width: "200px",
-            height: "205px",
-            borderRadius: "12px",
-            boxShadow: "2px 0px 30px 0px rgba(0,0,0,0.7)",
-            m: "20px 20px 0",
-          }}
-        >
-          <Avatar>M</Avatar>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              p: "10px 0",
-            }}
-          >
-            <h3>Marta</h3>
-            <p>Tech Leader</p>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <GitHub sx={{ fontSize: 40, color: "#161b22" }} />
-              <LinkedIn sx={{ fontSize: 40, color: "#dfc2ea" }} />
-            </Box>
-          </Box>
-        </Box>
+        <CardContact
+          name={"Allan"}
+          img={
+            "https://ca.slack-edge.com/TQZR39SET-U024Y6X9DK3-56fbb0b61ca4-512"
+          }
+          link={"https://www.linkedin.com/in/allan-verde-rodrigues-8b9038225/"}
+        />
+        <CardContact
+          name={"Filipe"}
+          img={
+            "https://ca.slack-edge.com/TQZR39SET-U01PZPR3HPH-3abe719c94af-512"
+          }
+          link={"https://www.google.com"}
+        />
+        <CardContact
+          name={"Gustavo"}
+          img={
+            "https://ca.slack-edge.com/TQZR39SET-U028RGDDZ9Q-8d0a721467bd-512"
+          }
+          link={"https://www.google.com"}
+        />
+        <CardContact
+          name={"Heitor"}
+          img={
+            "https://ca.slack-edge.com/TQZR39SET-U022VMQP2KD-b8f1ead07a7f-512"
+          }
+          link={"https://www.google.com"}
+        />
+        <CardContact
+          name={"Marta"}
+          img={
+            "https://ca.slack-edge.com/TQZR39SET-U025P2EM6H0-06eb33c8dd24-512"
+          }
+          link={"https://www.google.com"}
+        />
       </Box>
     </Container>
   );
