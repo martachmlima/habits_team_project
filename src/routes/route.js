@@ -1,5 +1,3 @@
-// import { useContext } from "react";
-// import { userContex } from "../providers/User";
 import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
 import { useUser } from "../providers/User";
 

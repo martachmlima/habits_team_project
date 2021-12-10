@@ -1,11 +1,14 @@
 import Header from "../../components/Header";
-
+import { GroupsContainer } from "./styles";
 const AllGroups = () => {
   return (
-    <div>
+    <>
       <Header path="groups" userName="Marta Lima" />
-      All Groups
-    </div>
+      <GroupsContainer>
+        <Header path="groups" />
+        All Groups
+      </GroupsContainer>
+    </>
   );
 };
 

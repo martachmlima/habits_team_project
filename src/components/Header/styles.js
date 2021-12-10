@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   padding: 10px;
   color: var(--dark-purple);
   border-radius: 12px;
-  margin: 10px auto;
+  margin: 0 auto;
 
   h1 {
     font-size: 1.7rem;
