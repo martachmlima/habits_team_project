@@ -8,10 +8,11 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       <Header path="dashboard" userName="Marta Lima" />
-      <NewHabit />
+
       <Aside />
 
       <HabitDisplay />
+      <NewHabit />
     </DashboardContainer>
   );
 };

@@ -21,6 +21,8 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import api from "../../services/api";
+import toast from "react-hot-toast";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -70,10 +72,6 @@ export default function NewHabit() {
     category: yup.string().required("Insira uma categoria"),
     difficulty: yup.string().required("Sua dificuldade para este hábito"),
     frequency: yup.string().required("Sua frequência com este hábito"),
-    achieved: yup.bool(),
-    how_much_achieved: yup
-      .number("Somente valor numérico")
-      .required("Insira novo usuário"),
   });
   const {
     register,
@@ -90,7 +88,17 @@ export default function NewHabit() {
   };
   const handleOnSubmit = (data) => {
     data.user = user.user_id;
-    console.log(data);
+    data.how_much_achieved = 0;
+    data.achieved = false;
+    api
+      .post(`/habits/`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        toast.success("Hábito cadastrado com sucesso!");
+        
+      })
+      .catch((err) => toast.error("Erro na criação!"));
   };
 
   return (
@@ -223,47 +231,6 @@ export default function NewHabit() {
               id="fullWidth"
               {...register("frequency")}
             />
-
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              type="number"
-              label={
-                errors.how_much_achieved?.message ? (
-                  errors.how_much_achieved?.message
-                ) : (
-                  <>Dias para alcançar</>
-                )
-              }
-              error={errors.how_much_achieved?.message}
-              id="fullWidth"
-              {...register("how_much_achieved")}
-            />
-            <FormControl component="fieldset" sx={{ mt: 4 }}>
-              <FormLabel component="legend">Conseguiu alcançar?</FormLabel>
-              <FormGroup aria-label="position" row>
-                <FormControlLabel
-                  value="start"
-                  control={<Checkbox />}
-                  label="Clique para sim"
-                  labelPlacement="start"
-                  {...register("achieved")}
-                />
-              </FormGroup>
-            </FormControl>
           </DialogContent>
           <DialogActions>
             <ButtonChange type="onsubmit">Enviar</ButtonChange>
