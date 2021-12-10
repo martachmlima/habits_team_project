@@ -5,10 +5,13 @@ const SpecificGroup = () => {
   const params = useParams();
 
   return (
-    <Container>
-      <Header path="groups" />
-      SpecificGroup
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <Header path="groups" />
+        SpecificGroup
+      </Container>
+    </>
   );
 };
 
