@@ -54,10 +54,6 @@ export const Container = styled.div`
     align-items: center;
     border-top: 2px solid #8d8d8d;
     margin-top: 20px;
-    h3 {
-      font-size: 1.5rem;
-      color: #9d6fe1;
-    }
   }
 `;
 
