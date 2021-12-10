@@ -5,8 +5,7 @@ import api from "../../services/api";
 import HabitCard from "../HabitCard";
 
 const HabitDisplay = () => {
-  const token = JSON.parse(localStorage.getItem("@KenzieHabits:token"));
-  const decoded = jwt_decode(token);
+  const token = localStorage.getItem("@KenzieHabits:token") || "";
 
   const [habits, setHabits] = useState([]);
 
@@ -21,7 +20,7 @@ const HabitDisplay = () => {
         setHabits(response.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token]);
 
   const deleteHabit = (id) => {
     const newHabits = habits.filter((habit) => habit.id !== id);

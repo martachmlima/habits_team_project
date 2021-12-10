@@ -67,6 +67,7 @@ const LogIn = () => {
               height: 70,
               boxShadow: "4px 4px 20px 6px rgba(122, 121, 121, 0.25)",
             }}
+            type="password"
             label="Senha"
             variant="outlined"
             {...register("password")}

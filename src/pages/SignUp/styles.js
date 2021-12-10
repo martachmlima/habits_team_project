@@ -6,15 +6,11 @@ export const Conteiner = styled.div`
     rgba(147, 32, 194, 1) 0%,
     rgba(231, 171, 171, 1) 100%
   );
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-content: center;
-  @media screen and (min-width: 600px) {
-    flex-direction: row;
-  }
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const ConteinerImg = styled.div`
@@ -23,71 +19,55 @@ export const ConteinerImg = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   margin: 0 auto;
   img {
-    width: 90%;
+    display: none;
   }
   @media screen and (min-width: 600px) {
-    width: 45%;
+    width: 50%;
+    img {
+      width: 90%;
+      display: block;
+    }
   }
 `;
 
 export const ConteinerTitle = styled.div`
   h1 {
     position: absolute;
-    top: -42%;
+    top: 0%;
     left: 25%;
     color: #dfc2eb;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 38px;
     line-height: 84px;
   }
   h2 {
     position: absolute;
-    top: -24%;
-    left: 44%;
+    top: 4%;
+    left: 45%;
     color: #dfc2eb;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 38px;
     line-height: 84px;
   }
-  @media screen and (min-width: 435px) {
+
+  @media screen and (min-width: 600px) {
     h1 {
-      top: -28%;
-      left: 25%;
+      position: absolute;
+      top: 4%;
+      left: 10%;
+      font-size: 72px;
     }
     h2 {
-      top: -11%;
-      left: 44%;
-    }
-    @media screen and (min-width: 500px) {
-      h1 {
-        top: -16%;
-        left: 35%;
-      }
-      h2 {
-        top: -8%;
-        left: 54%;
-      }
-    }
-    @media screen and (min-width: 600px) {
-      h2 {
-        position: absolute;
-        top: 18%;
-        left: 35%;
-        font-size: 72px;
-      }
-      h1 {
-        position: absolute;
-        top: 10%;
-        left: 20%;
-        font-size: 72px;
-      }
+      position: absolute;
+      top: 12%;
+      left: 26%;
+      font-size: 72px;
     }
   }
 `;
@@ -136,7 +116,7 @@ export const ConteinerForm = styled.div`
     }
   }
   @media screen and (min-width: 600px) {
-    width: 45%;
+    width: 50%;
   }
 `;
 
@@ -153,4 +133,23 @@ export const ConteinerFormGradient = styled.div`
   justify-content: center;
   align-content: center;
   border-radius: 16px;
+  margin-top: 30%;
+  @media screen and (min-width: 600px) {
+    margin: 0 auto;
+  }
+`;
+export const ConteinerBox = styled.div`
+  max-width: 1400px;
+  max-height: 1000px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+  }
 `;
