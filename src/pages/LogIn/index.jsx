@@ -3,10 +3,10 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField, Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import api from "../../services/api";
 import toast from "react-hot-toast";
 import dogWalk from "../../assets/dogWalk.svg";
 import { Container, ContainedForm, StyledForm, ContainedSvg } from "./styles";
+import { useUser } from "../../providers/User";
 
 const LogIn = () => {
   const history = useHistory();
@@ -21,16 +21,9 @@ const LogIn = () => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
+  const { signIn } = useUser();
   const onSubmitLogin = (data) => {
-    api
-      .post("sessions/", data)
-      .then((response) => {
-        const { access } = response.data;
-        localStorage.setItem("@KenzieHabits:token", JSON.stringify(access));
-
-        return history.push("/dashboard");
-      })
-      .catch((err) => toast.error("Dados incorretos"));
+    signIn(data).catch((err) => toast.error("Algo deu errado tente novamente"));
   };
   return (
     <Container>
@@ -74,6 +67,7 @@ const LogIn = () => {
               height: 70,
               boxShadow: "4px 4px 20px 6px rgba(122, 121, 121, 0.25)",
             }}
+            type="password"
             label="Senha"
             variant="outlined"
             {...register("password")}

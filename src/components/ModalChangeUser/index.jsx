@@ -133,7 +133,7 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
   );
 
   const handleChange = (value) => {
-    const token = JSON.parse(localStorage.getItem("@KenzieHabits:token")) || "";
+    const token = localStorage.getItem("@KenzieHabits:token") || "";
     const decoded = jwt_decode(token);
     const id = String(decoded.user_id);
 

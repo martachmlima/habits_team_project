@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from "react-router";
+import { Switch } from "react-router";
 import Home from "../pages/Home";
 import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUp";
@@ -6,27 +6,17 @@ import Dashboard from "../pages/Dashboard";
 import AllGroups from "../pages/AllGroups";
 import SpecificGroup from "../pages/SpecificGroup";
 
+import Route from "./route";
+
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route exact path="/login">
-        <LogIn />
-      </Route>
-      <Route exact path="/signup">
-        <SignUp />
-      </Route>
-      <Route exact path="/dashboard">
-        <Dashboard />
-      </Route>
-      <Route exact path="/groups">
-        <AllGroups />
-      </Route>
-      <Route exact path="/groups/:id">
-        <SpecificGroup />
-      </Route>
+      <Route exact path="/" component={Home} />
+      <Route path="/login" component={LogIn} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/groups" component={AllGroups} isPrivate />
+      <Route path="/groups/:id" component={SpecificGroup} isPrivate />
     </Switch>
   );
 };

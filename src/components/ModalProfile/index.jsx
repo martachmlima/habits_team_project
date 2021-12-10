@@ -4,17 +4,13 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ModalRight from "../ModalTop";
+import ModalRight from "../ModalChangeUser";
 import { ConteinerNav } from "./styles";
-import { ButtonNav } from "../ModalTop/styles";
-import { useHistory } from "react-router-dom";
+import { ButtonNav } from "../ModalChangeUser/styles";
+import { useUser } from "../../providers/User";
 
 const ModalProfile = ({ children }) => {
-  const history = useHistory();
-  const handleClear = () => {
-    localStorage.clear();
-    history.push("/login");
-  };
+  const { signOut } = useUser();
   return (
     <>
       <ConteinerNav>
@@ -29,8 +25,8 @@ const ModalProfile = ({ children }) => {
 
           <AccordionDetails>
             <Typography>
-              <ModalRight anchor={"Alterar dados da conta"} />
-              <ButtonNav onClick={handleClear}>Sair</ButtonNav>
+              <ModalRight anchor={"Alterar dados"} />
+              <ButtonNav onClick={signOut}>Sair</ButtonNav>
             </Typography>
           </AccordionDetails>
         </Accordion>
