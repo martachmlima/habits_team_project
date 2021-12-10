@@ -1,7 +1,7 @@
 // import { GroupsIcon, SmartToyIcon } from "@mui/icons-material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import { Modal } from '@mui/material';
-import { Link } from 'react-router-dom'
+import { Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { Container, Card } from "./styles";
 import api from "../../services/api";
@@ -15,8 +15,8 @@ function Aside() {
   );
 
   const openModal = () => {
-    console.log('abrir modal')
-  }
+    console.log("abrir modal");
+  };
 
   useEffect(() => {
     api
@@ -36,7 +36,9 @@ function Aside() {
     <Container>
       <div className="aside_header">
         <GroupsIcon />
-        <Link to='/groups'><h1>GRUPOS</h1></Link>
+        <Link to="/groups">
+          <h1>GRUPOS</h1>
+        </Link>
       </div>
       <section>
         {subscribedGroups.map((card) => {
