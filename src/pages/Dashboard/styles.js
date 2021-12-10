@@ -10,3 +10,8 @@ export const DashboardContainer = styled.main`
     rgba(147, 32, 194, 1) 100%
   );
 `;
+
+export const MainContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
