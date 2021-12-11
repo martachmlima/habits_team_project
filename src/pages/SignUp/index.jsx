@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import image from "../SignUp/SvgCabeça.png";
 import api from "../../services/api";
 import toast from "react-hot-toast";
@@ -15,7 +15,6 @@ import {
   ConteinerFormGradient,
   ConteinerBox,
 } from "./styles";
-import BasicButtons from "../../components/Button";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {

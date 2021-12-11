@@ -14,7 +14,7 @@ import ModalProfile from "../ModalProfile";
 const Header = ({ path, userName }) => {
   const history = useHistory();
   return (
-    <div>
+    <>
       <HeaderContainer path={path}>
         <Section>
           <h1 onClick={() => history.push("/dashboard")}>Gest Habit</h1>
@@ -59,7 +59,7 @@ const Header = ({ path, userName }) => {
         ></input>
         <BiSearch />
       </SearchMobile>
-    </div>
+    </>
   );
 };
 

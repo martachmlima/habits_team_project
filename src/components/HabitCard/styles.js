@@ -5,6 +5,7 @@ export const ContainerCard = styled.div`
   min-height: 200px;
   min-width: 300px;
   max-width: 500px;
+  text-align: initial;
   @media (min-width: 750px) {
     width: 500px;
   }
@@ -27,4 +28,11 @@ export const ContainerCard = styled.div`
 export const ContainerButton = styled.div`
   display: flex;
   justify-content: space-around;
+  width: 100%;
+  > button {
+    width: 40%;
+  }
+  > div {
+    width: 40%;
+  }
 `;

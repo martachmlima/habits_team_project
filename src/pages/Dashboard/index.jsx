@@ -11,8 +11,8 @@ const Dashboard = () => {
       <MainContainer>
         <Aside />
         <HabitDisplay />
-        <NewHabit />
       </MainContainer>
+      <NewHabit />
     </DashboardContainer>
   );
 };

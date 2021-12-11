@@ -1,21 +1,30 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { List, ListItem, ListItemIcon, TextField } from "@mui/material";
 import BasicButtons from "../Button";
+import { Container } from "./styles";
 import { useUser } from "../../providers/User";
 import api from "../../services/api";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Divider } from "@mui/material";
 import toast from "react-hot-toast";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  Divider,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Box,
+  Slider,
+} from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -65,6 +74,10 @@ function CustomizedDialogs({ id }) {
     setOpen(false);
   };
 
+  function valuetext(value) {
+    return `${value}%`;
+  }
+
   const formSchema = yup.object().shape({
     achieved: yup.boolean(),
     how_much_achieved: yup
@@ -99,7 +112,7 @@ function CustomizedDialogs({ id }) {
   };
 
   return (
-    <div>
+    <Container>
       <BasicButtons onClick={handleClickOpen}>Editar</BasicButtons>
       <BootstrapDialog
         onClose={handleClose}
@@ -124,50 +137,30 @@ function CustomizedDialogs({ id }) {
                       flexDirection: "column",
                     }}
                   >
-                    <TextField
-                      color="secondary"
-                      sx={{
-                        "& input:valid + fieldset": {
-                          borderColor: "white",
-                          borderWidth: 1,
-                          borderRadius: 3,
-                          height: 75,
-                        },
-                        filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                        bgcolor: "var(--branco)",
-                        borderRadius: 3,
-                        height: 70,
-                        mt: 3,
-                      }}
-                      fullWidth
-                      label="% de objetivo atingida"
-                      error={errors.how_much_achieved?.message}
-                      id="fullWidth"
-                      {...register("how_much_achieved")}
-                    />
-
-                    <TextField
-                      type="checkbox"
-                      color="secondary"
-                      sx={{
-                        "& input:valid + fieldset": {
-                          borderColor: "white",
-                          borderWidth: 1,
-                          borderRadius: 3,
-                          height: 75,
-                        },
-                        filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                        bgcolor: "var(--branco)",
-                        borderRadius: 3,
-                        height: 70,
-                        mt: 2,
-                      }}
-                      fullWidth
-                      label="Atingiu seus objetivos?"
-                      error={errors.achieved?.message}
-                      id="fullWidth"
-                      {...register("achieved")}
-                    />
+                    <Box sx={{ width: 300 }}>
+                      <p>Marque seu progresso!</p>
+                    </Box>
+                    <FormGroup>
+                      <Slider
+                        color="secondary"
+                        aria-label="Quanto da meta alcançada?"
+                        defaultValue={10}
+                        getAriaValueText={valuetext}
+                        valueLabelDisplay="auto"
+                        step={10}
+                        marks
+                        min={0}
+                        max={100}
+                        error={errors.how_much_achieved?.message}
+                        {...register("how_much_achieved")}
+                      />
+                      <FormControlLabel
+                        control={<Checkbox defaultChecked />}
+                        label="Meta alcançada?"
+                        error={errors.achieved?.message}
+                        {...register("achieved")}
+                      />
+                    </FormGroup>
                   </ListItemIcon>
                 </ListItem>
               }
@@ -179,7 +172,7 @@ function CustomizedDialogs({ id }) {
           </form>
         </DialogContent>
       </BootstrapDialog>
-    </div>
+    </Container>
   );
 }
 

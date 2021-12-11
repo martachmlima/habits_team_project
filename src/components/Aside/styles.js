@@ -20,6 +20,10 @@ export const Container = styled.div`
     align-items: center;
   }
 
+  @media (max-width: 800px) {
+    display: none;
+  }
+
   .aside_header {
     width: 100%;
     height: 100px;

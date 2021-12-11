@@ -1,5 +1,4 @@
-import { createContext, useState, useEffect } from "react";
-import api from "../../services/api";
+import { createContext } from "react";
 
 export const GroupsContext = createContext([]);
 
