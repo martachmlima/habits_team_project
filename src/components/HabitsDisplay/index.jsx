@@ -2,9 +2,11 @@ import { Container } from "./styles";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import HabitCard from "../HabitCard";
+import { useUser } from "../../providers/User";
+import toast from "react-hot-toast";
 
 const HabitDisplay = () => {
-  const token = localStorage.getItem("@KenzieHabits:token") || "";
+  const { token } = useUser();
 
   const [habits, setHabits] = useState([]);
 
@@ -29,7 +31,10 @@ const HabitDisplay = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => setHabits(newHabits))
+      .then((response) => {
+        setHabits(newHabits);
+        toast.success("Hábito deletado!");
+      })
       .catch((err) => console.log(err));
   };
 
@@ -42,6 +47,7 @@ const HabitDisplay = () => {
           categoria={habit.category}
           dificuldade={habit.difficulty}
           frequencia={habit.frequency}
+          id={habit.id}
           onClick={() => deleteHabit(habit.id)}
         />
       ))}

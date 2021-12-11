@@ -113,7 +113,7 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
                       errors.email?.message
                     ) : (
                       <>
-                        <MailIcon /> Novo nome de usuário
+                        <MailIcon /> Novo E-mail
                       </>
                     )
                   }

@@ -22,7 +22,9 @@ export const ContainerCard = styled.div`
     margin-bottom: 15px;
     font-size: 1.2rem;
   }
-  > div {
-    justify-content: center;
-  }
+`;
+
+export const ContainerButton = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
