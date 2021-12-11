@@ -12,15 +12,9 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { TextField } from "@mui/material";
 import { ButtonChange } from "../ModalChangeUser/styles";
-import MailIcon from "@mui/icons-material/Mail";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 
@@ -96,7 +90,6 @@ export default function NewHabit() {
       })
       .then((res) => {
         toast.success("Hábito cadastrado com sucesso!");
-        
       })
       .catch((err) => toast.error("Erro na criação!"));
   };

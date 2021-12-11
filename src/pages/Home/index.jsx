@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { Container } from "./styles";
-import { GitHub, LinkedIn } from "@mui/icons-material";
-import { Box, Avatar } from "@mui/material";
+import { Box } from "@mui/material";
 import CardContact from "../../components/CardContact";
 import Button from "../../components/Button";
 
