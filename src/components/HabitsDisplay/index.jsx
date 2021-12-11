@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-// import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import HabitCard from "../HabitCard";

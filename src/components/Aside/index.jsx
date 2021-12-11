@@ -1,28 +1,17 @@
-// import { GroupsIcon, SmartToyIcon } from "@mui/icons-material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import { Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { Container, Card } from "./styles";
 import api from "../../services/api";
-import jwt_decode from "jwt-decode";
 import { useState, useEffect } from "react";
-import BasicButtons from "../Button";
+import CreateGroup from "../ModalCreateGroup";
 
 function Aside() {
   const [subscribedGroups, setSubscribedGroups] = useState([]);
   const [token] = useState(() => {
-    // JSON.parse(localStorage.getItem("KenzieHabits:token")) || ""
     const decoded = localStorage.getItem("@KenzieHabits:token") || "";
-
-    // const decoded = localStorage.getItem("@KenzieHabits:token") || "";
-    console.log("token", decoded);
     return decoded;
   });
-
-  const openModal = () => {
-    console.log("abrir modal");
-  };
 
   useEffect(() => {
     api
@@ -32,12 +21,10 @@ function Aside() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setSubscribedGroups(response.data);
       })
       .catch((err) => console.log(err));
   }, [token]);
-  console.log(subscribedGroups);
   return (
     <Container>
       <div className="aside_header">
@@ -49,7 +36,7 @@ function Aside() {
       <section>
         {subscribedGroups.map((card) => {
           return (
-            <Card>
+            <Card key={card.id}>
               <div className="card_icon">
                 <SmartToyIcon />
               </div>
@@ -61,7 +48,7 @@ function Aside() {
         })}
       </section>
       <footer>
-        <BasicButtons onClick={openModal}>Criar grupo</BasicButtons>
+        <CreateGroup />
       </footer>
     </Container>
   );
