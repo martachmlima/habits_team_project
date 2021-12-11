@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import api from "../../services/api";
 import jwt_decode from "jwt-decode";
+import toast from "react-hot-toast";
 
 const UserContext = createContext({});
 
@@ -23,7 +24,6 @@ const UserProvider = ({ children }) => {
     const decoded = jwt_decode(access);
     localStorage.setItem("@KenzieHabits:token", access);
     localStorage.setItem("@KenzieHabits:userId", JSON.stringify(decoded));
-    console.log(decoded);
     setToken(access);
     setUserId(decoded);
   };
@@ -33,9 +33,21 @@ const UserProvider = ({ children }) => {
     setToken(false);
     setUserId(0);
   };
+  const createGroup = (data) => {
+    api
+      .post("groups/", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => toast.success("Grupo criado com sucesso"))
+      .catch((response) =>
+        toast.error("Algo deu errado, tente novamente mais tarde")
+      );
+  };
 
   return (
-    <UserContext.Provider value={{ token, userId, signIn, signOut }}>
+    <UserContext.Provider
+      value={{ token, userId, signIn, signOut, createGroup }}
+    >
       {children}
     </UserContext.Provider>
   );

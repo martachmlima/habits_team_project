@@ -66,7 +66,6 @@ const SignUp = () => {
     api
       .post("/users/", output)
       .then((response) => {
-        console.log(response.data);
         toast.success("Conta cadastrada com sucesso!");
         history.push("/login");
       })
