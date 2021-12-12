@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 350px;
   height: 80vh;
   min-height: 500px;
+  max-height: 600px;
   background: red;
   margin: 30px 0 20px 20px;
   padding: 15px;
@@ -44,6 +45,7 @@ export const Container = styled.div`
     }
   }
   section {
+    overflow: auto;
     width: 100%;
     height: 100%;
     display: flex;
@@ -62,6 +64,7 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
+  cursor: pointer;
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -71,6 +74,12 @@ export const Card = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-wrap: nowrap;
+  border: 1px solid transparent;
+  :hover {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 4px 4px 20px 6px rgba(100, 100, 100, 0.25);
+  }
   .card_icon {
     margin-right: 10px;
     border-radius: 6px;
