@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { Link } from "react-router-dom";
 import GroupsIcon from "@mui/icons-material/Groups";
@@ -13,18 +14,24 @@ function Aside() {
     return decoded;
   });
 
+  const history = useHistory();
+
+  function oi(param) {
+    console.log(param);
+    history.push(`groups/${param}`);
+  }
+
   useEffect(() => {
     api
       .get("./groups/subscriptions/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         setSubscribedGroups(response.data);
       })
       .catch((err) => console.log(err));
   }, [token]);
+
   return (
     <Container>
       <div className="aside_header">
@@ -36,7 +43,7 @@ function Aside() {
       <section>
         {subscribedGroups.map((card) => {
           return (
-            <Card key={card.id}>
+            <Card key={card.id} onClick={() => oi(card.id)}>
               <div className="card_icon">
                 <SmartToyIcon />
               </div>
