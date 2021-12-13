@@ -13,7 +13,7 @@ import ModalProfile from "../ModalProfile";
 import { useUser } from "../../providers/User";
 
 const Header = ({ path }) => {
-  const { userName } = useUser();
+  const { userName, inputValue, setInputValue } = useUser();
   const history = useHistory();
   return (
     <>
@@ -22,6 +22,12 @@ const Header = ({ path }) => {
           <h1 onClick={() => history.push("/dashboard")}>Gest Habit</h1>
           <SearchContainer className="desktop">
             <input
+              value={inputValue}
+              onChange={(e) => {
+                if (path === "dashboard") {
+                  setInputValue(e.target.value);
+                }
+              }}
               placeholder={
                 path === "dashboard" ? "Pesquisar hábitos" : "Pesquisar grupos"
               }
