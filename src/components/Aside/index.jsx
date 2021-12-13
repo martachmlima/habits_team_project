@@ -32,7 +32,7 @@ function Aside() {
         setSubscribedGroups(response.data);
       })
       .catch((err) => console.log(err));
-  }, [token]);
+  }, [token, setSubscribedGroups]);
 
   return (
     <Container>
