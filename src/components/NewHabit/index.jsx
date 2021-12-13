@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import toast from "react-hot-toast";
+import { useUser } from "../../providers/User";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -61,6 +62,8 @@ export default function NewHabit() {
   const token = localStorage.getItem("@KenzieHabits:token") || "";
   const user = JSON.parse(localStorage.getItem("@KenzieHabits:userId")) || "";
 
+  const { habits, setHabits } = useUser();
+
   const formSchema = yup.object().shape({
     title: yup.string().required("Insira um hábito"),
     category: yup.string().required("Insira uma categoria"),
@@ -89,6 +92,7 @@ export default function NewHabit() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
+        setHabits([...habits, res.data]);
         toast.success("Hábito cadastrado com sucesso!");
       })
       .catch((err) => toast.error("Erro na criação!"));

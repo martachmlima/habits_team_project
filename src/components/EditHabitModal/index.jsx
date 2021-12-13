@@ -64,7 +64,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function CustomizedDialogs({ id }) {
+function CustomizedDialogs({ id, achievedValue }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -144,7 +144,7 @@ function CustomizedDialogs({ id }) {
                       <Slider
                         color="secondary"
                         aria-label="Quanto da meta alcançada?"
-                        defaultValue={10}
+                        defaultValue={achievedValue}
                         getAriaValueText={valuetext}
                         valueLabelDisplay="auto"
                         step={10}

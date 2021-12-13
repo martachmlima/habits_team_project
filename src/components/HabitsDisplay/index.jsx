@@ -1,42 +1,9 @@
 import { Container } from "./styles";
-import { useEffect, useState } from "react";
-import api from "../../services/api";
 import HabitCard from "../HabitCard";
 import { useUser } from "../../providers/User";
-import toast from "react-hot-toast";
 
 const HabitDisplay = () => {
-  const { token } = useUser();
-
-  const [habits, setHabits] = useState([]);
-
-  useEffect(() => {
-    api
-      .get("habits/personal/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setHabits(response.data);
-      })
-      .catch((err) => console.log(err));
-  }, [token]);
-
-  const deleteHabit = (id) => {
-    const newHabits = habits.filter((habit) => habit.id !== id);
-    api
-      .delete(`habits/${id}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setHabits(newHabits);
-        toast.success("Hábito deletado!");
-      })
-      .catch((err) => console.log(err));
-  };
+  const { habits, deleteHabit } = useUser();
 
   return (
     <Container>
@@ -48,6 +15,7 @@ const HabitDisplay = () => {
           dificuldade={habit.difficulty}
           frequencia={habit.frequency}
           id={habit.id}
+          achievedValue={habit.how_much_achieved}
           onClick={() => deleteHabit(habit.id)}
         />
       ))}

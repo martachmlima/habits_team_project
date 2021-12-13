@@ -10,4 +10,5 @@ export const GroupsContainer = styled.main`
     rgba(147, 32, 194, 1) 100%
   );
   display: flex;
+  flex-direction: column;
 `;

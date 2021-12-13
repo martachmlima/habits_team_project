@@ -10,8 +10,10 @@ import { BiSearch } from "react-icons/bi";
 import { Avatar } from "@mui/material";
 import { useHistory } from "react-router";
 import ModalProfile from "../ModalProfile";
+import { useUser } from "../../providers/User";
 
-const Header = ({ path, userName }) => {
+const Header = ({ path }) => {
+  const { userName } = useUser();
   const history = useHistory();
   return (
     <>

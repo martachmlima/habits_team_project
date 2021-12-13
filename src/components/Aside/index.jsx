@@ -6,9 +6,10 @@ import { Container, Card } from "./styles";
 import api from "../../services/api";
 import { useState, useEffect } from "react";
 import CreateGroup from "../ModalCreateGroup";
+import { useUser } from "../../providers/User";
 
 function Aside() {
-  const [subscribedGroups, setSubscribedGroups] = useState([]);
+  const { subscribedGroups, setSubscribedGroups } = useUser();
   const [token] = useState(() => {
     const decoded = localStorage.getItem("@KenzieHabits:token") || "";
     return decoded;
