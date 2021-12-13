@@ -24,18 +24,19 @@ const UserProvider = ({ children }) => {
 
   const [subscribedGroups, setSubscribedGroups] = useState([]);
 
-  const decoded = jwt_decode(token);
-  const id = String(decoded.user_id);
-
   useEffect(() => {
-    api
-      .get(`users/${id}/`)
-      .then((response) => {
-        setUserName(response.data.username);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (token) {
+      const decoded = jwt_decode(token);
+      const id = String(decoded.user_id);
+      api
+        .get(`users/${id}/`)
+        .then((response) => {
+          setUserName(response.data.username);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const signIn = async (data) => {
