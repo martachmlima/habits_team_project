@@ -3,11 +3,11 @@ import HabitCard from "../HabitCard";
 import { useUser } from "../../providers/User";
 
 const HabitDisplay = () => {
-  const { habits, deleteHabit } = useUser();
+  const { deleteHabit, filterHabts } = useUser();
 
   return (
     <Container>
-      {habits.map((habit) => (
+      {filterHabts().map((habit) => (
         <HabitCard
           key={habit.id}
           title={habit.title}

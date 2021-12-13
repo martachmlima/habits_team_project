@@ -14,8 +14,8 @@ import { useUser } from "../../providers/User";
 import { useGroups } from "../../providers/Groups";
 
 const Header = ({ path }) => {
-  const { userName } = useUser();
   const { setData } = useGroups();
+  const { userName, setInputValue } = useUser();
   const history = useHistory();
   return (
     <>
@@ -25,6 +25,9 @@ const Header = ({ path }) => {
           <SearchContainer className="desktop">
             <input
               onChange={(e) => {
+                if (path === "dashboard") {
+                  setInputValue(e.target.value);
+                }
                 setData(e.target.value);
               }}
               placeholder={

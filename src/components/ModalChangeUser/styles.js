@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
 export const ButtonNav = styled.button`
-  background-color: #ffffff;
+  background-color: white;
   border: none;
   margin: 12px auto;
   padding: 4px;
-  color: var(--dark-purple);
-  :hover {
-    color: var(--roxo);
-  }
+  color: rgb(55, 65, 81);
 `;
 
 export const ButtonChange = styled.button`
