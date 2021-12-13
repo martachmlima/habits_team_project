@@ -24,21 +24,6 @@ const UserProvider = ({ children }) => {
 
   const [subscribedGroups, setSubscribedGroups] = useState([]);
 
-  useEffect(() => {
-    if (token) {
-      const decoded = jwt_decode(token);
-      const id = String(decoded.user_id);
-      api
-        .get(`users/${id}/`)
-        .then((response) => {
-          setUserName(response.data.username);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
-
   const signIn = async (data) => {
     const response = await api.post("sessions/", data);
     const { access } = response.data;
@@ -80,7 +65,7 @@ const UserProvider = ({ children }) => {
         setHabits(response.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token]);
 
   const deleteHabit = (id) => {
     const newHabits = habits.filter((habit) => habit.id !== id);
@@ -96,6 +81,22 @@ const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    if (token) {
+      const decoded2 = jwt_decode(token);
+      const id = String(decoded2.user_id);
+
+      api
+        .get(`users/${id}/`)
+        .then((response) => {
+          setUserName(response.data.username);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [token]);
 
   return (
     <UserContext.Provider
