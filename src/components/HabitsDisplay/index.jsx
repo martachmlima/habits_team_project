@@ -1,39 +1,9 @@
 import { Container } from "./styles";
-import jwt_decode from "jwt-decode";
-import { useEffect, useState } from "react";
-import api from "../../services/api";
 import HabitCard from "../HabitCard";
+import { useUser } from "../../providers/User";
 
 const HabitDisplay = () => {
-  const token = JSON.parse(localStorage.getItem("@KenzieHabits:token"));
-  const decoded = jwt_decode(token);
-
-  const [habits, setHabits] = useState([]);
-
-  useEffect(() => {
-    api
-      .get("habits/personal/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setHabits(response.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const deleteHabit = (id) => {
-    const newHabits = habits.filter((habit) => habit.id !== id);
-    api
-      .delete(`habits/${id}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => setHabits(newHabits))
-      .catch((err) => console.log(err));
-  };
+  const { habits, deleteHabit } = useUser();
 
   return (
     <Container>

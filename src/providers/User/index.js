@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import api from "../../services/api";
 import jwt_decode from "jwt-decode";
 
@@ -34,8 +34,37 @@ const UserProvider = ({ children }) => {
     setUserId(0);
   };
 
+  const [habits, setHabits] = useState([]);
+
+  useEffect(() => {
+    api
+      .get("habits/personal/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setHabits(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const deleteHabit = (id) => {
+    const newHabits = habits.filter((habit) => habit.id !== id);
+    api
+      .delete(`habits/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => setHabits(newHabits))
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <UserContext.Provider value={{ token, userId, signIn, signOut }}>
+    <UserContext.Provider
+      value={{ token, userId, signIn, signOut, habits, deleteHabit }}
+    >
       {children}
     </UserContext.Provider>
   );
