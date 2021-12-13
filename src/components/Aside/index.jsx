@@ -7,6 +7,7 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import CreateGroup from "../ModalCreateGroup";
 import { useUser } from "../../providers/User";
+import BasicButtons from "../Button";
 
 function Aside() {
   const { subscribedGroups, setSubscribedGroups } = useUser();
@@ -24,7 +25,7 @@ function Aside() {
 
   useEffect(() => {
     api
-      .get("./groups/subscriptions/", {
+      .get("/groups/subscriptions/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -57,6 +58,9 @@ function Aside() {
       </section>
       <footer>
         <CreateGroup />
+        <BasicButtons onClick={() => history.push("/groups")}>
+          Novos Grupos
+        </BasicButtons>
       </footer>
     </Container>
   );

@@ -12,8 +12,17 @@ export const useGroups = () => {
 
 export const GroupsProvider = ({ children }) => {
   const [allGroups, setAllGroups] = useState([]);
-
+  const [data, setData] = useState("");
   const { token } = useUser();
+
+  useEffect(() => {
+    api
+      .get(`groups/?search=${data}`)
+      .then((response) => {
+        setAllGroups(response.data.results);
+      })
+      .catch((err) => console.log(err));
+  }, [data]);
 
   const joinGroup = (id) => {
     api
@@ -68,7 +77,9 @@ export const GroupsProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <GroupsContext.Provider value={{ allGroups, joinGroup, leaveGroup }}>
+    <GroupsContext.Provider
+      value={{ allGroups, setData, joinGroup, leaveGroup }}
+    >
       {children}
     </GroupsContext.Provider>
   );

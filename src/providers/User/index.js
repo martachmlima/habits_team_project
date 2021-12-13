@@ -18,6 +18,8 @@ const UserProvider = ({ children }) => {
     localStorage.getItem("@KenzieHabits:userId") || 0
   );
 
+  const [inputValue, setInputValue] = useState("");
+
   const [habits, setHabits] = useState([]);
 
   const [userName, setUserName] = useState("");
@@ -98,6 +100,25 @@ const UserProvider = ({ children }) => {
     }
   }, [token]);
 
+  const filterHabts = () => {
+    return inputValue === ""
+      ? habits.filter((item) => item)
+      : habits.filter((item) =>
+          item.title
+            .toLowerCase()
+            .split()
+            .map((item) => item)
+            .join()
+            .includes(
+              inputValue
+                .toLowerCase()
+                .split()
+                .map((item) => item)
+                .join()
+            )
+        );
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -112,6 +133,9 @@ const UserProvider = ({ children }) => {
         userName,
         subscribedGroups,
         setSubscribedGroups,
+        inputValue,
+        setInputValue,
+        filterHabts,
       }}
     >
       {children}

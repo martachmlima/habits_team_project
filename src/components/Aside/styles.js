@@ -53,10 +53,11 @@ export const Container = styled.div`
     justify-content: flex-start;
   }
   footer {
-    height: 70px;
+    height: 150px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     border-top: 2px solid #8d8d8d;
     margin-top: 20px;
