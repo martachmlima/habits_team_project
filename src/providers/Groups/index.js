@@ -10,25 +10,11 @@ export const useGroups = () => {
 };
 
 export const GroupsProvider = ({ children }) => {
-  const [allGroups, setAllGroups] = useState([]);
+  const [cardGroup, setCardGroup] = useState([]);
 
-  const { token } = useUser();
-
-  useEffect(() => {
-    api
-      .get("groups/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setAllGroups(response.data.results);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
-    <GroupsContext.Provider value={{ allGroups }}>
+    <GroupsContext.Provider value={{ setCardGroup, cardGroup }}>
       {children}
     </GroupsContext.Provider>
   );
