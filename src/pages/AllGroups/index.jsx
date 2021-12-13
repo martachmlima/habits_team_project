@@ -1,17 +1,27 @@
 import Header from "../../components/Header";
-import { GroupsContainer } from "./styles";
+import { MainContainer, GroupsContainer } from "./styles";
 import { useGroups } from "../../providers/Groups";
+import GroupCard from "../../components/GroupCard";
 
 const AllGroups = () => {
   const { allGroups } = useGroups();
 
   return (
-    <GroupsContainer>
+    <MainContainer>
       <Header path="groups" />
-      {allGroups.map((group) => (
-        <p>{group.name}</p>
-      ))}
-    </GroupsContainer>
+      <GroupsContainer>
+        {allGroups.map((group) => (
+          <GroupCard
+          key={group.id}
+            name={group.name}
+            description={group.description}
+            category={group.category}
+            creator={group.creator.username}
+            id={group.id}
+          />
+        ))}
+      </GroupsContainer>
+    </MainContainer>
   );
 };
 
