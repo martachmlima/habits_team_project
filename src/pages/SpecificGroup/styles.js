@@ -24,4 +24,22 @@ export const SectionsMenu = styled.section`
   padding: 10px;
   border-radius: 12px;
   margin-top: 50px;
+  .description {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .description_info_title {
+      font-size: 1.2rem;
+      color: var(--dark-purple);
+  }
+  }
+  .description_button {
+    flex-base: 40%;
+    padding: 0 0 0 5%;
+    display: flex;
+    align-items: center;
+  }
 `;

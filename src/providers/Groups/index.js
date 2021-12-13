@@ -1,6 +1,6 @@
-import { createContext, useState, useContext, useEffect } from "react";
-import api from "../../services/api";
-import { useUser } from "../User";
+import { createContext, useState, useContext } from "react";
+// import api from "../../services/api";
+// import { useUser } from "../User";
 
 export const GroupsContext = createContext({});
 
@@ -11,7 +11,6 @@ export const useGroups = () => {
 
 export const GroupsProvider = ({ children }) => {
   const [cardGroup, setCardGroup] = useState([]);
-
 
   return (
     <GroupsContext.Provider value={{ setCardGroup, cardGroup }}>
