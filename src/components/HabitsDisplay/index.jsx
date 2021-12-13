@@ -14,6 +14,8 @@ const HabitDisplay = () => {
           categoria={habit.category}
           dificuldade={habit.difficulty}
           frequencia={habit.frequency}
+          id={habit.id}
+          achievedValue={habit.how_much_achieved}
           onClick={() => deleteHabit(habit.id)}
         />
       ))}

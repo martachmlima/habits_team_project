@@ -41,17 +41,9 @@ export const Container = styled.div`
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      button + button {
-        margin-left: 20px;
+      .botao1 {
+        margin-right: 10px;
       }
-    }
-    .menu_bottoes button {
-      font-size: 3rem;
-      height: 70px;
-      min-width: 300px;
-      border-radius: 5px;
-      color: #9320c2;
-      border: none;
     }
   }
   h3 {

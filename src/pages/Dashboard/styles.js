@@ -9,4 +9,13 @@ export const DashboardContainer = styled.main`
     rgba(231, 171, 171, 1) 0%,
     rgba(147, 32, 194, 1) 100%
   );
+  > div {
+    text-align: center;
+    margin-top: 20px;
+  }
+`;
+
+export const MainContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;

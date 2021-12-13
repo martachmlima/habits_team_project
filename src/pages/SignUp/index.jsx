@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import image from "../SignUp/SvgCabeça.png";
 import api from "../../services/api";
 import toast from "react-hot-toast";
@@ -13,8 +13,8 @@ import {
   ConteinerTitle,
   ConteinerForm,
   ConteinerFormGradient,
+  ConteinerBox,
 } from "./styles";
-import BasicButtons from "../../components/Button";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
@@ -65,7 +65,6 @@ const SignUp = () => {
     api
       .post("/users/", output)
       .then((response) => {
-        console.log(response.data);
         toast.success("Conta cadastrada com sucesso!");
         history.push("/login");
       })
@@ -74,148 +73,150 @@ const SignUp = () => {
 
   return (
     <Conteiner>
-      <ConteinerImg>
+      <ConteinerBox>
         <ConteinerTitle>
           <h1>Gest</h1>
           <h2>Habit</h2>
         </ConteinerTitle>
-        <img src={image} alt="" />
-      </ConteinerImg>
+        <ConteinerImg>
+          <img src={image} alt="" />
+        </ConteinerImg>
 
-      <ConteinerForm>
-        <ConteinerFormGradient>
-          <form onSubmit={handleSubmit(handleRegister)}>
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
+        <ConteinerForm>
+          <ConteinerFormGradient>
+            <form onSubmit={handleSubmit(handleRegister)}>
+              <TextField
+                color="secondary"
+                sx={{
+                  "& input:valid + fieldset": {
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 3,
+                    height: 75,
+                  },
+                  filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
+                  bgcolor: "var(--branco)",
                   borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 3,
-              }}
-              fullWidth
-              label={
-                errors.username?.message
-                  ? errors.username?.message
-                  : "Nome de usuário"
-              }
-              error={errors.username?.message}
-              id="fullWidth"
-              {...register("username")}
-            />
+                  height: 70,
+                  mt: 3,
+                }}
+                fullWidth
+                label={
+                  errors.username?.message
+                    ? errors.username?.message
+                    : "Nome de usuário"
+                }
+                error={errors.username?.message}
+                id="fullWidth"
+                {...register("username")}
+              />
 
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
+              <TextField
+                color="secondary"
+                sx={{
+                  "& input:valid + fieldset": {
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 3,
+                    height: 75,
+                  },
+                  filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
+                  bgcolor: "var(--branco)",
                   borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={errors.email?.message ? errors.email?.message : "Email"}
-              error={errors.email?.message}
-              id="fullWidth"
-              {...register("email")}
-            />
+                  height: 70,
+                  mt: 2,
+                }}
+                fullWidth
+                label={errors.email?.message ? errors.email?.message : "Email"}
+                error={errors.email?.message}
+                id="fullWidth"
+                {...register("email")}
+              />
 
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
+              <TextField
+                color="secondary"
+                sx={{
+                  "& input:valid + fieldset": {
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 3,
+                    height: 75,
+                  },
+                  filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
+                  bgcolor: "var(--branco)",
                   borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.confirmEmail?.message
-                  ? errors.confirmEmail?.message
-                  : "Confirme seu E-mail"
-              }
-              error={errors.confirmEmail?.message}
-              id="fullWidth"
-              {...register("confirmEmail")}
-            />
+                  height: 70,
+                  mt: 2,
+                }}
+                fullWidth
+                label={
+                  errors.confirmEmail?.message
+                    ? errors.confirmEmail?.message
+                    : "Confirme seu E-mail"
+                }
+                error={errors.confirmEmail?.message}
+                id="fullWidth"
+                {...register("confirmEmail")}
+              />
 
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
+              <TextField
+                color="secondary"
+                sx={{
+                  "& input:valid + fieldset": {
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 3,
+                    height: 75,
+                  },
+                  filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
+                  bgcolor: "var(--branco)",
                   borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.password?.message ? errors.password?.message : "Senha"
-              }
-              type="password"
-              error={errors.password?.message}
-              id="fullWidth"
-              {...register("password")}
-            />
+                  height: 70,
+                  mt: 2,
+                }}
+                fullWidth
+                label={
+                  errors.password?.message ? errors.password?.message : "Senha"
+                }
+                type="password"
+                error={errors.password?.message}
+                id="fullWidth"
+                {...register("password")}
+              />
 
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
+              <TextField
+                color="secondary"
+                sx={{
+                  "& input:valid + fieldset": {
+                    borderColor: "white",
+                    borderWidth: 1,
+                    borderRadius: 3,
+                    height: 75,
+                  },
+                  filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
+                  bgcolor: "var(--branco)",
                   borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              id="fullWidth"
-              type="password"
-              fullWidth
-              label={
-                errors.confirmPassword?.message
-                  ? errors.confirmPassword?.message
-                  : "Confirme sua senha"
-              }
-              error={errors.confirmPassword?.message}
-              {...register("confirmPassword")}
-            />
+                  height: 70,
+                  mt: 2,
+                }}
+                id="fullWidth"
+                type="password"
+                fullWidth
+                label={
+                  errors.confirmPassword?.message
+                    ? errors.confirmPassword?.message
+                    : "Confirme sua senha"
+                }
+                error={errors.confirmPassword?.message}
+                {...register("confirmPassword")}
+              />
 
-            <button type="submit">Enviar</button>
-            <Link to="/login">Possui conta? Faça LOGIN</Link>
-          </form>
-        </ConteinerFormGradient>
-      </ConteinerForm>
+              <button type="submit">Enviar</button>
+              <Link to="/login">Possui conta? Faça LOGIN</Link>
+            </form>
+          </ConteinerFormGradient>
+        </ConteinerForm>
+      </ConteinerBox>
     </Conteiner>
   );
 };
