@@ -11,9 +11,11 @@ import { Avatar } from "@mui/material";
 import { useHistory } from "react-router";
 import ModalProfile from "../ModalProfile";
 import { useUser } from "../../providers/User";
+import { useGroups } from "../../providers/Groups";
 
 const Header = ({ path }) => {
-  const { userName, inputValue, setInputValue } = useUser();
+  const { setData } = useGroups();
+  const { userName, setInputValue } = useUser();
   const history = useHistory();
   return (
     <>
@@ -22,11 +24,11 @@ const Header = ({ path }) => {
           <h1 onClick={() => history.push("/dashboard")}>Gest Habit</h1>
           <SearchContainer className="desktop">
             <input
-              value={inputValue}
               onChange={(e) => {
                 if (path === "dashboard") {
                   setInputValue(e.target.value);
                 }
+                setData(e.target.value);
               }}
               placeholder={
                 path === "dashboard" ? "Pesquisar hábitos" : "Pesquisar grupos"
@@ -46,10 +48,7 @@ const Header = ({ path }) => {
         <>
           {path === "dashboard" ? (
             <SectionMobile>
-              {" "}
-              <span onClick={() => history.push("/groups")}>
-                Buscar Grupos
-              </span>{" "}
+              <span onClick={() => history.push("/groups")}>Buscar Grupos</span>
               <span>Meus Grupos</span>
             </SectionMobile>
           ) : path === "groups" ? (

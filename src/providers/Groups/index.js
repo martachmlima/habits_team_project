@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import api from "../../services/api";
-import { useUser } from "../User";
 
 export const GroupsContext = createContext({});
 
@@ -11,24 +10,19 @@ export const useGroups = () => {
 
 export const GroupsProvider = ({ children }) => {
   const [allGroups, setAllGroups] = useState([]);
-
-  const { token } = useUser();
+  const [data, setData] = useState("");
 
   useEffect(() => {
     api
-      .get("groups/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(`groups/?search=${data}`)
       .then((response) => {
         setAllGroups(response.data.results);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [data]);
 
   return (
-    <GroupsContext.Provider value={{ allGroups }}>
+    <GroupsContext.Provider value={{ allGroups, setData }}>
       {children}
     </GroupsContext.Provider>
   );
