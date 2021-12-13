@@ -3,6 +3,7 @@ import { MainContainer, GroupsContainer } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 
+
 const AllGroups = () => {
   const { allGroups } = useGroups();
 
@@ -11,14 +12,16 @@ const AllGroups = () => {
       <Header path="groups" />
       <GroupsContainer>
         {allGroups.map((group) => (
-          <GroupCard
-          key={group.id}
-            name={group.name}
-            description={group.description}
-            category={group.category}
-            creator={group.creator.username}
-            id={group.id}
-          />
+          <>
+            <GroupCard
+              key={group.id}
+              name={group.name}
+              description={group.description}
+              category={group.category}
+              creator={group.creator.username}
+              id={group.id}
+            />
+          </>
         ))}
       </GroupsContainer>
     </MainContainer>

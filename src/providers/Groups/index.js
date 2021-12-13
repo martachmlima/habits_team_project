@@ -17,11 +17,15 @@ export const GroupsProvider = ({ children }) => {
 
   const joinGroup = (id) => {
     api
-      .post(`groups/${id}/subscribe/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        `groups/${id}/subscribe/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         toast.success("Bem-vindo ao grupo!");
@@ -40,7 +44,6 @@ export const GroupsProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         toast.success("Você saiu do grupo!");
       })
       .catch((err) => {

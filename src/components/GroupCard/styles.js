@@ -29,6 +29,7 @@ export const ContainerButton = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  margin-bottom: 10px;
   > button {
     width: 40%;
   }
