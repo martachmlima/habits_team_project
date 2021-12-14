@@ -32,14 +32,37 @@ export const SectionsMenu = styled.section`
     justify-content: space-between;
   }
   .description_info_title {
-      font-size: 1.2rem;
-      color: var(--dark-purple);
-  }
+    font-size: 2rem;
+    color: var(--dark-purple);
+    span {
+      font-size: 1.8rem;
+      font-weight: normal;
+    }
   }
   .description_button {
     flex-base: 40%;
     padding: 0 0 0 5%;
     display: flex;
     align-items: center;
+  }
+  .buttonlink {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid gray;
+    padding: 10px 0 20px;
+    color: var(--dark-purple);
+    button {
+      font-size: 2rem;
+      color: var(--dark-purple);
+      background-color: transparent;
+      border: none;
+      margin: 0 10px;
+    }
+  }
+  .cards {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
   }
 `;

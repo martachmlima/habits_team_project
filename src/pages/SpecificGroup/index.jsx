@@ -3,6 +3,8 @@ import { useState } from "react";
 import Header from "../../components/Header";
 import { Container, SectionsMenu } from "./styles";
 import { useGroups } from "../../providers/Groups";
+import CardGoals from "../../components/CardGoals";
+import CardActivities from "../../components/CardActivities";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
@@ -17,26 +19,34 @@ const SpecificGroup = () => {
       <SectionsMenu>
         <section className="description">
           <div className="description_info">
-            <h2 className="description_info_title">Nome: {cardGroup.name}</h2>
             <h2 className="description_info_title">
-              Descrição: {cardGroup.description}
+              Nome: <span>{cardGroup.name}</span>
             </h2>
             <h2 className="description_info_title">
-              Categoria: {cardGroup.category}
+              Descrição: <span>{cardGroup.description}</span>
             </h2>
             <h2 className="description_info_title">
-              Criador: {cardGroup.creator.username}
+              Categoria: <span>{cardGroup.category}</span>
+            </h2>
+            <h2 className="description_info_title">
+              Criador: <span>{cardGroup.creator.username}</span>
             </h2>
           </div>
           <div className="description_button">
             <BasicButtons>Sair</BasicButtons>
           </div>
         </section>
-        <div>
-          <button onClick={() => setRender("goals")}>Goals</button> |
-          <button onClick={() => setRender("achivied")}>Achivied</button>
+        <div className="buttonlink">
+          <button onClick={() => setRender("goals")}>Metas</button> |
+          <button onClick={() => setRender("achivied")}>Atividades</button>
         </div>
-        {render === "goals" ? <div>goals</div> : <div>achivied</div>}
+        <section className="cards">
+          {render === "goals" ? (
+            <CardGoals goals={cardGroup.goals} />
+          ) : (
+            <CardActivities activities={cardGroup.activities} />
+          )}
+        </section>
       </SectionsMenu>
     </Container>
   );
