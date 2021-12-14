@@ -2,12 +2,11 @@ import { Container } from "./styles";
 import BasicButtons from "../Button";
 import { useGroups } from '../../providers/Groups'
 
-function CardActivities({ activities }) {
+function CardActivities( { activities } ) {
 
   const { deleteActivities } = useGroups();
 
   return (
-    activities &&
     activities.map((card) => {
       console.log(card);
       return (

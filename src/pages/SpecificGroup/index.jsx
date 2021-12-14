@@ -8,7 +8,11 @@ import CardActivities from "../../components/CardActivities";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
-  const { cardGroup } = useGroups();
+  // const { cardGroup } = useGroups();
+
+  const cardGroup = JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
+
+  const { goals, activities } = cardGroup
 
   console.log(cardGroup);
 
@@ -41,9 +45,9 @@ const SpecificGroup = () => {
         </div>
         <section className="cards">
           {render === "goals" ? (
-            <CardGoals goals={cardGroup.goals} />
+            <CardGoals goals={goals} />
           ) : (
-            <CardActivities activities={cardGroup.activities} />
+            <CardActivities activities={activities} />
           )}
         </section>
       </SectionsMenu>
