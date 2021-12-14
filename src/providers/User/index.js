@@ -24,6 +24,8 @@ const UserProvider = ({ children }) => {
 
   const [userName, setUserName] = useState("");
 
+  const [user, setUser] = useState({});
+
   const [subscribedGroups, setSubscribedGroups] = useState([]);
 
   const signIn = async (data) => {
@@ -93,6 +95,7 @@ const UserProvider = ({ children }) => {
         .get(`users/${id}/`)
         .then((response) => {
           setUserName(response.data.username);
+          setUser(response.data);
         })
         .catch((err) => {
           console.log(err);
@@ -136,6 +139,7 @@ const UserProvider = ({ children }) => {
         inputValue,
         setInputValue,
         filterHabts,
+        user,
       }}
     >
       {children}

@@ -3,7 +3,6 @@ import { MainContainer, GroupsContainer } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 
-
 const AllGroups = () => {
   const { allGroups } = useGroups();
 
@@ -20,6 +19,7 @@ const AllGroups = () => {
               category={group.category}
               creator={group.creator.username}
               id={group.id}
+              users_on_group={group.users_on_group}
             />
           </>
         ))}
