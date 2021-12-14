@@ -23,6 +23,9 @@ export const ContainerGroup = styled.div`
     margin-bottom: 15px;
     font-size: 1.2rem;
   }
+  > span {
+    cursor: pointer;
+  }
 `;
 
 export const ContainerButton = styled.div`

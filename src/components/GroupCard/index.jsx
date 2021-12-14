@@ -12,6 +12,7 @@ const GroupCard = ({
   creator,
   id,
   users_on_group,
+  currentFunction,
 }) => {
   const { joinGroup, leaveGroup } = useGroups();
   const { userName } = useUser();
@@ -33,7 +34,7 @@ const GroupCard = ({
         )}
         {creator === userName && <CustomizedDialogs id={id} />}
       </ContainerButton>
-      <Link to={`/groups/${id}`}>Mais informações</Link>
+      <span onClick={currentFunction}>Mais informações</span>
     </ContainerGroup>
   );
 };
