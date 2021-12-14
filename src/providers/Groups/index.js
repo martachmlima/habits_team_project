@@ -11,17 +11,13 @@ export const useGroups = () => {
 };
 
 export const GroupsProvider = ({ children }) => {
-  const [cardGroup, setCardGroup] = useState([]);
+  const [cardGroup, setCardGroup] = useState(() => localStorage.getItem('KenzieHabits:group') || {} );
+
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
   const { token } = useUser();
   const [activities, setActivities] = useState([])
   const [goals, setGoals] = useState([])
-
-  useEffect(() => {
-    setActivities(cardGroup.activities)
-    setGoals(cardGroup.goals)
-  }, [cardGroup])
 
   const deleteActivities = (id) => {
     const newActivities = activities.filter((activities) => activities.id !== id)
@@ -116,7 +112,7 @@ export const GroupsProvider = ({ children }) => {
 
   return (
     <GroupsContext.Provider
-      value={{ allGroups, setData, joinGroup, leaveGroup, setCardGroup, cardGroup, deleteGoals, deleteActivities, activities, goals }}
+      value={{ allGroups, setData, joinGroup, leaveGroup, setCardGroup, cardGroup, deleteGoals, deleteActivities, activities, setActivities, goals, setGoals }}
     >
       {children}
     </GroupsContext.Provider>

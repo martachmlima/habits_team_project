@@ -4,7 +4,7 @@ import BasicButtons from "../Button";
 // import api from '../../services/api'
 import { useGroups } from "../../providers/Groups";
 
-function CardGoals({ goals }) {
+function CardGoals( { goals } ) {
 
   const { deleteGoals } = useGroups();
 
