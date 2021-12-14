@@ -8,7 +8,6 @@ import CardActivities from "../../components/CardActivities";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
-
   const { cardGroup } = useGroups();
 
   console.log(cardGroup);
