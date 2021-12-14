@@ -1,25 +1,12 @@
 import { Container } from "./styles";
 import BasicButtons from "../Button";
-import { useUser } from '../../providers/User'
-import { toast } from 'react-hot-toast'
-import api from '../../services/api'
+// import { toast } from 'react-hot-toast'
+// import api from '../../services/api'
+import { useGroups } from "../../providers/Groups";
 
 function CardGoals({ goals }) {
 
-  const { token } = useUser();
-
-  const deleteGoals = (id) => {
-    api
-      .delete(`activities/${id}/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        toast.success("Atividade excluida com sucesso");
-      })
-      .catch((response) =>
-        toast.error("Erro inesperado, tente novamente mais tarde")
-      );
-  };
+  const { deleteGoals } = useGroups();
 
   return (
     goals &&
