@@ -11,9 +11,47 @@ export const useGroups = () => {
 };
 
 export const GroupsProvider = ({ children }) => {
+  const [cardGroup, setCardGroup] = useState([]);
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
   const { token } = useUser();
+  const [activities, setActivities] = useState([])
+  const [goals, setGoals] = useState([])
+
+  useEffect(() => {
+    setActivities(cardGroup.activities)
+    setGoals(cardGroup.goals)
+  }, [cardGroup])
+
+  const deleteActivities = (id) => {
+    const newActivities = activities.filter((activities) => activities.id !== id)
+    api
+      .delete(`activities/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setActivities(newActivities);
+        toast.success("Atividade deletada!");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteGoals = (id) => {
+    const newGoals = goals.filter((goal) => goal.id !== id)
+    api
+      .delete(`goals/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setGoals(newGoals);
+        toast.success("Meta deletada!");
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     api
@@ -78,7 +116,7 @@ export const GroupsProvider = ({ children }) => {
 
   return (
     <GroupsContext.Provider
-      value={{ allGroups, setData, joinGroup, leaveGroup }}
+      value={{ allGroups, setData, joinGroup, leaveGroup, setCardGroup, cardGroup, deleteGoals, deleteActivities, activities, goals }}
     >
       {children}
     </GroupsContext.Provider>

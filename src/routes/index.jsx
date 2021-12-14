@@ -5,7 +5,6 @@ import SignUp from "../pages/SignUp";
 import Dashboard from "../pages/Dashboard";
 import AllGroups from "../pages/AllGroups";
 import SpecificGroup from "../pages/SpecificGroup";
-
 import Route from "./route";
 
 const Routes = () => {
@@ -16,6 +15,7 @@ const Routes = () => {
       <Route path="/signup" component={SignUp} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/groups" component={AllGroups} isPrivate />
+      <Route path="/group/goals" component={SpecificGroup} isPrivate />
       <Route path="/groups/:groupId" component={SpecificGroup} isPrivate />
     </Switch>
   );

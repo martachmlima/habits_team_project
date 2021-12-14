@@ -7,6 +7,7 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import CreateGroup from "../ModalCreateGroup";
 import { useUser } from "../../providers/User";
+import { useGroups } from "../../providers/Groups";
 import BasicButtons from "../Button";
 
 function Aside() {
@@ -15,12 +16,12 @@ function Aside() {
     const decoded = localStorage.getItem("@KenzieHabits:token") || "";
     return decoded;
   });
-
+  const { setCardGroup } = useGroups();
   const history = useHistory();
 
-  function oi(param) {
-    console.log(param);
-    history.push(`groups/${param}`);
+  function handleGroup(card) {
+    setCardGroup(card);
+    history.push("/group/goals");
   }
 
   useEffect(() => {
@@ -45,7 +46,7 @@ function Aside() {
       <section>
         {subscribedGroups.map((card) => {
           return (
-            <Card key={card.id} onClick={() => oi(card.id)}>
+            <Card key={card.id} onClick={() => handleGroup(card)}>
               <div className="card_icon">
                 <SmartToyIcon />
               </div>
