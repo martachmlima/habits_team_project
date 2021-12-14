@@ -155,7 +155,7 @@ function CustomizedDialogs({ id, achievedValue }) {
                         {...register("how_much_achieved")}
                       />
                       <FormControlLabel
-                        control={<Checkbox defaultChecked />}
+                        control={<Checkbox />}
                         label="Meta alcançada?"
                         error={errors.achieved?.message}
                         {...register("achieved")}
