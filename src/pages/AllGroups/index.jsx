@@ -3,9 +3,10 @@ import { MainContainer, GroupsContainer } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 import { useHistory } from "react-router-dom";
+import BasicButtons from "../../components/Button";
 
 const AllGroups = () => {
-  const { allGroups } = useGroups();
+  const { allGroups, next, setNext } = useGroups();
 
   const { setCardGroup } = useGroups();
   const history = useHistory();
@@ -34,6 +35,24 @@ const AllGroups = () => {
           </>
         ))}
       </GroupsContainer>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <BasicButtons
+          style={{ width: "90px" }}
+          sx={{ p: 2 }}
+          color="secondary"
+          onClick={() => setNext(next - 1)}
+        >
+          Previus
+        </BasicButtons>
+        <BasicButtons
+          style={{ width: "90px" }}
+          sx={{ p: 2, ml: 2 }}
+          color="secondary"
+          onClick={() => setNext(next + 1)}
+        >
+          Next
+        </BasicButtons>
+      </div>
     </MainContainer>
   );
 };

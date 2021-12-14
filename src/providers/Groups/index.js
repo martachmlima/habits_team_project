@@ -15,16 +15,19 @@ export const GroupsProvider = ({ children }) => {
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
   const { token } = useUser();
-  const [activities, setActivities] = useState([])
-  const [goals, setGoals] = useState([])
+  const [activities, setActivities] = useState([]);
+  const [goals, setGoals] = useState([]);
+  const [next, setNext] = useState(1);
 
   useEffect(() => {
-    setActivities(cardGroup.activities)
-    setGoals(cardGroup.goals)
-  }, [cardGroup])
+    setActivities(cardGroup.activities);
+    setGoals(cardGroup.goals);
+  }, [cardGroup]);
 
   const deleteActivities = (id) => {
-    const newActivities = activities.filter((activities) => activities.id !== id)
+    const newActivities = activities.filter(
+      (activities) => activities.id !== id
+    );
     api
       .delete(`activities/${id}/`, {
         headers: {
@@ -39,7 +42,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const deleteGoals = (id) => {
-    const newGoals = goals.filter((goal) => goal.id !== id)
+    const newGoals = goals.filter((goal) => goal.id !== id);
     api
       .delete(`goals/${id}/`, {
         headers: {
@@ -114,9 +117,33 @@ export const GroupsProvider = ({ children }) => {
     }
   }, [token]);
 
+  useEffect(() => {
+    fetch(`https://kenzie-habits.herokuapp.com/groups/?page=${next}`)
+      .then((Response) => Response.json())
+      .then((Response) => setAllGroups([...Response.results]))
+      .catch((error) => console.log(error));
+  }, [next]);
+  console.log(next);
+  useEffect(() => {}, [next]);
+  if (next < 0) {
+    setNext(next + 1);
+  }
   return (
     <GroupsContext.Provider
-      value={{ allGroups, setData, joinGroup, leaveGroup, setCardGroup, cardGroup, deleteGoals, deleteActivities, activities, goals }}
+      value={{
+        allGroups,
+        setData,
+        joinGroup,
+        leaveGroup,
+        setCardGroup,
+        cardGroup,
+        deleteGoals,
+        deleteActivities,
+        activities,
+        goals,
+        next,
+        setNext,
+      }}
     >
       {children}
     </GroupsContext.Provider>
