@@ -10,8 +10,6 @@ const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
   const { cardGroup } = useGroups();
 
-  console.log(cardGroup);
-
   return (
     <Container>
       <Header />

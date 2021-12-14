@@ -10,11 +10,11 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as React from "react";
-import { TextField } from "@mui/material";
 import { ButtonNav, ButtonChange } from "./styles";
 import jwt_decode from "jwt-decode";
 import api from "../../services/api";
 import toast from "react-hot-toast";
+import InputTextField from "../InputTextField";
 
 export default function SwipeableTemporaryDrawer({ anchor }) {
   const [state, setState] = React.useState({
@@ -62,64 +62,25 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
               <ListItemIcon
                 sx={{ width: "100%", display: "flex", flexDirection: "column" }}
               >
-                <TextField
-                  color="secondary"
-                  sx={{
-                    "& input:valid + fieldset": {
-                      borderColor: "white",
-                      borderWidth: 1,
-                      borderRadius: 3,
-                      height: 75,
-                    },
-                    filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                    bgcolor: "var(--branco)",
-                    borderRadius: 3,
-                    height: 70,
-                    mt: 3,
-                  }}
-                  fullWidth
+                <InputTextField
                   label={
-                    errors.username?.message ? (
-                      errors.username?.message
-                    ) : (
-                      <>
-                        <ManageAccountsIcon /> Novo nome de usuário
-                      </>
-                    )
+                    <>
+                      <ManageAccountsIcon /> Novo nome de usuário
+                    </>
                   }
-                  error={errors.username?.message}
-                  id="fullWidth"
-                  {...register("username")}
+                  errors={errors.username?.message}
+                  register={register}
+                  valueRegister={"username"}
                 />
-
-                <TextField
-                  color="secondary"
-                  sx={{
-                    "& input:valid + fieldset": {
-                      borderColor: "white",
-                      borderWidth: 1,
-                      borderRadius: 3,
-                      height: 75,
-                    },
-                    filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                    bgcolor: "var(--branco)",
-                    borderRadius: 3,
-                    height: 70,
-                    mt: 2,
-                  }}
-                  fullWidth
+                <InputTextField
                   label={
-                    errors.email?.message ? (
-                      errors.email?.message
-                    ) : (
-                      <>
-                        <MailIcon /> Novo E-mail
-                      </>
-                    )
+                    <>
+                      <MailIcon /> Novo E-mail
+                    </>
                   }
-                  error={errors.email?.message}
-                  id="fullWidth"
-                  {...register("email")}
+                  errors={errors.email?.message}
+                  register={register}
+                  valueRegister={"email"}
                 />
               </ListItemIcon>
             </ListItem>
