@@ -69,7 +69,7 @@ function Home() {
           img={
             "https://ca.slack-edge.com/TQZR39SET-U025P2EM6H0-06eb33c8dd24-512"
           }
-          link={"https://www.google.com"}
+          link={"https://www.linkedin.com/in/marta-lima-bsb/"}
         />
       </Box>
     </Container>

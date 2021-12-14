@@ -2,9 +2,23 @@ import { useGroups } from "../../providers/Groups";
 import { ContainerGroup, ContainerButton } from "./styles";
 import BasicButtons from "../Button";
 import { Link } from "react-router-dom";
+import { useUser } from "../../providers/User";
+import CustomizedDialogs from "../ModalEditGroup";
 
-const GroupCard = ({ name, description, category, creator, id }) => {
+const GroupCard = ({
+  name,
+  description,
+  category,
+  creator,
+  id,
+  users_on_group,
+  currentFunction,
+}) => {
   const { joinGroup, leaveGroup } = useGroups();
+  const { userName } = useUser();
+
+  const usersArray = users_on_group.map((user) => user.username === userName);
+  const arrayInclludesUSer = usersArray.includes(true);
 
   return (
     <ContainerGroup>
@@ -13,10 +27,14 @@ const GroupCard = ({ name, description, category, creator, id }) => {
       <p>Categoria: {category}</p>
       <p>Criador: {creator}</p>
       <ContainerButton>
-        <BasicButtons onClick={() => joinGroup(id)}>Entrar</BasicButtons>
-        <BasicButtons onClick={() => leaveGroup(id)}>Sair</BasicButtons>
+        {arrayInclludesUSer ? (
+          <BasicButtons onClick={() => leaveGroup(id)}>Sair</BasicButtons>
+        ) : (
+          <BasicButtons onClick={() => joinGroup(id)}>Entrar</BasicButtons>
+        )}
+        {creator === userName && <CustomizedDialogs id={id} />}
       </ContainerButton>
-      <Link to={`/groups/${id}`}>Mais informações</Link>
+      <span onClick={currentFunction}>Mais informações</span>
     </ContainerGroup>
   );
 };
