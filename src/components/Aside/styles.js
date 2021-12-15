@@ -35,16 +35,16 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    border-bottom: 2px solid #8d8d8d;
+    border-bottom: 2px solid var(--color-aside);
     padding-bottom: 10px;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     svg {
       font-size: 60px;
-      color: #8d8d8d;
+      color: var(--color-aside);
     }
     h1 {
       font-size: 1.8rem;
-      color: #8d8d8d;
+      color: var(--color-aside);
     }
   }
   section {
@@ -54,6 +54,8 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    padding-top: 10px;
+    align-items: center;
   }
   footer {
     height: 170px;
@@ -62,7 +64,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border-top: 2px solid #8d8d8d;
+    border-top: 2px solid var(--color-aside);
     margin-top: 20px;
     padding-top: 10px;
   }
@@ -70,20 +72,21 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   cursor: pointer;
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-bottom: 15px;
   display: flex;
-  background-color: #f5fcfb;
+  background-color: var(--bgcolor-cardGroupAside);
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: nowrap;
   border: 1px solid transparent;
+  border-radius: 6px;
   :hover {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-    box-shadow: 4px 4px 20px 6px rgba(100, 100, 100, 0.25);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   }
   .card_icon {
     margin-right: 10px;
@@ -98,6 +101,6 @@ export const Card = styled.div`
   }
   h3 {
     font-size: 13px;
-    color: #32c5aa;
+    color: var(--color-cardAside);
   }
 `;
