@@ -17,7 +17,7 @@ export const Container = styled.div`
   border: 1px solid var(--color-stroke);
   box-shadow: 0px 0px 20px 0 rgb(0 0 0 / 15%);
 
-  @media (min-width: 1100px) {
+  /*   @media (min-width: 1100px) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,7 +26,7 @@ export const Container = styled.div`
 
   @media (max-width: 800px) {
     display: none;
-  }
+  } */
 
   .aside_header {
     width: 100%;

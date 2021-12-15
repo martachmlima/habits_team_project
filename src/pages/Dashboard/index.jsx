@@ -8,9 +8,18 @@ import { useState } from "react";
 const Dashboard = () => {
   const [mobileDisplay, setMobileDisplay] = useState(true);
 
+  const [windowWidth, setWindowWidth] = useState(window.screen.width);
+
+  window.addEventListener("resize", (evt) => {
+    setWindowWidth(evt.currentTarget.innerWidth);
+  });
+
+  // console.log(windomWidth);
+
   const handleDisplay = () => {
     setMobileDisplay(!mobileDisplay);
   };
+
   return (
     <DashboardContainer>
       <Header
@@ -19,8 +28,15 @@ const Dashboard = () => {
         mobileDisplay={mobileDisplay}
       />
       <MainContainer>
-        <Aside />
-        <HabitDisplay />
+        {windowWidth > 800 ? (
+          <>
+            <Aside /> <HabitDisplay />{" "}
+          </>
+        ) : windowWidth <= 800 && mobileDisplay ? (
+          <HabitDisplay />
+        ) : (
+          <Aside />
+        )}
       </MainContainer>
       <NewHabit />
     </DashboardContainer>
