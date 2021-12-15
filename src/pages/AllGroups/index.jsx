@@ -3,9 +3,10 @@ import { MainContainer, GroupsContainer } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 import { useHistory } from "react-router-dom";
+import BasicButtons from "../../components/Button";
 
 const AllGroups = () => {
-  const { allGroups } = useGroups();
+  const { allGroups, next, setNext } = useGroups();
 
   const { setCardGroup, setActivities, setGoals, setIdGroup } = useGroups();
   const history = useHistory();
@@ -17,7 +18,14 @@ const AllGroups = () => {
     setGoals(card.goals);
     history.push("/group/goals");
   }
-
+  const nextPage = () => {
+    setNext(next + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const previousPage = () => {
+    setNext(next - 1);
+    if (next > 0) window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <MainContainer>
       <Header path="groups" />
@@ -37,6 +45,24 @@ const AllGroups = () => {
           </>
         ))}
       </GroupsContainer>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <BasicButtons
+          style={{ width: "90px" }}
+          sx={{ p: 2 }}
+          color="secondary"
+          onClick={previousPage}
+        >
+          Previus
+        </BasicButtons>
+        <BasicButtons
+          style={{ width: "90px" }}
+          sx={{ p: 2, ml: 2 }}
+          color="secondary"
+          onClick={nextPage}
+        >
+          Next
+        </BasicButtons>
+      </div>
     </MainContainer>
   );
 };
