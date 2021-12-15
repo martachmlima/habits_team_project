@@ -16,11 +16,14 @@ function Aside() {
     const decoded = localStorage.getItem("@KenzieHabits:token") || "";
     return decoded;
   });
-  const { setCardGroup } = useGroups();
+  const { setCardGroup, setActivities, setGoals } = useGroups();
   const history = useHistory();
 
   function handleGroup(card) {
+    localStorage.setItem("KenzieHabits:group", JSON.stringify(card))
     setCardGroup(card);
+    setActivities(card.activities)
+    setGoals(card.goals)
     history.push("/group/goals");
   }
 
