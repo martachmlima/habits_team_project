@@ -24,11 +24,7 @@ function CardGoals({ goals }) {
               </h3>
             </div>
             <div className="button">
-              <BasicButtons
-                onClick={() => {
-                  deleteGoals(card.id);
-                }}
-              >
+              <BasicButtons onClick={() => deleteGoals(card.id)}>
                 DELETAR
               </BasicButtons>
             </div>

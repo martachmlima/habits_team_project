@@ -16,6 +16,7 @@ const HabitDisplay = () => {
           frequencia={habit.frequency}
           id={habit.id}
           achievedValue={habit.how_much_achieved}
+          done={habit.achieved}
           onClick={() => deleteHabit(habit.id)}
         />
       ))}

@@ -9,6 +9,7 @@ const HabitCard = ({
   onClick,
   id,
   achievedValue,
+  done
 }) => {
   return (
     <ContainerCard>
@@ -18,7 +19,7 @@ const HabitCard = ({
       <p>Frequência: {frequencia}</p>
       <ContainerButton>
         <BasicButtons onClick={onClick}>Deletar</BasicButtons>
-        <CustomizedDialogs id={id} achievedValue={achievedValue}>
+        <CustomizedDialogs id={id} achievedValue={achievedValue} done={done}>
           Editar
         </CustomizedDialogs>
       </ContainerButton>
