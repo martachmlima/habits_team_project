@@ -60,13 +60,12 @@ BootstrapDialogTitle.propTypes = {
 export default function NewGoals() {
   const [open, setOpen] = React.useState(false);
   const token = localStorage.getItem("@KenzieHabits:token") || "";
-  const user = JSON.parse(localStorage.getItem("@KenzieHabits:userId")) || "";
 
   const { goals, setGoals, cardGroup } = useGroups();
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Insira um hábito"),
-    difficulty: yup.string().required("Sua dificuldade para este hábito")
+    difficulty: yup.string().required("Sua dificuldade para este hábito"),
   });
 
   const {
@@ -90,31 +89,21 @@ export default function NewGoals() {
     dado.achieved = false;
     dado.group = cardGroup.id;
 
-    const dada = {
-      "title": "Teste21",
-      "difficulty": "nenhuma",
-      "how_much_achieved": 0,
-      "achieved": false,
-      "group": 923
-    }
-    
-    console.log(dado)
-    console.log(dada)
-
     api
       .post(`/goals/`, dado, {
-        headers: { 
+        headers: {
           Authorization: `Bearer ${token}`,
           // 'Content-Type': 'application/json',
-      }})
+        },
+      })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         setGoals([...goals, res.dado]);
         toast.success("Meta cadastrado com sucesso!");
       })
       .catch((err) => {
-        console.log(err)
-        toast.error("Erro na criação!")
+        console.log(err);
+        toast.error("Erro na criação!");
       });
   };
 
@@ -193,9 +182,8 @@ export default function NewGoals() {
               id="fullWidth"
               {...register("difficulty")}
             />
-
           </DialogContent>
-          <DialogActions >
+          <DialogActions>
             <ButtonChange type="onsubmit">Cadastrar</ButtonChange>
           </DialogActions>
         </form>

@@ -1,21 +1,28 @@
 import BasicButtons from "../../components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { Container, SectionsMenu } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import CardGoals from "../../components/CardGoals";
 import CardActivities from "../../components/CardActivities";
-import NewGoals from '../../components/ModalNewGoal'
+import NewGoals from "../../components/ModalNewGoal";
+import api from "../../services/api";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
-  // const { cardGroup } = useGroups();
 
-  const cardGroup = JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
+  const { idGroup, cardGroup, setCardGroup } = useGroups();
 
-  const { goals, activities } = cardGroup
+  useEffect(() => {
+    api
+      .get(`groups/${idGroup}/`)
+      .then((resp) => setCardGroup(resp.data))
+      .catch((err) => console.log(err));
+  }, [cardGroup.goals, cardGroup.activities]);
 
-  console.log(cardGroup);
+  const { goals, activities } = cardGroup;
+
+  //console.log(cardGroup.creator?.username);
 
   return (
     <Container>
@@ -33,7 +40,7 @@ const SpecificGroup = () => {
               Categoria: <span>{cardGroup.category}</span>
             </h2>
             <h2 className="description_info_title">
-              Criador: <span>{cardGroup.creator.username}</span>
+              Criador: <span>{cardGroup.creator?.username}</span>
             </h2>
           </div>
           <div className="description_button">
