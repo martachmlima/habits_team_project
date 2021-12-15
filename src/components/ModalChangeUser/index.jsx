@@ -122,7 +122,7 @@ export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Modal title
+          Alterar nome e email
         </BootstrapDialogTitle>
         <form onSubmit={handleSubmit(handleChange)}>
           <DialogContent dividers>
