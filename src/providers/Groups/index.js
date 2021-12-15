@@ -22,7 +22,6 @@ export const GroupsProvider = ({ children }) => {
   const [idGroup, setIdGroup] = useState(
     JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
   );
-  //const [card2Group, setCard2Group] = useState([]);
 
   const deleteActivities = (id) => {
     const newActivities = activities.filter(

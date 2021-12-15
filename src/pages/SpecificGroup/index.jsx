@@ -22,8 +22,6 @@ const SpecificGroup = () => {
 
   const { goals, activities } = cardGroup;
 
-  //console.log(cardGroup.creator?.username);
-
   return (
     <Container>
       <Header />

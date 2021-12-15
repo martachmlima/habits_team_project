@@ -69,7 +69,7 @@ const UserProvider = ({ children }) => {
         setHabits(response.data);
       })
       .catch((err) => console.log(err));
-  }, [token]);
+  }, [token, habits]);
 
   const deleteHabit = (id) => {
     const newHabits = habits.filter((habit) => habit.id !== id);
