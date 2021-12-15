@@ -2,12 +2,15 @@ import styled from "styled-components";
 
 export const ContainerCard = styled.div`
   background-color: var(--white);
-  min-height: 200px;
-  min-width: 300px;
-  max-width: 500px;
+  min-height: 220px;
+  width: 270px;
+  /* max-width: 500px; */
   text-align: initial;
   border: 1px solid var(--color-stroke);
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+  @media screen and (min-width: 400px) {
+    width: 350px;
+  }
   @media (min-width: 750px) {
     width: 500px;
   }
