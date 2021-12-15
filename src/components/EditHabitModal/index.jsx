@@ -64,7 +64,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function CustomizedDialogs({ id, achievedValue }) {
+function CustomizedDialogs({ id, achievedValue, done }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -93,7 +93,7 @@ function CustomizedDialogs({ id, achievedValue }) {
     resolver: yupResolver(formSchema),
   });
 
-  const { token } = useUser();
+  const { token, setHabits } = useUser();
 
   const editHabit = (data) => {
     api
@@ -103,8 +103,17 @@ function CustomizedDialogs({ id, achievedValue }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         toast.success("Edição feita com sucesso!");
+        api
+          .get("habits/personal/", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            setHabits(response.data);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
 
@@ -154,12 +163,23 @@ function CustomizedDialogs({ id, achievedValue }) {
                         error={errors.how_much_achieved?.message}
                         {...register("how_much_achieved")}
                       />
-                      <FormControlLabel
-                        control={<Checkbox />}
-                        label="Meta alcançada?"
-                        error={errors.achieved?.message}
-                        {...register("achieved")}
-                      />
+                      {done ? (
+                        <FormControlLabel
+                          control={
+                            <Checkbox color="secondary" defaultChecked />
+                          }
+                          label="Meta alcançada?"
+                          error={errors.achieved?.message}
+                          {...register("achieved")}
+                        />
+                      ) : (
+                        <FormControlLabel
+                          control={<Checkbox color="secondary" />}
+                          label="Meta alcançada?"
+                          error={errors.achieved?.message}
+                          {...register("achieved")}
+                        />
+                      )}
                     </FormGroup>
                   </ListItemIcon>
                 </ListItem>

@@ -3,16 +3,15 @@ import styled from "styled-components";
 export const ContainerGroup = styled.div`
   background-color: var(--white);
   min-height: 200px;
-  min-width: 300px;
-  max-width: 500px;
+  width: 300px;
+  /* max-width: 500px; */
   text-align: initial;
-  @media (min-width: 750px) {
-    width: 500px;
-  }
   padding: 20px;
-  color: var(--dark-purple);
+  color: var(--color-ligth-purple);
   border-radius: 8px;
   margin: 20px;
+  border: 1px solid var(--color-stroke);
+  box-shadow: 0px 0px 20px 0px rgba(0 0 0/ 15%);
   > h2 {
     font-size: 1.2rem;
     margin: 0 auto;
@@ -25,6 +24,12 @@ export const ContainerGroup = styled.div`
   }
   > span {
     cursor: pointer;
+  }
+  @media screen and (min-width: 420px) {
+    width: 400px;
+  }
+  @media (min-width: 750px) {
+    width: 500px;
   }
 `;
 

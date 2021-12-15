@@ -1,7 +1,6 @@
 import { useGroups } from "../../providers/Groups";
 import { ContainerGroup, ContainerButton } from "./styles";
 import BasicButtons from "../Button";
-import { Link } from "react-router-dom";
 import { useUser } from "../../providers/User";
 import CustomizedDialogs from "../ModalEditGroup";
 

@@ -69,7 +69,7 @@ const UserProvider = ({ children }) => {
         setHabits(response.data);
       })
       .catch((err) => console.log(err));
-  }, [token]);
+  }, [token, habits]);
 
   const deleteHabit = (id) => {
     const newHabits = habits.filter((habit) => habit.id !== id);
@@ -101,7 +101,7 @@ const UserProvider = ({ children }) => {
           console.log(err);
         });
     }
-  }, [token]);
+  }, [token, user]);
 
   const filterHabts = () => {
     return inputValue === ""
@@ -140,6 +140,8 @@ const UserProvider = ({ children }) => {
         setInputValue,
         filterHabts,
         user,
+        setUser,
+        setUserName,
       }}
     >
       {children}

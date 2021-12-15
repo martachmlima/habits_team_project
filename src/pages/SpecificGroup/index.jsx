@@ -1,16 +1,26 @@
 import BasicButtons from "../../components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { Container, SectionsMenu } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import CardGoals from "../../components/CardGoals";
 import CardActivities from "../../components/CardActivities";
+import NewGoals from "../../components/ModalNewGoal";
+import api from "../../services/api";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
-  const { cardGroup } = useGroups();
 
-  console.log(cardGroup);
+  const { idGroup, cardGroup, setCardGroup } = useGroups();
+
+  useEffect(() => {
+    api
+      .get(`groups/${idGroup}/`)
+      .then((resp) => setCardGroup(resp.data))
+      .catch((err) => console.log(err));
+  }, [cardGroup.goals, cardGroup.activities]);
+
+  const { goals, activities } = cardGroup;
 
   return (
     <Container>
@@ -28,7 +38,7 @@ const SpecificGroup = () => {
               Categoria: <span>{cardGroup.category}</span>
             </h2>
             <h2 className="description_info_title">
-              Criador: <span>{cardGroup.creator.username}</span>
+              Criador: <span>{cardGroup.creator?.username}</span>
             </h2>
           </div>
           <div className="description_button">
@@ -41,12 +51,13 @@ const SpecificGroup = () => {
         </div>
         <section className="cards">
           {render === "goals" ? (
-            <CardGoals goals={cardGroup.goals} />
+            <CardGoals goals={goals} />
           ) : (
-            <CardActivities activities={cardGroup.activities} />
+            <CardActivities activities={activities} />
           )}
         </section>
       </SectionsMenu>
+      <NewGoals />
     </Container>
   );
 };

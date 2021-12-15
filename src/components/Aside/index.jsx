@@ -16,11 +16,14 @@ function Aside() {
     const decoded = localStorage.getItem("@KenzieHabits:token") || "";
     return decoded;
   });
-  const { setCardGroup } = useGroups();
+  const { setCardGroup, setActivities, setGoals, setIdGroup } = useGroups();
   const history = useHistory();
 
-  function handleGroup(card) {
+  function handleGroup(card, id) {
+    setIdGroup(id);
     setCardGroup(card);
+    setActivities(card.activities);
+    setGoals(card.goals);
     history.push("/group/goals");
   }
 
@@ -46,7 +49,7 @@ function Aside() {
       <section>
         {subscribedGroups.map((card) => {
           return (
-            <Card key={card.id} onClick={() => handleGroup(card)}>
+            <Card key={card.id} onClick={() => handleGroup(card, card.id)}>
               <div className="card_icon">
                 <SmartToyIcon />
               </div>

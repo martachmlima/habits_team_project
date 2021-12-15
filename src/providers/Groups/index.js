@@ -11,13 +11,18 @@ export const useGroups = () => {
 };
 
 export const GroupsProvider = ({ children }) => {
-  const [cardGroup, setCardGroup] = useState([]);
+  const [cardGroup, setCardGroup] = useState(
+    () => localStorage.getItem("KenzieHabits:group") || {}
+  );
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
-  const { token } = useUser();
   const [activities, setActivities] = useState([]);
   const [goals, setGoals] = useState([]);
   const [next, setNext] = useState(1);
+  const { token, setSubscribedGroups, subscribedGroups } = useUser();
+  const [idGroup, setIdGroup] = useState(
+    JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
+  );
 
   useEffect(() => {
     setActivities(cardGroup.activities);
@@ -63,7 +68,7 @@ export const GroupsProvider = ({ children }) => {
         setAllGroups(response.data.results);
       })
       .catch((err) => console.log(err));
-  }, [data]);
+  }, [data, allGroups]);
 
   const joinGroup = (id) => {
     api
@@ -77,7 +82,7 @@ export const GroupsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        setSubscribedGroups([...subscribedGroups, response.data]);
         toast.success("Bem-vindo ao grupo!");
       })
       .catch((err) => {
@@ -141,6 +146,10 @@ export const GroupsProvider = ({ children }) => {
         goals,
         next,
         setNext,
+        setActivities,
+        setGoals,
+        idGroup,
+        setIdGroup,
       }}
     >
       {children}
