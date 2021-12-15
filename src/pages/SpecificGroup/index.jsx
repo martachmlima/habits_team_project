@@ -25,7 +25,7 @@ const SpecificGroup = () => {
 
   return (
     <Container>
-      <Header />
+      <Header path="specific" />
       <SectionsMenu>
         <section className="description">
           <div className="description_info">
@@ -59,7 +59,7 @@ const SpecificGroup = () => {
           )}
         </section>
       </SectionsMenu>
-      {render === 'goals' ? (<NewGoals />) : (<NewActivities/>) }
+      {render === "goals" ? <NewGoals /> : <NewActivities />}
     </Container>
   );
 };

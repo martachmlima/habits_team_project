@@ -18,6 +18,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import BasicButtons from "../Button";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -148,7 +149,7 @@ export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
             />
           </DialogContent>
           <DialogActions>
-            <ButtonChange type="submit">"Enviar alteração"</ButtonChange>
+            <BasicButtons type="submit">Enviar alteração</BasicButtons>
           </DialogActions>
         </form>
       </BootstrapDialog>

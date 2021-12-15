@@ -18,6 +18,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useUser } from "../../providers/User";
+import BasicButtons from "../Button";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -94,6 +95,7 @@ export default function NewHabit() {
       .then((res) => {
         setHabits([...habits, res.data]);
         toast.success("Hábito cadastrado com sucesso!");
+        handleClose();
       })
       .catch((err) => toast.error("Erro na criação!"));
   };
@@ -230,7 +232,7 @@ export default function NewHabit() {
             />
           </DialogContent>
           <DialogActions>
-            <ButtonChange type="onsubmit">Enviar</ButtonChange>
+            <BasicButtons type="onsubmit">Enviar</BasicButtons>
           </DialogActions>
         </form>
       </BootstrapDialog>

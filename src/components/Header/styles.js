@@ -33,6 +33,16 @@ export const Section = styled.section`
   align-items: center;
   margin-top: 20px;
   margin-bottom: 10px;
+  > span {
+    width: 60%;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 700;
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
 `;
 
 export const SectionMobile = styled.section`
@@ -105,5 +115,23 @@ export const SearchMobile = styled.div`
     width: 40px;
     cursor: pointer;
     color: var(--color-ligth-purple);
+  }
+`;
+
+export const MobileSpan = styled.span`
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-ligth-purple);
+
+  @media (min-width: 800px) {
+    display: none;
   }
 `;
