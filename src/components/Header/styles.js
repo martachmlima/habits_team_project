@@ -28,7 +28,7 @@ export const HeaderContainer = styled.header`
 
 export const Section = styled.section`
   display: flex;
-  width: 100%;
+  width: 90%;
   justify-content: space-evenly;
   align-items: center;
   margin-top: 20px;
