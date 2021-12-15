@@ -7,11 +7,14 @@ import { useHistory } from "react-router-dom";
 const AllGroups = () => {
   const { allGroups } = useGroups();
 
-  const { setCardGroup } = useGroups();
+  const { setCardGroup, setActivities, setGoals, setIdGroup } = useGroups();
   const history = useHistory();
 
-  function handleGroup(card) {
+  function handleGroup(card, id) {
+    setIdGroup(id);
     setCardGroup(card);
+    setActivities(card.activities);
+    setGoals(card.goals);
     history.push("/group/goals");
   }
 

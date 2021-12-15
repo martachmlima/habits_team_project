@@ -11,19 +11,17 @@ export const useGroups = () => {
 };
 
 export const GroupsProvider = ({ children }) => {
-  const [cardGroup, setCardGroup] = useState({});
+  const [cardGroup, setCardGroup] = useState(
+    () => localStorage.getItem("KenzieHabits:group") || {}
+  );
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
-  const { token } = useUser();
+  const { token, setSubscribedGroups, subscribedGroups } = useUser();
   const [activities, setActivities] = useState([]);
   const [goals, setGoals] = useState([]);
-
-  useEffect(() => {
-    if (cardGroup) {
-      setActivities(cardGroup.activities);
-      setGoals(cardGroup.goals);
-    }
-  }, [cardGroup]);
+  const [idGroup, setIdGroup] = useState(
+    JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
+  );
 
   const deleteActivities = (id) => {
     const newActivities = activities.filter(
@@ -64,7 +62,7 @@ export const GroupsProvider = ({ children }) => {
         setAllGroups(response.data.results);
       })
       .catch((err) => console.log(err));
-  }, [data]);
+  }, [data, allGroups]);
 
   const joinGroup = (id) => {
     api
@@ -78,7 +76,7 @@ export const GroupsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        setSubscribedGroups([...subscribedGroups, response.data]);
         toast.success("Bem-vindo ao grupo!");
       })
       .catch((err) => {
@@ -103,21 +101,6 @@ export const GroupsProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    if (token) {
-      api
-        .get("groups/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          setAllGroups(response.data.results);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [token]);
-
   return (
     <GroupsContext.Provider
       value={{
@@ -130,7 +113,11 @@ export const GroupsProvider = ({ children }) => {
         deleteGoals,
         deleteActivities,
         activities,
+        setActivities,
         goals,
+        setGoals,
+        idGroup,
+        setIdGroup,
       }}
     >
       {children}
