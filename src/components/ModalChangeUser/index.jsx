@@ -15,6 +15,7 @@ import { ButtonNav, ButtonChange } from "./styles";
 import jwt_decode from "jwt-decode";
 import api from "../../services/api";
 import toast from "react-hot-toast";
+import { useUser } from "../../providers/User";
 
 export default function SwipeableTemporaryDrawer({ anchor }) {
   const [state, setState] = React.useState({
@@ -46,6 +47,8 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
+
+  const { setUser, setUserName } = useUser();
 
   const list = (anchor) => (
     <Box
@@ -145,6 +148,15 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
       .then((res) => {
         toast.success("Dados atualizados!");
         setState({ right: false });
+        api
+          .get(`users/${id}/`)
+          .then((response) => {
+            setUserName(response.data.username);
+            setUser(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => toast.error("Erro na alteração!"));
   };

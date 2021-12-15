@@ -11,16 +11,23 @@ export const useGroups = () => {
 };
 
 export const GroupsProvider = ({ children }) => {
-  const [cardGroup, setCardGroup] = useState(() => localStorage.getItem('KenzieHabits:group') || {} );
-
+  const [cardGroup, setCardGroup] = useState(
+    () => localStorage.getItem("KenzieHabits:group") || {}
+  );
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
-  const { token } = useUser();
-  const [activities, setActivities] = useState([])
-  const [goals, setGoals] = useState([])
+  const { token, setSubscribedGroups, subscribedGroups } = useUser();
+  const [activities, setActivities] = useState([]);
+  const [goals, setGoals] = useState([]);
+  const [idGroup, setIdGroup] = useState(
+    JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
+  );
+  //const [card2Group, setCard2Group] = useState([]);
 
   const deleteActivities = (id) => {
-    const newActivities = activities.filter((activities) => activities.id !== id)
+    const newActivities = activities.filter(
+      (activities) => activities.id !== id
+    );
     api
       .delete(`activities/${id}/`, {
         headers: {
@@ -35,7 +42,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const deleteGoals = (id) => {
-    const newGoals = goals.filter((goal) => goal.id !== id)
+    const newGoals = goals.filter((goal) => goal.id !== id);
     api
       .delete(`goals/${id}/`, {
         headers: {
@@ -56,7 +63,7 @@ export const GroupsProvider = ({ children }) => {
         setAllGroups(response.data.results);
       })
       .catch((err) => console.log(err));
-  }, [data]);
+  }, [data, allGroups]);
 
   const joinGroup = (id) => {
     api
@@ -70,7 +77,7 @@ export const GroupsProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        setSubscribedGroups([...subscribedGroups, response.data]);
         toast.success("Bem-vindo ao grupo!");
       })
       .catch((err) => {
@@ -95,24 +102,24 @@ export const GroupsProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    if (token) {
-      api
-        .get("groups/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          setAllGroups(response.data.results);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [token]);
-
   return (
     <GroupsContext.Provider
-      value={{ allGroups, setData, joinGroup, leaveGroup, setCardGroup, cardGroup, deleteGoals, deleteActivities, activities, setActivities, goals, setGoals }}
+      value={{
+        allGroups,
+        setData,
+        joinGroup,
+        leaveGroup,
+        setCardGroup,
+        cardGroup,
+        deleteGoals,
+        deleteActivities,
+        activities,
+        setActivities,
+        goals,
+        setGoals,
+        idGroup,
+        setIdGroup,
+      }}
     >
       {children}
     </GroupsContext.Provider>
