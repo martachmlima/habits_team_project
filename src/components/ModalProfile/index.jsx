@@ -55,23 +55,31 @@ const StyledMenu = styled((props) => (
 
 const ModalProfile = ({ children }) => {
   const { signOut } = useUser();
+
+  const [open, setOpen] = React.useState(false);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+
+  const openProfile = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
-    setAnchorEl(null);
+    if (!open) {
+      setAnchorEl(null);
+    }
   };
 
   return (
     <>
-      <ConteinerNav open={open}>
+      <ConteinerNav open={openProfile}>
         <Button
           id="demo-customized-button"
           aria-controls="demo-customized-menu"
           aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
+          aria-expanded={openProfile ? "true" : undefined}
           variant="contained"
           disableElevation
           onClick={handleClick}
@@ -86,7 +94,7 @@ const ModalProfile = ({ children }) => {
             "aria-labelledby": "demo-customized-button",
           }}
           anchorEl={anchorEl}
-          open={open}
+          open={openProfile}
           onClose={handleClose}
         >
           <ModalRight
@@ -96,6 +104,8 @@ const ModalProfile = ({ children }) => {
                 Editar nome ou email
               </MenuItem>
             }
+            open={open}
+            setOpen={setOpen}
           />
 
           <MenuItem onClick={signOut} disableRipple>

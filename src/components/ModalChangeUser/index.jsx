@@ -1,26 +1,73 @@
-import Box from "@mui/material/Box";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import MailIcon from "@mui/icons-material/Mail";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as React from "react";
-import { TextField } from "@mui/material";
 import { ButtonNav, ButtonChange } from "./styles";
 import jwt_decode from "jwt-decode";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useUser } from "../../providers/User";
+import InputTextField from "../InputTextField";
+import * as React from "react";
+import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
-export default function SwipeableTemporaryDrawer({ anchor }) {
-  const [state, setState] = React.useState({
-    right: false,
-  });
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}));
+
+const BootstrapDialogTitle = (props) => {
+  const { children, onClose, ...other } = props;
+
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+};
+
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
+  const { setUser, setUserName } = useUser();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const formSchema = yup.object().shape({
     username: yup
       .string()
@@ -29,17 +76,6 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
     email: yup.string().required("Insira novo E-mail").email(),
   });
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
   const {
     register,
     handleSubmit,
@@ -47,94 +83,6 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-
-  const { setUser, setUserName } = useUser();
-
-  const list = (anchor) => (
-    <Box
-      sx={{
-        maxWidth: anchor === "top" || anchor === "bottom" ? "auto" : 500,
-        textAlign: "center",
-      }}
-      role="presentation"
-    >
-      <form onSubmit={handleSubmit(handleChange)}>
-        <List>
-          {
-            <ListItem>
-              <ListItemIcon
-                sx={{ width: "100%", display: "flex", flexDirection: "column" }}
-              >
-                <TextField
-                  color="secondary"
-                  sx={{
-                    "& input:valid + fieldset": {
-                      borderColor: "white",
-                      borderWidth: 1,
-                      borderRadius: 3,
-                      height: 75,
-                    },
-                    filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                    bgcolor: "var(--branco)",
-                    borderRadius: 3,
-                    height: 70,
-                    mt: 3,
-                  }}
-                  fullWidth
-                  label={
-                    errors.username?.message ? (
-                      errors.username?.message
-                    ) : (
-                      <>
-                        <ManageAccountsIcon /> Novo nome de usuário
-                      </>
-                    )
-                  }
-                  error={errors.username?.message}
-                  id="fullWidth"
-                  {...register("username")}
-                />
-
-                <TextField
-                  color="secondary"
-                  sx={{
-                    "& input:valid + fieldset": {
-                      borderColor: "white",
-                      borderWidth: 1,
-                      borderRadius: 3,
-                      height: 75,
-                    },
-                    filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                    bgcolor: "var(--branco)",
-                    borderRadius: 3,
-                    height: 70,
-                    mt: 2,
-                  }}
-                  fullWidth
-                  label={
-                    errors.email?.message ? (
-                      errors.email?.message
-                    ) : (
-                      <>
-                        <MailIcon /> Novo E-mail
-                      </>
-                    )
-                  }
-                  error={errors.email?.message}
-                  id="fullWidth"
-                  {...register("email")}
-                />
-              </ListItemIcon>
-            </ListItem>
-          }
-        </List>
-        <Divider />
-        <List>
-          {<ButtonChange type="submit">"Enviar alteração"</ButtonChange>}
-        </List>
-      </form>
-    </Box>
-  );
 
   const handleChange = (value) => {
     const token = localStorage.getItem("@KenzieHabits:token") || "";
@@ -146,13 +94,13 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        toast.success("Dados atualizados!");
-        setState({ right: false });
         api
           .get(`users/${id}/`)
           .then((response) => {
             setUserName(response.data.username);
             setUser(response.data);
+            toast.success("Dados atualizados!");
+            setOpen(false);
           })
           .catch((err) => {
             console.log(err);
@@ -163,19 +111,47 @@ export default function SwipeableTemporaryDrawer({ anchor }) {
 
   return (
     <div>
-      {
-        <React.Fragment key={anchor}>
-          <ButtonNav onClick={toggleDrawer(anchor, true)}>{anchor}</ButtonNav>
-          <SwipeableDrawer
-            anchor={"right"}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      }
+      <ButtonNav onClick={handleClickOpen}>{anchor}</ButtonNav>
+
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <BootstrapDialogTitle
+          id="customized-dialog-title"
+          onClose={handleClose}
+        >
+          Alterar nome e email
+        </BootstrapDialogTitle>
+        <form onSubmit={handleSubmit(handleChange)}>
+          <DialogContent dividers>
+            <InputTextField
+              label={
+                <>
+                  <ManageAccountsIcon /> Novo nome de usuário
+                </>
+              }
+              errors={errors.username?.message}
+              register={register}
+              valueRegister={"username"}
+            />
+            <InputTextField
+              label={
+                <>
+                  <MailIcon /> Novo E-mail
+                </>
+              }
+              errors={errors.email?.message}
+              register={register}
+              valueRegister={"email"}
+            />
+          </DialogContent>
+          <DialogActions>
+            <ButtonChange type="submit">"Enviar alteração"</ButtonChange>
+          </DialogActions>
+        </form>
+      </BootstrapDialog>
     </div>
   );
 }
