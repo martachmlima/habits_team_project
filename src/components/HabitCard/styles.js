@@ -6,11 +6,13 @@ export const ContainerCard = styled.div`
   min-width: 300px;
   max-width: 500px;
   text-align: initial;
+  border: 1px solid var(--color-stroke);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
   @media (min-width: 750px) {
     width: 500px;
   }
   padding: 20px;
-  color: var(--dark-purple);
+  color: var(--color-ligth-purple);
   border-radius: 8px;
   margin-bottom: 20px;
   > h2 {

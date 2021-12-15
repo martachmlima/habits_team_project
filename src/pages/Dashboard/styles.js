@@ -14,4 +14,7 @@ export const DashboardContainer = styled.main`
 export const MainContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  @media screen and (min-width: 1500px) {
+    justify-content: space-evenly;
+  }
 `;
