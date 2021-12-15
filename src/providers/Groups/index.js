@@ -128,8 +128,6 @@ export const GroupsProvider = ({ children }) => {
       .then((Response) => setAllGroups([...Response.results]))
       .catch((error) => console.log(error));
   }, [next]);
-  console.log(next);
-  useEffect(() => {}, [next]);
 
   return (
     <GroupsContext.Provider
