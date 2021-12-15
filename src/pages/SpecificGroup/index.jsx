@@ -48,7 +48,8 @@ const SpecificGroup = () => {
           </div>
         </section>
         <div className="buttonlink">
-          <button onClick={() => setRender("goals")}>Metas</button> |
+          <button onClick={() => setRender("goals")}>Metas</button>
+          <span>|</span>
           <button onClick={() => setRender("achivied")}>Atividades</button>
         </div>
         <section className="cards">
