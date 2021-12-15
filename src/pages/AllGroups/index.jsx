@@ -7,11 +7,14 @@ import { useHistory } from "react-router-dom";
 const AllGroups = () => {
   const { allGroups } = useGroups();
 
-  const { setCardGroup } = useGroups();
+  const { setCardGroup, setActivities, setGoals } = useGroups();
   const history = useHistory();
 
   function handleGroup(card) {
+    localStorage.setItem("KenzieHabits:group", JSON.stringify(card));
     setCardGroup(card);
+    setActivities(card.activities);
+    setGoals(card.goals);
     history.push("/group/goals");
   }
 

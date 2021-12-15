@@ -5,6 +5,7 @@ import { Container, SectionsMenu } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import CardGoals from "../../components/CardGoals";
 import CardActivities from "../../components/CardActivities";
+import NewGoals from '../../components/ModalNewGoal'
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
@@ -51,6 +52,7 @@ const SpecificGroup = () => {
           )}
         </section>
       </SectionsMenu>
+      <NewGoals />
     </Container>
   );
 };
