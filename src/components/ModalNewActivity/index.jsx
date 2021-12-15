@@ -57,15 +57,15 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function NewGoals() {
+export default function NewActivities () {
   const [open, setOpen] = React.useState(false);
   const token = localStorage.getItem("@KenzieHabits:token") || "";
 
-  const { goals, setGoals, cardGroup } = useGroups();
+  const { activities, setActivities, cardGroup } = useGroups();
 
   const formSchema = yup.object().shape({
-    title: yup.string().required("Insira um hábito"),
-    difficulty: yup.string().required("Sua dificuldade para este hábito"),
+    title: yup.string().required("Insira um Atividade"),
+    realization_time: yup.string().required("Insira uma data"),
   });
 
   const {
@@ -85,21 +85,20 @@ export default function NewGoals() {
   };
 
   const handleOnSubmit = (dado) => {
-    dado.how_much_achieved = 0;
-    dado.achieved = false;
     dado.group = cardGroup.id;
-
+    const newDate = new Date('20 December 2021')
+    dado.realization_time = newDate.toISOString()
+    console.log(dado)
     api
-      .post(`/goals/`, dado, {
+      .post(`/activities/`, dado, {
         headers: {
-          Authorization: `Bearer ${token}`,
-          // 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         },
       })
       .then((res) => {
         console.log(res);
-        setGoals([...goals, res.dado]);
-        toast.success("Meta cadastrado com sucesso!");
+        setActivities([...activities, res.dado]);
+        toast.success("Atividade cadastrada com sucesso!");
       })
       .catch((err) => {
         console.log(err);
@@ -123,7 +122,7 @@ export default function NewGoals() {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Nova Meta
+          Nova atividade
         </BootstrapDialogTitle>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <DialogContent dividers>
@@ -147,7 +146,7 @@ export default function NewGoals() {
                 errors.title?.message ? (
                   errors.title?.message
                 ) : (
-                  <>Insira uma Meta</>
+                  <>Insira uma Atividade</>
                 )
               }
               error={errors.title?.message}
@@ -171,20 +170,21 @@ export default function NewGoals() {
                 mt: 2,
               }}
               fullWidth
+              placeholder='Data para realização da atividade'
               label={
                 errors.difficulty?.message ? (
                   errors.difficulty?.message
                 ) : (
-                  <>Sua dificuldade para esta meta</>
+                  <>Data para realização da atividade</>
                 )
               }
               error={errors.difficulty?.message}
               id="fullWidth"
-              {...register("difficulty")}
+              {...register("realization_time")}
             />
           </DialogContent>
           <DialogActions>
-            <ButtonChange onClick={handleClose}  type="onsubmit">Cadastrar</ButtonChange>
+            <ButtonChange type="onsubmit">Cadastrar</ButtonChange>
           </DialogActions>
         </form>
       </BootstrapDialog>
