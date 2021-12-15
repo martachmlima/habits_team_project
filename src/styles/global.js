@@ -40,6 +40,9 @@ const GlobalStyle = createGlobalStyle`
       --bgcolor-cardGroup: #D581F4;
       --color-stroke: #9BA6A0;
       --bgcolor-dashboard: #FEFEFE;
+      --bgcolor-cardGroupAside: #F1FDFB;
+      --color-aside: #8d8d8d;
+      --color-cardAside: #32c5aa;
       }
 
     h1, h2, h3, h4, h5, h6{
