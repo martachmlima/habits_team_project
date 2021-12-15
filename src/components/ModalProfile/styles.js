@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ConteinerNav = styled.div`
-  width: 100px;
+  width: 80px;
   button {
     background-color: var(--white);
     color: rgb(55, 65, 81);
@@ -11,7 +11,7 @@ export const ConteinerNav = styled.div`
   }
 
   @media (min-width: 750px) {
-    width: 100px;
+    width: 170px;
   }
   @media (min-width: 1000px) {
     width: 150px;
