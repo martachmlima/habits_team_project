@@ -3,11 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(
-    0deg,
-    rgba(231, 171, 171, 1) 0%,
-    rgba(147, 32, 194, 1) 100%
-  );
+  background: var(--bgcolor-dashboard)
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -24,39 +20,46 @@ export const SectionsMenu = styled.section`
   padding: 10px;
   border-radius: 12px;
   margin-top: 50px;
+  border: 1px solid var(--color-stroke);
+  box-shadow: 0px 0px 20px 0px rgba(0 0 0 / 20%);
   .description {
     padding: 10px;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
   }
   .description_info_title {
-    font-size: 2rem;
-    color: var(--dark-purple);
+    font-size: 1.5rem;
+    color: var(--color-ligth-purple);
     span {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-weight: normal;
     }
   }
   .description_button {
-    flex-base: 40%;
+    flex-basis: 40%;
     padding: 0 0 0 5%;
     display: flex;
     align-items: center;
+    margin-top: 10px;
   }
   .buttonlink {
     display: flex;
     justify-content: center;
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid var(--color-ligth-purple);
     padding: 10px 0 20px;
-    color: var(--dark-purple);
+    color: var(--color-ligth-purple);
     button {
-      font-size: 2rem;
-      color: var(--dark-purple);
+      font-size: 1.5rem;
+      color: var(--color-ligth-purple);
       background-color: transparent;
       border: none;
       margin: 0 10px;
+    }
+    span {
+      font-size: 2em;
     }
   }
   .cards {
@@ -64,5 +67,19 @@ export const SectionsMenu = styled.section`
     width: 100%;
     justify-content: space-evenly;
     flex-wrap: wrap;
+  }
+  @media (min-width: 500px) {
+    .description {
+      flex-direction: row;
+    }
+    .description_info_title {
+      font-size: 2rem;
+    }
+    span {
+      font-size: 1.8rem;
+    }
+    button {
+      font-size: 2rem;
+    }
   }
 `;

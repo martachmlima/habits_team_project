@@ -123,9 +123,9 @@ export const GroupsProvider = ({ children }) => {
   }, [token]);
 
   useEffect(() => {
-    fetch(`https://kenzie-habits.herokuapp.com/groups/?page=${next}`)
-      .then((Response) => Response.json())
-      .then((Response) => setAllGroups([...Response.results]))
+    api
+      .get(`/groups/?page=${next}`)
+      .then((Response) => setAllGroups([...Response.data.results]))
       .catch((error) => console.log(error));
   }, [next]);
 
