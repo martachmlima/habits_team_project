@@ -9,10 +9,11 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-around;
   padding: 10px;
-  color: var(--dark-purple);
+  color: var(--color-ligth-purple);
   border-radius: 12px;
   margin: 0 auto;
-
+  border: 1px solid var(--color-stroke);
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   h1 {
     font-size: 1.7rem;
     cursor: pointer;
@@ -61,24 +62,24 @@ export const SearchContainer = styled.div`
   @media (max-width: 800px) {
     display: none;
   }
-  width: 60%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   > input {
-    width: 70%;
+    width: 80%;
     height: 50px;
     border: none;
     border-radius: 5px;
     padding: 5px;
     margin-right: 10px;
-    border: solid 2px var(--dark-purple);
+    border: solid 2px var(--color-ligth-purple);
   }
   > svg {
     height: 40px;
     width: 40px;
     cursor: pointer;
-    color: var(--dark-purple);
+    color: var(--color-ligth-purple);
   }
 `;
 
@@ -97,12 +98,12 @@ export const SearchMobile = styled.div`
     border-radius: 5px;
     padding: 5px;
     margin-right: 10px;
-    border: solid 2px var(--dark-purple);
+    border: solid 2px var(--color-ligth-purple);
   }
   > svg {
     height: 40px;
     width: 40px;
     cursor: pointer;
-    color: var(--white);
+    color: var(--color-ligth-purple);
   }
 `;
