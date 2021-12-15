@@ -9,10 +9,13 @@ export const Container = styled.div`
   margin: 30px 0 20px 20px;
   padding: 15px;
   border-radius: 8px;
-  background-color: #f5f5f5;
+  background-color: var(--white);
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-direction: column;
+  border: 1px solid var(--color-stroke);
+  box-shadow: 0px 0px 20px 0 rgb(0 0 0 / 15%);
 
   @media (min-width: 1100px) {
     display: flex;
@@ -53,7 +56,7 @@ export const Container = styled.div`
     justify-content: flex-start;
   }
   footer {
-    height: 150px;
+    height: 170px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -61,6 +64,7 @@ export const Container = styled.div`
     align-items: center;
     border-top: 2px solid #8d8d8d;
     margin-top: 20px;
+    padding-top: 10px;
   }
 `;
 
