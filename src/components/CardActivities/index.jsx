@@ -3,14 +3,12 @@ import BasicButtons from "../Button";
 import { useGroups } from '../../providers/Groups'
 
 function CardActivities( { activities } ) {
-
   const { deleteActivities } = useGroups();
 
   return (
-    activities.map((card) => {
-      console.log(card);
-      return (
-        <Container>
+    <>
+      {activities && activities.map((card) => 
+        <Container key={card.id}>
           <div className="info">
             <h3>
               Título: <span>{card.title}</span>
@@ -23,9 +21,9 @@ function CardActivities( { activities } ) {
             <BasicButtons onClick={() => deleteActivities(card.id) } >DELETAR</BasicButtons>
           </div>
         </Container>
-      );
-    })
-  );
+    )}
+    </>
+  )
 }
 
 export default CardActivities;

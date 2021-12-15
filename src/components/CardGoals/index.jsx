@@ -1,7 +1,5 @@
 import { Container } from "./styles";
 import BasicButtons from "../Button";
-// import { toast } from 'react-hot-toast'
-// import api from '../../services/api'
 import { useGroups } from "../../providers/Groups";
 
 function CardGoals({ goals }) {

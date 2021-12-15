@@ -7,6 +7,7 @@ import CardGoals from "../../components/CardGoals";
 import CardActivities from "../../components/CardActivities";
 import NewGoals from "../../components/ModalNewGoal";
 import api from "../../services/api";
+import NewActivities from "../../components/ModalNewActivity";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
@@ -57,7 +58,7 @@ const SpecificGroup = () => {
           )}
         </section>
       </SectionsMenu>
-      <NewGoals />
+      {render === 'goals' ? (<NewGoals />) : (<NewActivities/>) }
     </Container>
   );
 };
