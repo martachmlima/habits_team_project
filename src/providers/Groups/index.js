@@ -63,12 +63,12 @@ export const GroupsProvider = ({ children }) => {
 
   useEffect(() => {
     api
-      .get(`groups/?search=${data}`)
+      .get(`groups/?page=${next}&search=${data}`)
       .then((response) => {
         setAllGroups(response.data.results);
       })
       .catch((err) => console.log(err));
-  }, [data, allGroups]);
+  }, [data, allGroups, next]);
 
   const joinGroup = (id) => {
     api
@@ -106,28 +106,6 @@ export const GroupsProvider = ({ children }) => {
         toast.error("Você não faz parte deste grupo");
       });
   };
-
-  useEffect(() => {
-    if (token) {
-      api
-        .get("groups/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          setAllGroups(response.data.results);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [token]);
-
-  useEffect(() => {
-    api
-      .get(`/groups/?page=${next}`)
-      .then((Response) => setAllGroups([...Response.data.results]))
-      .catch((error) => console.log(error));
-  }, [next]);
 
   return (
     <GroupsContext.Provider
