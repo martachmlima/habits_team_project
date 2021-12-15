@@ -14,9 +14,8 @@ const Routes = () => {
       <Route path="/login" component={LogIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
-      <Route path="/groups" component={AllGroups} isPrivate />
+      <Route exact path="/groups" component={AllGroups} isPrivate />
       <Route path="/group/goals" component={SpecificGroup} isPrivate />
-      <Route path="/groups/:groupId" component={SpecificGroup} isPrivate />
     </Switch>
   );
 };

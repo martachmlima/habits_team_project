@@ -51,10 +51,8 @@ const Header = ({ path }) => {
               <span onClick={() => history.push("/groups")}>Buscar Grupos</span>
               <span>Meus Grupos</span>
             </SectionMobile>
-          ) : path === "groups" ? (
-            <span>Buscar Grupos</span>
           ) : (
-            <span>Criar Grupo</span>
+            path === "dashboard" && <span>Buscar Grupos</span>
           )}
         </>
       </HeaderContainer>

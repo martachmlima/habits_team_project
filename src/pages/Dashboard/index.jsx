@@ -7,7 +7,7 @@ import NewHabit from "../../components/NewHabit";
 const Dashboard = () => {
   return (
     <DashboardContainer>
-      <Header path="dashboard" userName="Marta Lima" />
+      <Header path="dashboard" />
       <MainContainer>
         <Aside />
         <HabitDisplay />
