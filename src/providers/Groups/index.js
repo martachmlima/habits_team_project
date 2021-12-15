@@ -16,12 +16,18 @@ export const GroupsProvider = ({ children }) => {
   );
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
-  const { token, setSubscribedGroups, subscribedGroups } = useUser();
   const [activities, setActivities] = useState([]);
   const [goals, setGoals] = useState([]);
+  const [next, setNext] = useState(1);
+  const { token, setSubscribedGroups, subscribedGroups } = useUser();
   const [idGroup, setIdGroup] = useState(
     JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
   );
+
+  useEffect(() => {
+    setActivities(cardGroup.activities);
+    setGoals(cardGroup.goals);
+  }, [cardGroup]);
 
   const deleteActivities = (id) => {
     const newActivities = activities.filter(
@@ -101,6 +107,30 @@ export const GroupsProvider = ({ children }) => {
       });
   };
 
+  useEffect(() => {
+    if (token) {
+      api
+        .get("groups/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setAllGroups(response.data.results);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [token]);
+
+  useEffect(() => {
+    fetch(`https://kenzie-habits.herokuapp.com/groups/?page=${next}`)
+      .then((Response) => Response.json())
+      .then((Response) => setAllGroups([...Response.results]))
+      .catch((error) => console.log(error));
+  }, [next]);
+  console.log(next);
+  useEffect(() => {}, [next]);
+
   return (
     <GroupsContext.Provider
       value={{
@@ -113,8 +143,10 @@ export const GroupsProvider = ({ children }) => {
         deleteGoals,
         deleteActivities,
         activities,
-        setActivities,
         goals,
+        next,
+        setNext,
+        setActivities,
         setGoals,
         idGroup,
         setIdGroup,
