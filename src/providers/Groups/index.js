@@ -125,9 +125,7 @@ export const GroupsProvider = ({ children }) => {
   }, [next]);
   console.log(next);
   useEffect(() => {}, [next]);
-  if (next < 0) {
-    setNext(next + 1);
-  }
+
   return (
     <GroupsContext.Provider
       value={{

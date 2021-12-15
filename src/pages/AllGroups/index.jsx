@@ -15,7 +15,14 @@ const AllGroups = () => {
     setCardGroup(card);
     history.push("/group/goals");
   }
-
+  const nextPage = () => {
+    setNext(next + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const previousPage = () => {
+    setNext(next - 1);
+    if (next > 0) window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <MainContainer>
       <Header path="groups" />
@@ -40,7 +47,7 @@ const AllGroups = () => {
           style={{ width: "90px" }}
           sx={{ p: 2 }}
           color="secondary"
-          onClick={() => setNext(next - 1)}
+          onClick={previousPage}
         >
           Previus
         </BasicButtons>
@@ -48,7 +55,7 @@ const AllGroups = () => {
           style={{ width: "90px" }}
           sx={{ p: 2, ml: 2 }}
           color="secondary"
-          onClick={() => setNext(next + 1)}
+          onClick={nextPage}
         >
           Next
         </BasicButtons>
