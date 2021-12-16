@@ -5,16 +5,13 @@ import HabitDisplay from "../../components/HabitsDisplay";
 import NewHabit from "../../components/NewHabit";
 import { useState } from "react";
 
-const Dashboard = () => {
+function Dashboard () {
   const [mobileDisplay, setMobileDisplay] = useState(true);
-
   const [windowWidth, setWindowWidth] = useState(window.screen.width);
 
   window.addEventListener("resize", (evt) => {
     setWindowWidth(evt.currentTarget.innerWidth);
   });
-
-  // console.log(windomWidth);
 
   const handleDisplay = () => {
     setMobileDisplay(!mobileDisplay);
@@ -30,7 +27,7 @@ const Dashboard = () => {
       <MainContainer>
         {windowWidth > 800 ? (
           <>
-            <Aside /> <HabitDisplay />{" "}
+            <Aside /> <HabitDisplay />
           </>
         ) : windowWidth <= 800 && mobileDisplay ? (
           <HabitDisplay />
@@ -38,7 +35,6 @@ const Dashboard = () => {
           <Aside />
         )}
       </MainContainer>
-      <NewHabit />
     </DashboardContainer>
   );
 };

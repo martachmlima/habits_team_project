@@ -61,12 +61,12 @@ const Header = ({ path, mobileDisplay, handleDisplay }) => {
             </SectionMobile>
           ) : (
             path === "dashboard" && (
-              <>
+              <SectionMobile>
                 <span onClick={() => history.push("/groups")}>
                   Buscar Grupos
                 </span>
                 <span onClick={handleDisplay}>Meus Hábitos</span>
-              </>
+              </SectionMobile>
             )
           )}
         </>
