@@ -8,11 +8,20 @@ import CardActivities from "../../components/CardActivities";
 import NewGoals from "../../components/ModalNewGoal";
 import api from "../../services/api";
 import NewActivities from "../../components/ModalNewActivity";
+import { useUser } from "../../providers/User";
+import CustomizedDialogs from "../../components/ModalEditGroup";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
 
-  const { idGroup, cardGroup, setCardGroup } = useGroups();
+  const { idGroup, cardGroup, setCardGroup, joinGroup, leaveGroup } =
+    useGroups();
+  const { userName } = useUser();
+
+  const usersArray = cardGroup.users_on_group?.map(
+    (user) => user.username === userName
+  );
+  const arrayInclludesUSer = usersArray?.includes(true);
 
   useEffect(() => {
     api
@@ -43,7 +52,21 @@ const SpecificGroup = () => {
             </h2>
           </div>
           <div className="description_button">
-            <BasicButtons>Sair</BasicButtons>
+            {arrayInclludesUSer ? (
+              <BasicButtons
+                className="groupButtons"
+                onClick={() => leaveGroup(cardGroup.id)}
+              >
+                Sair
+              </BasicButtons>
+            ) : (
+              <BasicButtons onClick={() => joinGroup(cardGroup.id)}>
+                Entrar
+              </BasicButtons>
+            )}
+            {cardGroup.creator?.username === userName && (
+              <CustomizedDialogs id={cardGroup.id} />
+            )}
           </div>
         </section>
         <div className="buttonlink">
