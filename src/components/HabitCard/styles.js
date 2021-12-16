@@ -34,6 +34,9 @@ export const ContainerCard = styled.div`
   }
   .meta {
     display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
   }
   .progress {
     margin-left: 5px;
@@ -41,10 +44,12 @@ export const ContainerCard = styled.div`
     width: 90px;
     border-radius: 5px;
     display: flex;
-    > section {
-      color: var(--color-cardAside);
-      text-align: end;
-    }
+  }
+
+  .alert {
+    color: var(--color-cardAside);
+    text-align: end;
+    width: 50%;
   }
   .colorbar {
     background-color: var(--color-cardAside);

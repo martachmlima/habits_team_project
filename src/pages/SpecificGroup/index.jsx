@@ -8,25 +8,36 @@ import CardActivities from "../../components/CardActivities";
 import NewGoals from "../../components/ModalNewGoal";
 import api from "../../services/api";
 import NewActivities from "../../components/ModalNewActivity";
+import { useUser } from "../../providers/User";
+import CustomizedDialogs from "../../components/ModalEditGroup";
 
 const SpecificGroup = () => {
   const [render, setRender] = useState("goals");
 
-  const { idGroup, cardGroup, setCardGroup } = useGroups();
+  const { idGroup, cardGroup, setCardGroup, joinGroup, leaveGroup } =
+    useGroups();
+  const { userName } = useUser();
+
+  const usersArray = cardGroup.users_on_group?.map(
+    (user) => user.username === userName
+  );
+  const arrayInclludesUSer = usersArray?.includes(true);
 
   useEffect(() => {
     api
       .get(`groups/${idGroup}/`)
       .then((resp) => setCardGroup(resp.data))
       .catch((err) => console.log(err));
-  }, [cardGroup]);
+
+  }, [cardGroup.goals, cardGroup.activities, idGroup, setCardGroup]);
+
 
   const { goals, activities } = cardGroup;
 
   return (
     <Container>
       <Header path="specific" />
-      <SectionsMenu render={render} >
+      <SectionsMenu render={render}>
         <section className="description">
           <div className="description_info">
             <h2 className="description_info_title">
@@ -43,13 +54,31 @@ const SpecificGroup = () => {
             </h2>
           </div>
           <div className="description_button">
-            <BasicButtons>Sair</BasicButtons>
+            {arrayInclludesUSer ? (
+              <BasicButtons
+                className="groupButtons"
+                onClick={() => leaveGroup(cardGroup.id)}
+              >
+                Sair
+              </BasicButtons>
+            ) : (
+              <BasicButtons onClick={() => joinGroup(cardGroup.id)}>
+                Entrar
+              </BasicButtons>
+            )}
+            {cardGroup.creator?.username === userName && (
+              <CustomizedDialogs id={cardGroup.id} />
+            )}
           </div>
         </section>
         <div className="buttonlink">
-          <button className="buttonGoal" onClick={() => setRender("goals")}>Metas</button>
+          <button className="buttonGoal" onClick={() => setRender("goals")}>
+            Metas
+          </button>
           <span>|</span>
-          <button className="buttonActiv" onClick={() => setRender("achivied")}>Atividades</button>
+          <button className="buttonActiv" onClick={() => setRender("achivied")}>
+            Atividades
+          </button>
         </div>
         <section className="cards">
           {render === "goals" ? (

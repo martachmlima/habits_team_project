@@ -75,6 +75,28 @@ const Header = ({ path, mobileDisplay, handleDisplay }) => {
         <MobileSpan onClick={() => history.push("/groups")}>
           Buscar Grupos
         </MobileSpan>
+      ) : path === "dashboard" ? (
+        <SearchMobile className="mobile">
+          {mobileDisplay && (
+            <>
+              {" "}
+              <input
+                onChange={(e) => {
+                  if (path === "dashboard") {
+                    setInputValue(e.target.value);
+                  }
+                  setData(e.target.value);
+                }}
+                placeholder={
+                  path === "dashboard"
+                    ? "Pesquisar hábitos"
+                    : "Pesquisar grupos"
+                }
+              ></input>
+              <BiSearch />{" "}
+            </>
+          )}
+        </SearchMobile>
       ) : (
         <SearchMobile className="mobile">
           <input

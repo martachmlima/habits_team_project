@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TextField, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 import dogWalk from "../../assets/dogWalk.svg";
 import { Container, ContainedForm, StyledForm, ContainedSvg } from "./styles";
 import { useUser } from "../../providers/User";
+import InputTextField from "../../components/InputTextField";
 
 const LogIn = () => {
   const history = useHistory();
@@ -14,11 +15,7 @@ const LogIn = () => {
     username: yup.string().required("Campo obrigatório"),
     password: yup.string().required("Campo obrigatório"),
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(formSchema),
   });
   const { signIn } = useUser();
@@ -28,50 +25,23 @@ const LogIn = () => {
   return (
     <Container>
       <ContainedSvg>
-        <h1>
+        <h1 onClick={() => history.push("/")}>
           Gest <span>Habit</span>
         </h1>
         <img src={dogWalk} alt="dogWalk" />
       </ContainedSvg>
       <ContainedForm>
         <StyledForm onSubmit={handleSubmit(onSubmitLogin)}>
-          <TextField
-            sx={{
-              "& input:valid + fieldset": {
-                borderRadius: "12px",
-                height: 76,
-              },
-              label: {
-                lineHeight: "40px",
-              },
-              background: "#EEE3F3",
-              borderRadius: "12px",
-              height: 70,
-              boxShadow: "4px 4px 20px 6px rgba(122, 121, 121, 0.25)",
-            }}
-            label="Usuário"
-            variant="outlined"
-            {...register("username")}
+          <InputTextField
+            label="usuário"
+            register={register}
+            valueRegister={"username"}
           />
-          <TextField
-            sx={{
-              "& input:valid + fieldset": {
-                borderRadius: "12px",
-                height: 76,
-              },
-              label: {
-                lineHeight: "40px",
-              },
-              background: "#EEE3F3",
-              borderRadius: "12px",
-              height: 70,
-              boxShadow: "4px 4px 20px 6px rgba(122, 121, 121, 0.25)",
-            }}
-            type="password"
+          <InputTextField
             label="Senha"
-            variant="outlined"
-            {...register("password")}
-            helperText={errors.password?.mesage || ""}
+            register={register}
+            valueRegister={"password"}
+            type="password"
           />
           <Button
             sx={{
