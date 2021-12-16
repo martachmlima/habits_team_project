@@ -24,6 +24,7 @@ export const GroupsProvider = ({ children }) => {
   const [idGroup, setIdGroup] = useState(
     JSON.parse(localStorage.getItem("KenzieHabits:group")) || {}
   );
+  const [filtred, setFiltred] = useState([]);
 
   useEffect(() => {
     setActivities(cardGroup.activities);
@@ -66,14 +67,28 @@ export const GroupsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const groups = () => {
+    if (data === "") {
+      setFiltred([]);
+    } else {
+      api
+        .get(`groups/?search=${data}`)
+        .then((response) => {
+          setFiltred(response.data.results);
+        })
+        .catch((err) => console.log(err));
+    }
+    console.log(filtred);
+  };
+
   useEffect(() => {
     api
-      .get(`groups/?page=${next}&search=${data}`)
+      .get(`groups/?page=${next}`)
       .then((response) => {
         setAllGroups(response.data.results);
       })
       .catch((err) => console.log(err));
-  }, [data, allGroups, next]);
+  }, [next]);
 
   const joinGroup = (id) => {
     setOpenDrop(true);
@@ -135,6 +150,9 @@ export const GroupsProvider = ({ children }) => {
         setGoals,
         idGroup,
         setIdGroup,
+        filtred,
+        groups,
+        setFiltred,
       }}
     >
       {children}

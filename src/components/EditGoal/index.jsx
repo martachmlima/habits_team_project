@@ -85,7 +85,7 @@ function EditaGoal({ id, done, achieved }) {
     achieved: yup.boolean(),
     how_much_achieved: yup
       .number("Valor inserido deve ser um número")
-      .required("Diga quantas vezes vocêconcluiu esta meta"),
+      .required("Diga quantas vezes você concluiu esta meta"),
   });
 
   const {
@@ -109,9 +109,9 @@ function EditaGoal({ id, done, achieved }) {
       .then((res) => {
         toast.success("Edição feita com sucesso!");
         setOpenDrop(false);
+        handleClose();
       })
       .catch((err) => console.log(err));
-    handleClose();
   };
 
   return (
@@ -202,9 +202,7 @@ function EditaGoal({ id, done, achieved }) {
               }
             </List>
             <List>
-              <BasicButtons onClick={handleClose} type="submit">
-                Enviar edição
-              </BasicButtons>
+              <BasicButtons type="submit">Enviar edição</BasicButtons>
             </List>
           </form>
         </DialogContent>

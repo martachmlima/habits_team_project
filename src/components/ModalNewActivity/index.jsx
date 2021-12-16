@@ -91,6 +91,8 @@ export default function NewActivities() {
     dado.group = cardGroup.id;
     const newDate = new Date("20 December 2021");
     dado.realization_time = newDate.toISOString();
+    dado.realization_time = new Date(dado.realization_time);
+    dado.realization_time = dado.realization_time.toISOString();
 
     api
       .post(`/activities/`, dado, {
@@ -177,13 +179,13 @@ export default function NewActivities() {
               fullWidth
               placeholder="Data para realização da atividade"
               label={
-                errors.difficulty?.message ? (
-                  errors.difficulty?.message
+                errors.realization_time?.message ? (
+                  errors.realization_time?.message
                 ) : (
-                  <>Data para realização da atividade</>
+                  <>ex: 25 December 2021</>
                 )
               }
-              error={errors.difficulty?.message}
+              error={errors.realization_time?.message}
               id="fullWidth"
               {...register("realization_time")}
             />
