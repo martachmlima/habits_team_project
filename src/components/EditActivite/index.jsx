@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import BasicButtons from "../Button";
-import InputTextField from '../InputTextField'
+import InputTextField from "../InputTextField";
 import { Container } from "./styles";
 import { useUser } from "../../providers/User";
 import api from "../../services/api";
@@ -109,6 +109,7 @@ function EditaActivite({ id }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Editar Atividade
         </BootstrapDialogTitle>
@@ -124,7 +125,7 @@ function EditaActivite({ id }) {
                   }}
                 >
                   <InputTextField
-                    label='Novo título'
+                    label="Novo título"
                     errors={errors.title?.message}
                     register={register}
                     valueRegister={"title"}
@@ -133,7 +134,9 @@ function EditaActivite({ id }) {
               </ListItem>
             </List>
             <List>
-              <BasicButtons onClick={handleClose} type="submit">Enviar edição</BasicButtons>
+              <BasicButtons onClick={handleClose} type="submit">
+                Enviar edição
+              </BasicButtons>
             </List>
           </form>
         </DialogContent>

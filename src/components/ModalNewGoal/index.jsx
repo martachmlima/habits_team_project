@@ -18,6 +18,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useGroups } from "../../providers/Groups";
+import BasicButtons from "../Button";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -122,6 +123,7 @@ export default function NewGoals() {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Nova Meta
         </BootstrapDialogTitle>
@@ -184,7 +186,9 @@ export default function NewGoals() {
             />
           </DialogContent>
           <DialogActions>
-            <ButtonChange onClick={handleClose}  type="onsubmit">Cadastrar</ButtonChange>
+            <BasicButtons onClick={handleClose} type="onsubmit">
+              Cadastrar
+            </BasicButtons>
           </DialogActions>
         </form>
       </BootstrapDialog>

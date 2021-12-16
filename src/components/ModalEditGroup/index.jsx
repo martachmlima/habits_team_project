@@ -118,6 +118,7 @@ export default function CustomizedDialogs({ id }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Editar Grupo
         </BootstrapDialogTitle>

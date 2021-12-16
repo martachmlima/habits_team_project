@@ -18,6 +18,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useGroups } from "../../providers/Groups";
+import BasicButtons from "../Button";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -57,7 +58,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function NewActivities () {
+export default function NewActivities() {
   const [open, setOpen] = React.useState(false);
   const token = localStorage.getItem("@KenzieHabits:token") || "";
 
@@ -86,12 +87,12 @@ export default function NewActivities () {
 
   const handleOnSubmit = (dado) => {
     dado.group = cardGroup.id;
-    const newDate = new Date('20 December 2021')
-    dado.realization_time = newDate.toISOString()
+    const newDate = new Date("20 December 2021");
+    dado.realization_time = newDate.toISOString();
     api
       .post(`/activities/`, dado, {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -119,6 +120,7 @@ export default function NewActivities () {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Nova atividade
         </BootstrapDialogTitle>
@@ -168,7 +170,7 @@ export default function NewActivities () {
                 mt: 2,
               }}
               fullWidth
-              placeholder='Data para realização da atividade'
+              placeholder="Data para realização da atividade"
               label={
                 errors.difficulty?.message ? (
                   errors.difficulty?.message
@@ -182,7 +184,7 @@ export default function NewActivities () {
             />
           </DialogContent>
           <DialogActions>
-            <ButtonChange type="onsubmit">Cadastrar</ButtonChange>
+            <BasicButtons type="onsubmit">Cadastrar</BasicButtons>
           </DialogActions>
         </form>
       </BootstrapDialog>
