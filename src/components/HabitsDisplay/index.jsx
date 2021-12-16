@@ -1,11 +1,17 @@
-import { Container } from "./styles";
+import { Container, Box } from "./styles";
 import HabitCard from "../HabitCard";
 import { useUser } from "../../providers/User";
+import NewHabit from '../NewHabit'
 
 const HabitDisplay = () => {
   const { deleteHabit, filterHabts } = useUser();
 
   return (
+    <Box>
+      <div className='bearer'>
+        <h2>Meus Hábitos</h2>
+        <NewHabit/>
+      </div>
     <Container>
       {filterHabts().map((habit) => (
         <HabitCard
@@ -21,6 +27,7 @@ const HabitDisplay = () => {
         />
       ))}
     </Container>
+    </Box>
   );
 };
 

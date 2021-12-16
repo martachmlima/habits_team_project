@@ -21,7 +21,14 @@ export const HeaderContainer = styled.header`
       font-size: 2.5rem;
     }
   }
+  h1:hover {
+    color: var(--color-cardAside);
+  }
   > span {
+    cursor: pointer;
+  }
+  span:hover {
+    color: var(--color-cardAside);
     cursor: pointer;
   }
 `;
@@ -41,7 +48,10 @@ export const Section = styled.section`
     font-weight: 700;
     @media (max-width: 800px) {
       display: none;
-    }
+    }  
+  }
+  > span:hover {
+    color: var(--color-cardAside))
   }
 `;
 

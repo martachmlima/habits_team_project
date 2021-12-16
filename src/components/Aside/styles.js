@@ -17,17 +17,6 @@ export const Container = styled.div`
   border: 1px solid var(--color-stroke);
   box-shadow: 0px 0px 20px 0 rgb(0 0 0 / 15%);
 
-  /*   @media (min-width: 1100px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  @media (max-width: 800px) {
-    display: none;
-  } */
-
   .aside_header {
     width: 100%;
     height: 100px;
@@ -38,6 +27,7 @@ export const Container = styled.div`
     border-bottom: 2px solid var(--color-aside);
     padding-bottom: 10px;
     margin-bottom: 25px;
+
     svg {
       font-size: 60px;
       color: var(--color-aside);
@@ -46,7 +36,11 @@ export const Container = styled.div`
       font-size: 1.8rem;
       color: var(--color-aside);
     }
+    h1:hover {
+      color: var(--color-cardAside);
+    }
   }
+
   section {
     overflow: auto;
     width: 100%;
@@ -57,6 +51,7 @@ export const Container = styled.div`
     padding-top: 10px;
     align-items: center;
   }
+
   footer {
     height: 170px;
     width: 100%;
@@ -88,6 +83,7 @@ export const Card = styled.div`
     border-radius: 6px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   }
+
   .card_icon {
     margin-right: 10px;
     border-radius: 6px;
@@ -99,6 +95,7 @@ export const Card = styled.div`
       color: white;
     }
   }
+
   h3 {
     font-size: 13px;
     color: var(--color-cardAside);

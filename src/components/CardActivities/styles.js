@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 20px 15px 10px;
   padding: 10px;
   width: 300px;
@@ -22,9 +25,15 @@ export const Container = styled.div`
   }
   .button {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-around;
+    /* padding: 10px 10%; */
     width: 100%;
-    padding: 10px 10%;
+    > button {
+      width: 40%;
+    }
+    > div {
+      width: 40%;
+    }
   }
 `;

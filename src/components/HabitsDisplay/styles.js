@@ -30,3 +30,21 @@ export const Container = styled.div`
     width: 1200px;
   }
 `;
+
+export const Box = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .bearer {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    color: var(--color-cardAside);
+  }
+  .bearer h2 {
+    font-size: 2rem;
+  }
+`

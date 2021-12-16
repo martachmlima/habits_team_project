@@ -41,7 +41,7 @@ function Aside() {
   return (
     <Container>
       <div className="aside_header">
-        <GroupsIcon />
+        <GroupsIcon/>
         <Link to="/groups">
           <h1>GRUPOS</h1>
         </Link>

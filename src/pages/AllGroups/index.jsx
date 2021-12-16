@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import { MainContainer, GroupsContainer } from "./styles";
+import { MainContainer, GroupsContainer, Box } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 import { useHistory } from "react-router-dom";
@@ -29,22 +29,24 @@ const AllGroups = () => {
   return (
     <MainContainer>
       <Header path="groups" />
-      <GroupsContainer>
-        {allGroups.map((group) => (
-          <>
+      <Box>
+        <h2>Grupos</h2>
+        <GroupsContainer>
+          {allGroups.map((group) => (
+            <div key={group.id}>
             <GroupCard
-              key={group.id}
-              name={group.name}
-              description={group.description}
-              category={group.category}
-              creator={group.creator.username}
-              id={group.id}
-              users_on_group={group.users_on_group}
-              currentFunction={() => handleGroup(group)}
-            />
-          </>
-        ))}
-      </GroupsContainer>
+                name={group.name}
+                description={group.description}
+                category={group.category}
+                creator={group.creator.username}
+                id={group.id}
+                users_on_group={group.users_on_group}
+                currentFunction={() => handleGroup(group)}
+              />
+            </div>
+          ))}
+        </GroupsContainer>
+      </Box>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <BasicButtons
           style={{ width: "90px" }}

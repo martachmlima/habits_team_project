@@ -1,6 +1,7 @@
 import { Container } from "./styles";
 import BasicButtons from "../Button";
 import { useGroups } from "../../providers/Groups";
+import EditaGoal from '../EditGoal'
 
 function CardGoals({ goals }) {
   const { deleteGoals } = useGroups();
@@ -9,7 +10,7 @@ function CardGoals({ goals }) {
     <>
       {goals &&
         goals.map((card) => (
-          <Container>
+          <Container key={card.id}>
             <div className="info">
               <h3>
                 Título: <span>{card.title}</span>
@@ -25,6 +26,9 @@ function CardGoals({ goals }) {
               <BasicButtons onClick={() => deleteGoals(card.id)}>
                 DELETAR
               </BasicButtons>
+              <EditaGoal done={card.achieved} id={card.id} >
+                EDITAR
+              </EditaGoal>
             </div>
           </Container>
         ))}
