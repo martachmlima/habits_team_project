@@ -112,6 +112,7 @@ function EditaGoal({ id, done }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Editar Meta
         </BootstrapDialogTitle>

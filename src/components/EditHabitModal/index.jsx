@@ -131,6 +131,7 @@ function CustomizedDialogs({ id, achievedValue, done }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Editar hábito
         </BootstrapDialogTitle>
@@ -156,10 +157,10 @@ function CustomizedDialogs({ id, achievedValue, done }) {
                         defaultValue={achievedValue}
                         getAriaValueText={valuetext}
                         valueLabelDisplay="auto"
-                        step={10}
+                        step={1}
                         marks
                         min={0}
-                        max={100}
+                        max={30}
                         error={errors.how_much_achieved?.message}
                         {...register("how_much_achieved")}
                       />

@@ -4,6 +4,7 @@ import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 import { useHistory } from "react-router-dom";
 import BasicButtons from "../../components/Button";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 const AllGroups = () => {
   const { allGroups, next, setNext } = useGroups();
@@ -34,7 +35,7 @@ const AllGroups = () => {
         <GroupsContainer>
           {allGroups.map((group) => (
             <div key={group.id}>
-            <GroupCard
+              <GroupCard
                 name={group.name}
                 description={group.description}
                 category={group.category}
@@ -54,7 +55,7 @@ const AllGroups = () => {
           color="secondary"
           onClick={previousPage}
         >
-          Previus
+          <GrPrevious />
         </BasicButtons>
         <BasicButtons
           style={{ width: "90px" }}
@@ -62,7 +63,7 @@ const AllGroups = () => {
           color="secondary"
           onClick={nextPage}
         >
-          Next
+          <GrNext />
         </BasicButtons>
       </div>
     </MainContainer>

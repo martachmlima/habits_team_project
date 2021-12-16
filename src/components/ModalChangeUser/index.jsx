@@ -122,6 +122,7 @@ export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Alterar nome e email
         </BootstrapDialogTitle>

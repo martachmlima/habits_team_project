@@ -114,6 +114,7 @@ export default function NewHabit() {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Novo Hábito
         </BootstrapDialogTitle>
