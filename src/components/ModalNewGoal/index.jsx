@@ -10,7 +10,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { TextField } from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +18,7 @@ import toast from "react-hot-toast";
 import { useGroups } from "../../providers/Groups";
 import BasicButtons from "../Button";
 import { useUser } from "../../providers/User";
+import InputTextField from "../InputTextField";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -131,60 +131,17 @@ export default function NewGoals() {
         </BootstrapDialogTitle>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <DialogContent dividers>
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.title?.message ? (
-                  errors.title?.message
-                ) : (
-                  <>Insira uma Meta</>
-                )
-              }
-              error={errors.title?.message}
-              id="fullWidth"
-              {...register("title")}
+            <InputTextField
+              label={<>Insira uma Meta</>}
+              errors={errors.title?.message}
+              register={register}
+              valueRegister={"title"}
             />
-
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.difficulty?.message ? (
-                  errors.difficulty?.message
-                ) : (
-                  <>Sua dificuldade para esta meta</>
-                )
-              }
-              error={errors.difficulty?.message}
-              id="fullWidth"
-              {...register("difficulty")}
+            <InputTextField
+              label={<>Sua dificuldade para esta meta</>}
+              errors={errors.difficulty?.message}
+              register={register}
+              valueRegister={"difficulty"}
             />
           </DialogContent>
           <DialogActions>

@@ -10,7 +10,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { TextField } from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +18,7 @@ import toast from "react-hot-toast";
 import { useGroups } from "../../providers/Groups";
 import BasicButtons from "../Button";
 import { useUser } from "../../providers/User";
+import InputTextField from "../InputTextField";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -133,61 +133,17 @@ export default function NewActivities() {
         </BootstrapDialogTitle>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <DialogContent dividers>
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.title?.message ? (
-                  errors.title?.message
-                ) : (
-                  <>Insira uma Atividade</>
-                )
-              }
-              error={errors.title?.message}
-              id="fullWidth"
-              {...register("title")}
+            <InputTextField
+              label={<>Insira uma Atividade</>}
+              errors={errors.title?.message}
+              register={register}
+              valueRegister={"title"}
             />
-
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              placeholder="Data para realização da atividade"
-              label={
-                errors.realization_time?.message ? (
-                  errors.realization_time?.message
-                ) : (
-                  <>ex: 25 December 2021</>
-                )
-              }
-              error={errors.realization_time?.message}
-              id="fullWidth"
-              {...register("realization_time")}
+            <InputTextField
+              label={<>ex: 25 December 2021</>}
+              errors={errors.realization_time?.message}
+              register={register}
+              valueRegister={"realization_time"}
             />
           </DialogContent>
           <DialogActions>

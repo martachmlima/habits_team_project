@@ -10,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
         outline:0;
     }
     :root{
+      --red-pink: #f72373;
+      --secundary-green: #82f9c1;
       --branco: #FFFFFF;
       --roxo: #B13AC6;
       --rosa-pink: #CC68BE;

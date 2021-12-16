@@ -17,8 +17,8 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  TextField,
 } from "@mui/material";
+import InputTextField from "../InputTextField";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -137,87 +137,23 @@ export default function CustomizedDialogs({ id }) {
                       flexDirection: "column",
                     }}
                   >
-                    <TextField
-                      color="secondary"
-                      sx={{
-                        "& input:valid + fieldset": {
-                          borderColor: "white",
-                          borderWidth: 1,
-                          borderRadius: 3,
-                          height: 75,
-                        },
-                        filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                        bgcolor: "var(--branco)",
-                        borderRadius: 3,
-                        height: 70,
-                        mt: 3,
-                      }}
-                      fullWidth
-                      label={
-                        errors.name?.message ? (
-                          errors.name?.message
-                        ) : (
-                          <p>Novo nome do Grupo</p>
-                        )
-                      }
-                      error={errors.name?.message}
-                      id="fullWidth"
-                      {...register("name")}
+                    <InputTextField
+                      label={<>Novo nome do Grupo</>}
+                      errors={errors.name?.message}
+                      register={register}
+                      valueRegister={"name"}
                     />
-
-                    <TextField
-                      color="secondary"
-                      sx={{
-                        "& input:valid + fieldset": {
-                          borderColor: "white",
-                          borderWidth: 1,
-                          borderRadius: 3,
-                          height: 75,
-                        },
-                        filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                        bgcolor: "var(--branco)",
-                        borderRadius: 3,
-                        height: 70,
-                        mt: 2,
-                      }}
-                      fullWidth
-                      label={
-                        errors.category?.message ? (
-                          errors.category?.message
-                        ) : (
-                          <p>Nova categoria do Grupo</p>
-                        )
-                      }
-                      error={errors.category?.message}
-                      id="fullWidth"
-                      {...register("category")}
+                    <InputTextField
+                      label={<>Nova categoria do Grupo</>}
+                      errors={errors.category?.message}
+                      register={register}
+                      valueRegister={"category"}
                     />
-                    <TextField
-                      color="secondary"
-                      sx={{
-                        "& input:valid + fieldset": {
-                          borderColor: "white",
-                          borderWidth: 1,
-                          borderRadius: 3,
-                          height: 75,
-                        },
-                        filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                        bgcolor: "var(--branco)",
-                        borderRadius: 3,
-                        height: 70,
-                        mt: 2,
-                      }}
-                      fullWidth
-                      label={
-                        errors.description?.message ? (
-                          errors.description?.message
-                        ) : (
-                          <p>Nova descrição do Grupo</p>
-                        )
-                      }
-                      error={errors.description?.message}
-                      id="fullWidth"
-                      {...register("description")}
+                    <InputTextField
+                      label={<>Nova descrição do Grupo</>}
+                      errors={errors.description?.message}
+                      register={register}
+                      valueRegister={"description"}
                     />
                   </ListItemIcon>
                 </ListItem>

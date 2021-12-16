@@ -106,9 +106,7 @@ export const ConteinerForm = styled.div`
         margin-top: 3px;
       }
     }
-    input {
-      padding: 23.5px 14px;
-    }
+   
     button {
       background: #9c27b0;
       border-radius: 8px;

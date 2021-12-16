@@ -1,8 +1,9 @@
 import { TextField } from "@mui/material";
+import { Conteiner } from "./styles";
 
 const InputTextField = ({ errors, label, register, valueRegister, type }) => {
   return (
-    <>
+    <Conteiner>
       <TextField
         color="secondary"
         sx={{
@@ -16,7 +17,6 @@ const InputTextField = ({ errors, label, register, valueRegister, type }) => {
           bgcolor: "var(--branco)",
           borderRadius: 3,
           height: 70,
-          mt: 2,
         }}
         fullWidth
         label={errors ? errors : label}
@@ -25,7 +25,7 @@ const InputTextField = ({ errors, label, register, valueRegister, type }) => {
         {...register(valueRegister)}
         type={type}
       />
-    </>
+    </Conteiner>
   );
 };
 

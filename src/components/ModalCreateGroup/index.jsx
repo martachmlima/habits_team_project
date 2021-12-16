@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import CloseIcon from "@mui/icons-material/Close";
 import {
-  TextField,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -15,6 +14,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import BasicButtons from "../Button";
+import InputTextField from "../InputTextField";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -91,36 +91,25 @@ const CreateGroup = () => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Content>
-            <TextField
-              sx={{ mb: 1.5 }}
-              label={
-                errors.name?.message ? errors.name?.message : "Nome do Grupo"
-              }
-              {...register("name")}
-              error={errors.name?.message}
+            <InputTextField
+              label={"Nome do Grupo"}
+              errors={errors.name?.message}
+              register={register}
+              valueRegister={"name"}
             />
-            <TextField
-              sx={{ mb: 1.5 }}
-              multiline
-              maxRows={4}
-              label={
-                errors.description?.message
-                  ? errors.description?.message
-                  : "Descrição"
-              }
-              {...register("description")}
-              error={errors.description?.message}
+            <InputTextField
+              label={"Descrição"}
+              errors={errors.description?.message}
+              register={register}
+              valueRegister={"description"}
             />
-            <TextField
-              sx={{ mb: 1.5 }}
-              label={
-                errors.category?.message
-                  ? errors.category?.message
-                  : "Categoria"
-              }
-              {...register("category")}
-              error={errors.category?.message}
+            <InputTextField
+              label={"Categoria"}
+              errors={errors.category?.message}
+              register={register}
+              valueRegister={"category"}
             />
+
             <BasicButtons onClick={handleSubmit(handleClose)}>
               Criar
             </BasicButtons>

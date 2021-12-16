@@ -68,6 +68,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const groups = () => {
+    setOpenDrop(true);
     if (data === "") {
       setFiltred([]);
     } else {
@@ -75,10 +76,10 @@ export const GroupsProvider = ({ children }) => {
         .get(`groups/?search=${data}`)
         .then((response) => {
           setFiltred(response.data.results);
+          setOpenDrop(false);
         })
         .catch((err) => console.log(err));
     }
-    console.log(filtred);
   };
 
   useEffect(() => {
