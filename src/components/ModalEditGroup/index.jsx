@@ -60,7 +60,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({ id }) {
   const [open, setOpen] = React.useState(false);
-  const { token } = useUser();
+  const { token, setOpenDrop } = useUser();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -84,6 +84,7 @@ export default function CustomizedDialogs({ id }) {
   });
 
   const editGroup = (data) => {
+    setOpenDrop(true);
     api
       .patch(`groups/${id}/`, data, {
         headers: {
@@ -92,6 +93,7 @@ export default function CustomizedDialogs({ id }) {
       })
       .then((response) => {
         toast.success("Edição feita com sucesso!");
+        setOpenDrop(false);
       })
       .catch((err) => console.log(err));
     handleClose();

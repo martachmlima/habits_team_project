@@ -93,9 +93,10 @@ function CustomizedDialogs({ id, achievedValue, done }) {
     resolver: yupResolver(formSchema),
   });
 
-  const { token, setHabits } = useUser();
+  const { token, setHabits, setOpenDrop } = useUser();
 
   const editHabit = (data) => {
+    setOpenDrop(true);
     api
       .patch(`habits/${id}/`, data, {
         headers: {
@@ -112,6 +113,7 @@ function CustomizedDialogs({ id, achievedValue, done }) {
           })
           .then((response) => {
             setHabits(response.data);
+            setOpenDrop(false);
           })
           .catch((err) => console.log(err));
       })

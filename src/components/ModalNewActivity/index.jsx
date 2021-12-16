@@ -18,6 +18,7 @@ import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useGroups } from "../../providers/Groups";
 import BasicButtons from "../Button";
+import { useUser } from "../../providers/User";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -62,6 +63,7 @@ export default function NewActivities() {
   const token = localStorage.getItem("@KenzieHabits:token") || "";
 
   const { activities, setActivities, cardGroup } = useGroups();
+  const { setOpenDrop } = useUser();
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Insira um Atividade"),
@@ -85,10 +87,11 @@ export default function NewActivities() {
   };
 
   const handleOnSubmit = (dado) => {
+    setOpenDrop(true);
     dado.group = cardGroup.id;
     const newDate = new Date("20 December 2021");
     dado.realization_time = newDate.toISOString();
-    
+
     api
       .post(`/activities/`, dado, {
         headers: {
@@ -99,6 +102,7 @@ export default function NewActivities() {
         setActivities([...activities, res.dado]);
         toast.success("Atividade cadastrada com sucesso!");
         handleClose();
+        setOpenDrop(false);
       })
       .catch((err) => {
         console.log(err);

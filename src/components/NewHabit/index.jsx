@@ -62,7 +62,7 @@ export default function NewHabit() {
   const token = localStorage.getItem("@KenzieHabits:token") || "";
   const user = JSON.parse(localStorage.getItem("@KenzieHabits:userId")) || "";
 
-  const { habits, setHabits } = useUser();
+  const { habits, setHabits, setOpenDrop } = useUser();
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Insira um hábito"),
@@ -84,6 +84,7 @@ export default function NewHabit() {
     setOpen(false);
   };
   const handleOnSubmit = (data) => {
+    setOpenDrop(true);
     data.user = user.user_id;
     data.how_much_achieved = 0;
     data.achieved = false;
@@ -95,6 +96,7 @@ export default function NewHabit() {
         setHabits([...habits, res.data]);
         toast.success("Hábito cadastrado com sucesso!");
         handleClose();
+        setOpenDrop(false);
       })
       .catch((err) => toast.error("Erro na criação!"));
   };

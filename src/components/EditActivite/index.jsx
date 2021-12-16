@@ -82,9 +82,10 @@ function EditaActivite({ id }) {
     resolver: yupResolver(formSchema),
   });
 
-  const { token } = useUser();
+  const { token, setOpenDrop } = useUser();
 
   const editActivitie = (data) => {
+    setOpenDrop(true);
     api
       .patch(`activities/${id}/`, data, {
         headers: {
@@ -93,6 +94,7 @@ function EditaActivite({ id }) {
       })
       .then((res) => {
         toast.success("Edição feita com sucesso!");
+        setOpenDrop(false);
       })
       .catch((err) => console.log(err));
     handleClose();
