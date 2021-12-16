@@ -83,7 +83,7 @@ function EditaGoal({ id, done, achieved }) {
     title: yup.string().required('Campo obrigatório'),
     difficulty: yup.string().required('Campo obrigatório'),
     achieved: yup.boolean(),
-    how_much_achieved: yup.number('Valor inserido deve ser um número').required('Diga quantas vezes vocêconcluiu esta meta')
+    how_much_achieved: yup.number('Valor inserido deve ser um número').required('Diga quantas vezes você concluiu esta meta')
   });
 
   const {
@@ -105,16 +105,16 @@ function EditaGoal({ id, done, achieved }) {
       })
       .then((res) => {
         toast.success("Edição feita com sucesso!");
+        handleClose();
       })
       .catch((err) => console.log(err));
-    handleClose();
   };
 
   return (
     <Container>
       <BasicButtons onClick={handleClickOpen}>Editar</BasicButtons>
       <BootstrapDialog
-        onClose={handleClose}
+        onClose={handleClose} 
         aria-labelledby="customized-dialog-title"
         open={open}
       >
@@ -198,7 +198,7 @@ function EditaGoal({ id, done, achieved }) {
               }
             </List>
             <List>
-              <BasicButtons onClick={handleClose} type="submit">
+              <BasicButtons type="submit">
                 Enviar edição
               </BasicButtons>
             </List>
