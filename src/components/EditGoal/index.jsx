@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import BasicButtons from "../Button";
-import InputTextField from '../InputTextField'
 import { Container } from "./styles";
 import { useUser } from "../../providers/User";
 import api from "../../services/api";
@@ -14,10 +13,14 @@ import toast from "react-hot-toast";
 import {
   List,
   ListItem,
+  FormGroup,
   ListItemIcon,
   Dialog,
+  Checkbox,
+  Box,
   DialogTitle,
   DialogContent,
+  FormControlLabel,
   IconButton,
 } from "@mui/material";
 
@@ -59,7 +62,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function EditaActivite({ id }) {
+function EditaGoal({ id, done }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -71,7 +74,7 @@ function EditaActivite({ id }) {
   };
 
   const formSchema = yup.object().shape({
-    title: yup.string("Digite um novo título").required("Campo obrigatório"),
+    achieved: yup.boolean()
   });
 
   const {
@@ -84,9 +87,9 @@ function EditaActivite({ id }) {
 
   const { token } = useUser();
 
-  const editActivitie = (data) => {
+  const editGoal = (data) => {
     api
-      .patch(`activities/${id}/`, data, {
+      .patch(`goals/${id}/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -110,27 +113,45 @@ function EditaActivite({ id }) {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Editar Atividade
+          Editar Meta
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <form onSubmit={handleSubmit(editActivitie)}>
-            <List>
-              <ListItem>
-                <ListItemIcon
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <InputTextField
-                    label='Novo título'
-                    errors={errors.title?.message}
-                    register={register}
-                    valueRegister={"title"}
-                  />
-                </ListItemIcon>
-              </ListItem>
+          <form onSubmit={handleSubmit(editGoal)}>
+          <List>
+              {
+                <ListItem>
+                  <ListItemIcon
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Box sx={{ width: 300 }}>
+                      <p>Marque caso tenha concluído</p>
+                    </Box>
+                    <FormGroup>
+                      {done ? (
+                        <FormControlLabel
+                          control={
+                            <Checkbox color="secondary" defaultChecked />
+                          }
+                          label="Meta alcançada?"
+                          error={errors.achieved?.message}
+                          {...register("achieved")}
+                        />
+                      ) : (
+                        <FormControlLabel
+                          control={<Checkbox color="secondary" />}
+                          label="Meta alcançada?"
+                          error={errors.achieved?.message}
+                          {...register("achieved")}
+                        />
+                      )}
+                    </FormGroup>
+                  </ListItemIcon>
+                </ListItem>
+              }
             </List>
             <List>
               <BasicButtons onClick={handleClose} type="submit">Enviar edição</BasicButtons>
@@ -142,4 +163,4 @@ function EditaActivite({ id }) {
   );
 }
 
-export default EditaActivite;
+export default EditaGoal

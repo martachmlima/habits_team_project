@@ -88,7 +88,6 @@ export default function NewActivities () {
     dado.group = cardGroup.id;
     const newDate = new Date('20 December 2021')
     dado.realization_time = newDate.toISOString()
-    console.log(dado)
     api
       .post(`/activities/`, dado, {
         headers: {
@@ -96,7 +95,6 @@ export default function NewActivities () {
         },
       })
       .then((res) => {
-        console.log(res);
         setActivities([...activities, res.dado]);
         toast.success("Atividade cadastrada com sucesso!");
       })
