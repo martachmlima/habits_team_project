@@ -103,7 +103,9 @@ export default function CustomizedDialogs({ id }) {
         style={{
           color: "var(--dark-purple)",
           backgroundColor: "var(--secondary-purple)",
-          width: "100%",
+          width: "200px",
+          fontSize: "1rem",
+          height: "36px",
         }}
         onClick={handleClickOpen}
       >

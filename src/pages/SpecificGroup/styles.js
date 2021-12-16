@@ -42,9 +42,14 @@ export const SectionsMenu = styled.section`
     flex-basis: 40%;
     padding: 0 0 0 5%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-top: 10px;
   }
+  .groupButtons {
+    margin-bottom: 10px;
+  }
+
   .buttonlink {
     display: flex;
     justify-content: center;
@@ -69,12 +74,24 @@ export const SectionsMenu = styled.section`
     flex-wrap: wrap;
   }
   .buttonlink .buttonGoal {
-    color: ${(props) => (props.render === 'goals' ? 'var(--color-cardAside)' : "var(--color-ligth-purple)")};
-    border-bottom: ${(props) => (props.render === 'goals' ? '3px solid var(--color-cardAside)' : "3px solid transparent")};
-  }  
+    color: ${(props) =>
+      props.render === "goals"
+        ? "var(--color-cardAside)"
+        : "var(--color-ligth-purple)"};
+    border-bottom: ${(props) =>
+      props.render === "goals"
+        ? "3px solid var(--color-cardAside)"
+        : "3px solid transparent"};
+  }
   .buttonlink .buttonActiv {
-    color: ${(props) => (props.render !== 'goals' ? 'var(--color-cardAside)' : "var(--color-ligth-purple)")};
-    border-bottom: ${(props) => (props.render !== 'goals' ? '3px solid var(--color-cardAside)' : "3px solid transparent")};
+    color: ${(props) =>
+      props.render !== "goals"
+        ? "var(--color-cardAside)"
+        : "var(--color-ligth-purple)"};
+    border-bottom: ${(props) =>
+      props.render !== "goals"
+        ? "3px solid var(--color-cardAside)"
+        : "3px solid transparent"};
   }
   @media (min-width: 500px) {
     .description {

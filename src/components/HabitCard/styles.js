@@ -34,6 +34,7 @@ export const ContainerCard = styled.div`
   }
   .meta {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 15px;
     font-size: 1.2rem;
   }
@@ -48,7 +49,7 @@ export const ContainerCard = styled.div`
   .alert {
     color: var(--color-cardAside);
     text-align: end;
-    width: 60%;
+    width: 50%;
   }
   .colorbar {
     background-color: var(--color-cardAside);
