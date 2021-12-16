@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import {
   List,
+  Box,
   ListItem,
   ListItemIcon,
   Dialog,
@@ -72,6 +73,7 @@ function EditaActivite({ id }) {
 
   const formSchema = yup.object().shape({
     title: yup.string("Digite um novo título").required("Campo obrigatório"),
+    realization_time: yup.string().required("Insira uma data"),
   });
 
   const {
@@ -85,6 +87,9 @@ function EditaActivite({ id }) {
   const { token } = useUser();
 
   const editActivitie = (data) => {
+    data.realization_time = new Date(data.realization_time)
+    data.realization_time = data.realization_time.toISOString()
+
     api
       .patch(`activities/${id}/`, data, {
         headers: {
@@ -93,9 +98,12 @@ function EditaActivite({ id }) {
       })
       .then((res) => {
         toast.success("Edição feita com sucesso!");
+        handleClose();
       })
-      .catch((err) => console.log(err));
-    handleClose();
+      .catch((err) => {
+        toast.error("Erro na alteração, tente novamente");
+        console.log(err)
+      });
   };
 
   return (
@@ -124,19 +132,29 @@ function EditaActivite({ id }) {
                     flexDirection: "column",
                   }}
                 >
+                  <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
+                    <p>Insira um título</p>
+                  </Box>
                   <InputTextField
                     label="Novo título"
                     errors={errors.title?.message}
                     register={register}
                     valueRegister={"title"}
                   />
+                  <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
+                    <p>Insira uma data</p>
+                  </Box>
+                  <InputTextField
+                    label="ex: 25 December 2021"
+                    errors={errors.realization_time?.message}
+                    register={register}
+                    valueRegister={"realization_time"}
+                  />
                 </ListItemIcon>
               </ListItem>
             </List>
             <List>
-              <BasicButtons onClick={handleClose} type="submit">
-                Enviar edição
-              </BasicButtons>
+              <BasicButtons type="submit">Enviar edição</BasicButtons>
             </List>
           </form>
         </DialogContent>
