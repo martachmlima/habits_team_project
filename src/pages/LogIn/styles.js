@@ -25,6 +25,8 @@ export const ContainedSvg = styled.div`
     display: none;
   }
   h1 {
+    display: block;
+    cursor: pointer;
     transition: 0.5s;
     font-size: 62px;
     color: #dfc2eb;
@@ -100,6 +102,14 @@ export const StyledForm = styled.form`
   div {
     transition: 0.5s;
     width: 280px;
+    background: #eee3f3;
+    border-radius: 12px;
+    label {
+      margin-top: 8px;
+    }
+  }
+  input {
+    padding: 23.5px 14px;
   }
   span {
     transition: 0.5s;

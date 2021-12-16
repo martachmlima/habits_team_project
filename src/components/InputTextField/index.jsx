@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 
-const InputTextField = ({ errors, label, register, valueRegister }) => {
+const InputTextField = ({ errors, label, register, valueRegister, type }) => {
   return (
     <>
       <TextField
@@ -23,6 +23,7 @@ const InputTextField = ({ errors, label, register, valueRegister }) => {
         error={errors}
         id="fullWidth"
         {...register(valueRegister)}
+        type={type}
       />
     </>
   );
