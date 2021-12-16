@@ -17,6 +17,7 @@ const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(
     localStorage.getItem("@KenzieHabits:userId") || 0
   );
+  const [openDrop, setOpenDrop] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
 
@@ -39,19 +40,23 @@ const UserProvider = ({ children }) => {
   };
 
   const signOut = () => {
+    setOpenDrop(true);
     localStorage.removeItem("@KenzieHabits:token");
     localStorage.removeItem("@KenzieHabits:userId");
     setToken(false);
     setUserId(0);
+    setOpenDrop(false);
   };
   const createGroup = (data) => {
+    setOpenDrop(true);
     api
       .post("groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        toast.success("Grupo criado com sucesso");
         setSubscribedGroups([...subscribedGroups, response.data]);
+        toast.success("Grupo criado com sucesso");
+        setOpenDrop(false);
       })
       .catch((response) =>
         toast.error("Algo deu errado, tente novamente mais tarde")
@@ -72,6 +77,7 @@ const UserProvider = ({ children }) => {
   }, [token, habits]);
 
   const deleteHabit = (id) => {
+    setOpenDrop(true);
     const newHabits = habits.filter((habit) => habit.id !== id);
     api
       .delete(`habits/${id}/`, {
@@ -82,6 +88,7 @@ const UserProvider = ({ children }) => {
       .then((response) => {
         setHabits(newHabits);
         toast.success("Hábito deletado!");
+        setOpenDrop(false);
       })
       .catch((err) => console.log(err));
   };
@@ -142,6 +149,8 @@ const UserProvider = ({ children }) => {
         user,
         setUser,
         setUserName,
+        openDrop,
+        setOpenDrop,
       }}
     >
       {children}

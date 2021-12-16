@@ -14,6 +14,7 @@ export const GroupsProvider = ({ children }) => {
   const [cardGroup, setCardGroup] = useState(
     () => localStorage.getItem("KenzieHabits:group") || {}
   );
+  const { setOpenDrop } = useUser();
   const [allGroups, setAllGroups] = useState([]);
   const [data, setData] = useState("");
   const [activities, setActivities] = useState([]);
@@ -31,6 +32,7 @@ export const GroupsProvider = ({ children }) => {
   }, [cardGroup]);
 
   const deleteActivities = (id) => {
+    setOpenDrop(true);
     const newActivities = activities.filter(
       (activities) => activities.id !== id
     );
@@ -43,11 +45,13 @@ export const GroupsProvider = ({ children }) => {
       .then((response) => {
         setActivities(newActivities);
         toast.success("Atividade deletada!");
+        setOpenDrop(false);
       })
       .catch((err) => console.log(err));
   };
 
   const deleteGoals = (id) => {
+    setOpenDrop(true);
     const newGoals = goals.filter((goal) => goal.id !== id);
     api
       .delete(`goals/${id}/`, {
@@ -58,6 +62,7 @@ export const GroupsProvider = ({ children }) => {
       .then((response) => {
         setGoals(newGoals);
         toast.success("Meta deletada!");
+        setOpenDrop(false);
       })
       .catch((err) => console.log(err));
   };
@@ -86,6 +91,7 @@ export const GroupsProvider = ({ children }) => {
   }, [next]);
 
   const joinGroup = (id) => {
+    setOpenDrop(true);
     api
       .post(
         `groups/${id}/subscribe/`,
@@ -99,6 +105,7 @@ export const GroupsProvider = ({ children }) => {
       .then((response) => {
         setSubscribedGroups([...subscribedGroups, response.data]);
         toast.success("Bem-vindo ao grupo!");
+        setOpenDrop(false);
       })
       .catch((err) => {
         console.log(err);
@@ -107,6 +114,7 @@ export const GroupsProvider = ({ children }) => {
   };
 
   const leaveGroup = (id) => {
+    setOpenDrop(true);
     api
       .delete(`groups/${id}/unsubscribe/`, {
         headers: {
@@ -115,6 +123,7 @@ export const GroupsProvider = ({ children }) => {
       })
       .then((response) => {
         toast.success("Você saiu do grupo!");
+        setOpenDrop(false);
       })
       .catch((err) => {
         console.log(err);

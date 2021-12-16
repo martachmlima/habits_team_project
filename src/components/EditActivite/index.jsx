@@ -84,11 +84,12 @@ function EditaActivite({ id }) {
     resolver: yupResolver(formSchema),
   });
 
-  const { token } = useUser();
+  const { token, setOpenDrop } = useUser();
 
   const editActivitie = (data) => {
-    data.realization_time = new Date(data.realization_time)
-    data.realization_time = data.realization_time.toISOString()
+    setOpenDrop(true);
+    data.realization_time = new Date(data.realization_time);
+    data.realization_time = data.realization_time.toISOString();
 
     api
       .patch(`activities/${id}/`, data, {
@@ -98,11 +99,12 @@ function EditaActivite({ id }) {
       })
       .then((res) => {
         toast.success("Edição feita com sucesso!");
+        setOpenDrop(false);
         handleClose();
       })
       .catch((err) => {
         toast.error("Erro na alteração, tente novamente");
-        console.log(err)
+        console.log(err);
       });
   };
 

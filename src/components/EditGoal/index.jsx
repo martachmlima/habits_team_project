@@ -80,10 +80,12 @@ function EditaGoal({ id, done, achieved }) {
   };
 
   const formSchema = yup.object().shape({
-    title: yup.string().required('Campo obrigatório'),
-    difficulty: yup.string().required('Campo obrigatório'),
+    title: yup.string().required("Campo obrigatório"),
+    difficulty: yup.string().required("Campo obrigatório"),
     achieved: yup.boolean(),
-    how_much_achieved: yup.number('Valor inserido deve ser um número').required('Diga quantas vezes você concluiu esta meta')
+    how_much_achieved: yup
+      .number("Valor inserido deve ser um número")
+      .required("Diga quantas vezes você concluiu esta meta"),
   });
 
   const {
@@ -94,9 +96,10 @@ function EditaGoal({ id, done, achieved }) {
     resolver: yupResolver(formSchema),
   });
 
-  const { token } = useUser();
+  const { token, setOpenDrop } = useUser();
 
   const editGoal = (data) => {
+    setOpenDrop(true);
     api
       .patch(`goals/${id}/`, data, {
         headers: {
@@ -105,6 +108,7 @@ function EditaGoal({ id, done, achieved }) {
       })
       .then((res) => {
         toast.success("Edição feita com sucesso!");
+        setOpenDrop(false);
         handleClose();
       })
       .catch((err) => console.log(err));
@@ -114,7 +118,7 @@ function EditaGoal({ id, done, achieved }) {
     <Container>
       <BasicButtons onClick={handleClickOpen}>Editar</BasicButtons>
       <BootstrapDialog
-        onClose={handleClose} 
+        onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
@@ -146,7 +150,7 @@ function EditaGoal({ id, done, achieved }) {
                       register={register}
                       valueRegister={"title"}
                     />
-                     <Box sx={{ m: 0, width: 300, height: 30, p: 0 }}>
+                    <Box sx={{ m: 0, width: 300, height: 30, p: 0 }}>
                       <p>Nível de dificuldade</p>
                     </Box>
                     <InputTextField
@@ -198,9 +202,7 @@ function EditaGoal({ id, done, achieved }) {
               }
             </List>
             <List>
-              <BasicButtons type="submit">
-                Enviar edição
-              </BasicButtons>
+              <BasicButtons type="submit">Enviar edição</BasicButtons>
             </List>
           </form>
         </DialogContent>

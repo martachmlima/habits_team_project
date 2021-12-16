@@ -18,6 +18,7 @@ import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useGroups } from "../../providers/Groups";
 import BasicButtons from "../Button";
+import { useUser } from "../../providers/User";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -62,6 +63,7 @@ export default function NewGoals() {
   const token = localStorage.getItem("@KenzieHabits:token") || "";
 
   const { goals, setGoals, cardGroup } = useGroups();
+  const { setOpenDrop } = useUser();
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Insira um hábito"),
@@ -85,6 +87,7 @@ export default function NewGoals() {
   };
 
   const handleOnSubmit = (dado) => {
+    setOpenDrop(true);
     dado.how_much_achieved = 0;
     dado.achieved = false;
     dado.group = cardGroup.id;
@@ -99,6 +102,7 @@ export default function NewGoals() {
       .then((res) => {
         setGoals([...goals, res.dado]);
         toast.success("Meta cadastrado com sucesso!");
+        setOpenDrop(false);
       })
       .catch((err) => {
         console.log(err);

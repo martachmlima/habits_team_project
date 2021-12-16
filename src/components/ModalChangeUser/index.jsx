@@ -59,7 +59,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
-  const { setUser, setUserName } = useUser();
+  const { setUser, setUserName, setOpenDrop } = useUser();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -86,6 +86,7 @@ export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
   });
 
   const handleChange = (value) => {
+    setOpenDrop(true);
     const token = localStorage.getItem("@KenzieHabits:token") || "";
     const decoded = jwt_decode(token);
     const id = String(decoded.user_id);
@@ -102,6 +103,7 @@ export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
             setUser(response.data);
             toast.success("Dados atualizados!");
             setOpen(false);
+            setOpenDrop(false);
           })
           .catch((err) => {
             console.log(err);
