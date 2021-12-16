@@ -31,7 +31,9 @@ const SpecificGroup = () => {
         localStorage.setItem("KenzieHabits:group", resp.data.id);
       })
       .catch((err) => console.log(err));
+
   }, [cardGroup.goals, cardGroup.activities, idGroup, setCardGroup]);
+
 
   const { goals, activities } = cardGroup;
 

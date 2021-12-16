@@ -16,7 +16,7 @@ function CardActivities({ activities }) {
                 Título: <span>{card.title}</span>
               </h3>
               <h3>
-                Data: <span>{card.realization_time}</span>
+                Data: <span>{card.realization_time.substring(0, 10).split('-').reverse().join('/')}</span>
               </h3>
             </div>
             <div className="button">

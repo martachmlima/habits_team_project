@@ -19,14 +19,14 @@ function CardGoals({ goals }) {
                 Dificuldade: <span>{card.difficulty}</span>
               </h3>
               <h3>
-                Progresso: <span>{card.how_much_achieved}</span> dias concluidos
+                Progresso: <span>{card.how_much_achieved} dias concluidos</span>
               </h3>
             </div>
             <div className="button">
               <BasicButtons onClick={() => deleteGoals(card.id)}>
                 DELETAR
               </BasicButtons>
-              <EditaGoal done={card.achieved} id={card.id} >
+              <EditaGoal done={card.achieved} id={card.id} achieved={card.how_much_achieved} >
                 EDITAR
               </EditaGoal>
             </div>

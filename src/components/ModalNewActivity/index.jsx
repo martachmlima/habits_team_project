@@ -88,6 +88,7 @@ export default function NewActivities() {
     dado.group = cardGroup.id;
     const newDate = new Date("20 December 2021");
     dado.realization_time = newDate.toISOString();
+    
     api
       .post(`/activities/`, dado, {
         headers: {
@@ -184,7 +185,7 @@ export default function NewActivities() {
             />
           </DialogContent>
           <DialogActions>
-            <BasicButtons type="onsubmit">Cadastrar</BasicButtons>
+            <BasicButtons type="submit">Cadastrar</BasicButtons>
           </DialogActions>
         </form>
       </BootstrapDialog>
