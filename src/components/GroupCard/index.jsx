@@ -22,7 +22,12 @@ const GroupCard = ({
   return (
     <ContainerGroup>
       <h4>{name}</h4>
-      <p>Descrição: {description}</p>
+      <p>
+        Descrição:
+        {description.length > 20
+          ? description.substring(0, 20) + "..."
+          : description}
+      </p>
       <p>Categoria: {category}</p>
       <p>Criador: {creator}</p>
       <ContainerButton>

@@ -10,7 +10,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { TextField } from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,6 +17,7 @@ import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useUser } from "../../providers/User";
 import BasicButtons from "../Button";
+import InputTextField from "../InputTextField";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -122,115 +122,29 @@ export default function NewHabit() {
         </BootstrapDialogTitle>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <DialogContent dividers>
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.title?.message ? (
-                  errors.title?.message
-                ) : (
-                  <>Insira um hábito</>
-                )
-              }
-              error={errors.title?.message}
-              id="fullWidth"
-              {...register("title")}
+            <InputTextField
+              label={<>Insira um hábito</>}
+              errors={errors.title?.message}
+              register={register}
+              valueRegister={"title"}
             />
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.category?.message ? (
-                  errors.category?.message
-                ) : (
-                  <>Insira uma categoria - ex: saúde</>
-                )
-              }
-              error={errors.category?.message}
-              id="fullWidth"
-              {...register("category")}
+            <InputTextField
+              label={<>Insira uma categoria - ex: saúde</>}
+              errors={errors.category?.message}
+              register={register}
+              valueRegister={"category"}
             />
-
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.difficulty?.message ? (
-                  errors.difficulty?.message
-                ) : (
-                  <>Sua dificuldade para este hábito</>
-                )
-              }
-              error={errors.difficulty?.message}
-              id="fullWidth"
-              {...register("difficulty")}
+            <InputTextField
+              label={<>Sua dificuldade para este hábito</>}
+              errors={errors.difficulty?.message}
+              register={register}
+              valueRegister={"difficulty"}
             />
-
-            <TextField
-              color="secondary"
-              sx={{
-                "& input:valid + fieldset": {
-                  borderColor: "white",
-                  borderWidth: 1,
-                  borderRadius: 3,
-                  height: 75,
-                },
-                filter: "drop-shadow(0px 4px 4px var(--preto-opacity))",
-                bgcolor: "var(--branco)",
-                borderRadius: 3,
-                height: 70,
-                mt: 2,
-              }}
-              fullWidth
-              label={
-                errors.frequency?.message ? (
-                  errors.frequency?.message
-                ) : (
-                  <>Sua frequência com este hábito - ex: diária</>
-                )
-              }
-              error={errors.frequency?.message}
-              id="fullWidth"
-              {...register("frequency")}
+            <InputTextField
+              label={<>Sua frequência com este hábito - ex: diária</>}
+              errors={errors.frequency?.message}
+              register={register}
+              valueRegister={"frequency"}
             />
           </DialogContent>
           <DialogActions>

@@ -46,7 +46,7 @@ function Home() {
         <CardContact
           name={"Filipe"}
           img={
-            "https://ca.slack-edge.com/TQZR39SET-U01PZPR3HPH-3abe719c94af-512"
+            "https://ca.slack-edge.com/TQZR39SET-U01PZPR3HPH-151802fec91c-512"
           }
           link={"https://www.linkedin.com/in/filipe-melo-389404222"}
         />
