@@ -12,7 +12,7 @@ const BackDrop = () => {
     <>
       <Backdrop
         sx={{
-          color: "var(--color-cardAside)",
+          color: "var(--secundary-green)",
           zIndex: (theme) => theme.zIndex.drawer + 100000,
         }}
         open={openDrop}
