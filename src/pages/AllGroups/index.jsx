@@ -42,7 +42,7 @@ const AllGroups = () => {
                 creator={group.creator.username}
                 id={group.id}
                 users_on_group={group.users_on_group}
-                currentFunction={() => handleGroup(group)}
+                currentFunction={() => handleGroup(group, group.id)}
               />
             </div>
           ))}

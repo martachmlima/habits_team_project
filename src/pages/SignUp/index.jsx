@@ -8,8 +8,6 @@ import toast from "react-hot-toast";
 import * as React from "react";
 import {
   Container,
-  ConteinerImg,
-  ConteinerTitle,
   ConteinerForm,
   ConteinerFormGradient,
   ContainedSvg,
