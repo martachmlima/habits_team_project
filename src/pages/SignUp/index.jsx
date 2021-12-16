@@ -15,9 +15,11 @@ import {
 } from "./styles";
 import { Link } from "react-router-dom";
 import InputTextField from "../../components/InputTextField";
+import { useUser } from "../../providers/User";
 
 const SignUp = () => {
   const history = useHistory();
+  const { setOpenDrop } = useUser();
 
   const formSchema = yup.object().shape({
     username: yup
@@ -55,6 +57,8 @@ const SignUp = () => {
   });
 
   const handleRegister = (data) => {
+    setOpenDrop(true);
+
     const { username, email, password } = data;
     const output = {
       username: username,
@@ -66,6 +70,7 @@ const SignUp = () => {
       .then((response) => {
         toast.success("Conta cadastrada com sucesso!");
         history.push("/login");
+        setOpenDrop(false);
       })
       .catch((err) => toast.error("Usuário já existe!"));
   };

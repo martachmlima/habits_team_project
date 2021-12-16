@@ -40,10 +40,12 @@ const UserProvider = ({ children }) => {
   };
 
   const signOut = () => {
+    setOpenDrop(true);
     localStorage.removeItem("@KenzieHabits:token");
     localStorage.removeItem("@KenzieHabits:userId");
     setToken(false);
     setUserId(0);
+    setOpenDrop(false);
   };
   const createGroup = (data) => {
     setOpenDrop(true);
