@@ -55,7 +55,7 @@ function Home() {
           img={
             "https://ca.slack-edge.com/TQZR39SET-U028RGDDZ9Q-8d0a721467bd-512"
           }
-          link={"https://www.google.com"}
+          link={"https://www.linkedin.com/in/gustavo-ribeiro-1522331a7/"}
         />
         <CardContact
           name={"Heitor"}
