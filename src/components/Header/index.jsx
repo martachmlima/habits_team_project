@@ -15,7 +15,7 @@ import { useUser } from "../../providers/User";
 import { useGroups } from "../../providers/Groups";
 
 const Header = ({ path, mobileDisplay, handleDisplay }) => {
-  const { setData } = useGroups();
+  const { setData, groups, setFiltred } = useGroups();
   const { userName, setInputValue } = useUser();
   const history = useHistory();
 
@@ -23,7 +23,15 @@ const Header = ({ path, mobileDisplay, handleDisplay }) => {
     <>
       <HeaderContainer path={path}>
         <Section>
-          <h1 onClick={() => history.push("/dashboard")}>Gest Habit</h1>
+          <h1
+            onClick={() => {
+              setData("");
+              setFiltred([]);
+              history.push("/dashboard");
+            }}
+          >
+            Gest Habit
+          </h1>
           {path === "specific" ? (
             <span onClick={() => history.push("/groups")}>Buscar Grupos</span>
           ) : (
@@ -41,7 +49,7 @@ const Header = ({ path, mobileDisplay, handleDisplay }) => {
                     : "Pesquisar grupos"
                 }
               ></input>
-              <BiSearch />
+              <BiSearch onClick={groups} />
             </SearchContainer>
           )}
           <ModalProfile>
@@ -93,7 +101,7 @@ const Header = ({ path, mobileDisplay, handleDisplay }) => {
                     : "Pesquisar grupos"
                 }
               ></input>
-              <BiSearch />{" "}
+              <BiSearch onClick={groups} />{" "}
             </>
           )}
         </SearchMobile>
@@ -110,7 +118,7 @@ const Header = ({ path, mobileDisplay, handleDisplay }) => {
               path === "dashboard" ? "Pesquisar hábitos" : "Pesquisar grupos"
             }
           ></input>
-          <BiSearch />
+          <BiSearch onClick={groups} />
         </SearchMobile>
       )}
     </>
