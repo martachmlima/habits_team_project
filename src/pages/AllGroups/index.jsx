@@ -7,7 +7,7 @@ import BasicButtons from "../../components/Button";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
 const AllGroups = () => {
-  const { allGroups, next, setNext } = useGroups();
+  const { allGroups, next, setNext, filtred } = useGroups();
 
   const { setCardGroup, setActivities, setGoals, setIdGroup } = useGroups();
   const history = useHistory();
@@ -33,19 +33,33 @@ const AllGroups = () => {
       <Box>
         <h2>Grupos</h2>
         <GroupsContainer>
-          {allGroups.map((group) => (
-            <div key={group.id}>
-              <GroupCard
-                name={group.name}
-                description={group.description}
-                category={group.category}
-                creator={group.creator.username}
-                id={group.id}
-                users_on_group={group.users_on_group}
-                currentFunction={() => handleGroup(group, group.id)}
-              />
-            </div>
-          ))}
+          {filtred.length !== 0
+            ? filtred.map((group) => (
+                <div key={group.id}>
+                  <GroupCard
+                    name={group.name}
+                    description={group.description}
+                    category={group.category}
+                    creator={group.creator.username}
+                    id={group.id}
+                    users_on_group={group.users_on_group}
+                    currentFunction={() => handleGroup(group)}
+                  />
+                </div>
+              ))
+            : allGroups.map((group) => (
+                <div key={group.id}>
+                  <GroupCard
+                    name={group.name}
+                    description={group.description}
+                    category={group.category}
+                    creator={group.creator.username}
+                    id={group.id}
+                    users_on_group={group.users_on_group}
+                    currentFunction={() => handleGroup(group)}
+                  />
+                </div>
+              ))}
         </GroupsContainer>
       </Box>
       <div style={{ display: "flex", justifyContent: "center" }}>
