@@ -26,7 +26,10 @@ const SpecificGroup = () => {
   useEffect(() => {
     api
       .get(`groups/${idGroup}/`)
-      .then((resp) => setCardGroup(resp.data))
+      .then((resp) => {
+        setCardGroup(resp.data);
+        localStorage.setItem("KenzieHabits:group", resp.data.id);
+      })
       .catch((err) => console.log(err));
   }, [cardGroup.goals, cardGroup.activities, idGroup, setCardGroup]);
 

@@ -97,6 +97,7 @@ export default function NewActivities() {
       .then((res) => {
         setActivities([...activities, res.dado]);
         toast.success("Atividade cadastrada com sucesso!");
+        handleClose();
       })
       .catch((err) => {
         console.log(err);
