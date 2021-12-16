@@ -97,7 +97,6 @@ export default function NewGoals() {
         },
       })
       .then((res) => {
-        console.log(res);
         setGoals([...goals, res.dado]);
         toast.success("Meta cadastrado com sucesso!");
       })
