@@ -91,7 +91,6 @@ export default function CustomizedDialogs({ id }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         toast.success("Edição feita com sucesso!");
       })
       .catch((err) => console.log(err));

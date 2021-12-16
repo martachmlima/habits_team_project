@@ -21,13 +21,13 @@ const HabitCard = ({
       <p>Categoria: {categoria}</p>
       <p>Dificuldade: {dificuldade}</p>
       <p>Frequência: {frequencia}</p>
-      <p className="meta">
+      <div className="meta">
         Progresso:{" "}
-        <p className="progress">
+        <div className="progress">
           <section style={myStyle} className="colorbar"></section>
-        </p>
-        {done && <section>Meta alcançada!</section>}
-      </p>
+        </div>
+        {done && <section className="alert">Meta alcançada!</section>}
+      </div>
 
       <ContainerButton>
         <BasicButtons onClick={onClick}>Deletar</BasicButtons>

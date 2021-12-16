@@ -2,10 +2,9 @@ import Header from "../../components/Header";
 import Aside from "../../components/Aside";
 import { DashboardContainer, MainContainer } from "./styles";
 import HabitDisplay from "../../components/HabitsDisplay";
-import NewHabit from "../../components/NewHabit";
 import { useState } from "react";
 
-function Dashboard () {
+function Dashboard() {
   const [mobileDisplay, setMobileDisplay] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.screen.width);
 
@@ -37,6 +36,6 @@ function Dashboard () {
       </MainContainer>
     </DashboardContainer>
   );
-};
+}
 
 export default Dashboard;
