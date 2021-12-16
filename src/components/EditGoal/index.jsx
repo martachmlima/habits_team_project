@@ -13,17 +13,15 @@ import toast from "react-hot-toast";
 import {
   List,
   ListItem,
+  FormGroup,
   ListItemIcon,
   Dialog,
-  DialogTitle,
-  DialogContent,
-  IconButton,
-  Divider,
-  FormGroup,
-  FormControlLabel,
   Checkbox,
   Box,
-  Slider,
+  DialogTitle,
+  DialogContent,
+  FormControlLabel,
+  IconButton,
 } from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -64,25 +62,19 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function CustomizedDialogs({ id, achievedValue, done }) {
+function EditaGoal({ id, done }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  function valuetext(value) {
-    return `${value}%`;
-  }
-
   const formSchema = yup.object().shape({
-    achieved: yup.boolean(),
-    how_much_achieved: yup
-      .number("Valor inserido deve ser um número")
-      .required("Diga quantas vezes aderiu ao hábito"),
+    achieved: yup.boolean()
   });
 
   const {
@@ -93,30 +85,19 @@ function CustomizedDialogs({ id, achievedValue, done }) {
     resolver: yupResolver(formSchema),
   });
 
-  const { token, setHabits } = useUser();
+  const { token } = useUser();
 
-  const editHabit = (data) => {
+  const editGoal = (data) => {
     api
-      .patch(`habits/${id}/`, data, {
+      .patch(`goals/${id}/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => {
+      .then((res) => {
         toast.success("Edição feita com sucesso!");
-        api
-          .get("habits/personal/", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            setHabits(response.data);
-          })
-          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-
     handleClose();
   };
 
@@ -133,11 +114,11 @@ function CustomizedDialogs({ id, achievedValue, done }) {
           onClose={handleClose}
           sx={{ color: "var(--color-cardAside)" }}
         >
-          Editar hábito
+          Editar Meta
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <form onSubmit={handleSubmit(editHabit)}>
-            <List>
+          <form onSubmit={handleSubmit(editGoal)}>
+          <List>
               {
                 <ListItem>
                   <ListItemIcon
@@ -148,22 +129,9 @@ function CustomizedDialogs({ id, achievedValue, done }) {
                     }}
                   >
                     <Box sx={{ width: 300 }}>
-                      <p>Marque seu progresso!</p>
+                      <p>Marque caso tenha concluído</p>
                     </Box>
                     <FormGroup>
-                      <Slider
-                        color="secondary"
-                        aria-label="Quanto da meta alcançada?"
-                        defaultValue={achievedValue}
-                        getAriaValueText={valuetext}
-                        valueLabelDisplay="auto"
-                        step={1}
-                        marks
-                        min={0}
-                        max={30}
-                        error={errors.how_much_achieved?.message}
-                        {...register("how_much_achieved")}
-                      />
                       {done ? (
                         <FormControlLabel
                           control={
@@ -186,9 +154,8 @@ function CustomizedDialogs({ id, achievedValue, done }) {
                 </ListItem>
               }
             </List>
-            <Divider />
             <List>
-              <BasicButtons type="submit">Enviar edição</BasicButtons>
+              <BasicButtons onClick={handleClose} type="submit">Enviar edição</BasicButtons>
             </List>
           </form>
         </DialogContent>
@@ -197,4 +164,4 @@ function CustomizedDialogs({ id, achievedValue, done }) {
   );
 }
 
-export default CustomizedDialogs;
+export default EditaGoal

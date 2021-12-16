@@ -25,6 +25,9 @@ export const ContainerGroup = styled.div`
   > span {
     cursor: pointer;
   }
+  > span:hover {
+    color: var(--color-cardAside);
+  }
   @media screen and (min-width: 420px) {
     width: 400px;
   }

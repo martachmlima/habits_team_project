@@ -19,14 +19,14 @@ const SpecificGroup = () => {
       .get(`groups/${idGroup}/`)
       .then((resp) => setCardGroup(resp.data))
       .catch((err) => console.log(err));
-  }, [cardGroup.goals, cardGroup.activities]);
+  }, [cardGroup.goals, cardGroup.activities, idGroup, setCardGroup]);
 
   const { goals, activities } = cardGroup;
 
   return (
     <Container>
       <Header path="specific" />
-      <SectionsMenu>
+      <SectionsMenu render={render}>
         <section className="description">
           <div className="description_info">
             <h2 className="description_info_title">
@@ -47,9 +47,13 @@ const SpecificGroup = () => {
           </div>
         </section>
         <div className="buttonlink">
-          <button onClick={() => setRender("goals")}>Metas</button>
+          <button className="buttonGoal" onClick={() => setRender("goals")}>
+            Metas
+          </button>
           <span>|</span>
-          <button onClick={() => setRender("achivied")}>Atividades</button>
+          <button className="buttonActiv" onClick={() => setRender("achivied")}>
+            Atividades
+          </button>
         </div>
         <section className="cards">
           {render === "goals" ? (

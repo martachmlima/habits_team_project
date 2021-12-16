@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const ContainerCard = styled.div`
   background-color: var(--white);
-  min-height: 220px;
+  //min-height: 220px;
   width: 270px;
-  /* max-width: 500px; */
   text-align: initial;
   border: 1px solid var(--color-stroke);
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
@@ -27,6 +26,34 @@ export const ContainerCard = styled.div`
   > p {
     margin-bottom: 15px;
     font-size: 1.2rem;
+    > section {
+      color: var(--color-cardAside);
+      width: 60%;
+      text-align: end;
+    }
+  }
+  .meta {
+    display: flex;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+  .progress {
+    margin-left: 5px;
+    border: solid 1px var(--color-cardAside);
+    width: 90px;
+    border-radius: 5px;
+    display: flex;
+  }
+
+  .alert {
+    color: var(--color-cardAside);
+    text-align: end;
+    width: 60%;
+  }
+  .colorbar {
+    background-color: var(--color-cardAside);
+    height: 100%;
+    border-radius: 5px;
   }
 `;
 

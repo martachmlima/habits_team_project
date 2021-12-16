@@ -1,9 +1,10 @@
 import Header from "../../components/Header";
-import { MainContainer, GroupsContainer } from "./styles";
+import { MainContainer, GroupsContainer, Box } from "./styles";
 import { useGroups } from "../../providers/Groups";
 import GroupCard from "../../components/GroupCard";
 import { useHistory } from "react-router-dom";
 import BasicButtons from "../../components/Button";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 const AllGroups = () => {
   const { allGroups, next, setNext } = useGroups();
@@ -29,22 +30,24 @@ const AllGroups = () => {
   return (
     <MainContainer>
       <Header path="groups" />
-      <GroupsContainer>
-        {allGroups.map((group) => (
-          <>
-            <GroupCard
-              key={group.id}
-              name={group.name}
-              description={group.description}
-              category={group.category}
-              creator={group.creator.username}
-              id={group.id}
-              users_on_group={group.users_on_group}
-              currentFunction={() => handleGroup(group)}
-            />
-          </>
-        ))}
-      </GroupsContainer>
+      <Box>
+        <h2>Grupos</h2>
+        <GroupsContainer>
+          {allGroups.map((group) => (
+            <div key={group.id}>
+              <GroupCard
+                name={group.name}
+                description={group.description}
+                category={group.category}
+                creator={group.creator.username}
+                id={group.id}
+                users_on_group={group.users_on_group}
+                currentFunction={() => handleGroup(group)}
+              />
+            </div>
+          ))}
+        </GroupsContainer>
+      </Box>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <BasicButtons
           style={{ width: "90px" }}
@@ -52,7 +55,7 @@ const AllGroups = () => {
           color="secondary"
           onClick={previousPage}
         >
-          Previus
+          <GrPrevious />
         </BasicButtons>
         <BasicButtons
           style={{ width: "90px" }}
@@ -60,7 +63,7 @@ const AllGroups = () => {
           color="secondary"
           onClick={nextPage}
         >
-          Next
+          <GrNext />
         </BasicButtons>
       </div>
     </MainContainer>

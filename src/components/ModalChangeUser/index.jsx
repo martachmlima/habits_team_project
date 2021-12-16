@@ -3,7 +3,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ButtonNav, ButtonChange } from "./styles";
+import { ButtonNav } from "./styles";
 import jwt_decode from "jwt-decode";
 import api from "../../services/api";
 import toast from "react-hot-toast";
@@ -122,6 +122,7 @@ export default function SwipeableTemporaryDrawer({ anchor, open, setOpen }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Alterar nome e email
         </BootstrapDialogTitle>

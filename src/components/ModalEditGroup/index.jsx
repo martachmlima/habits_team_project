@@ -91,7 +91,6 @@ export default function CustomizedDialogs({ id }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         toast.success("Edição feita com sucesso!");
       })
       .catch((err) => console.log(err));
@@ -118,6 +117,7 @@ export default function CustomizedDialogs({ id }) {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Editar Grupo
         </BootstrapDialogTitle>

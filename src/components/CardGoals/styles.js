@@ -22,10 +22,16 @@ export const Container = styled.div`
   }
   .button {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-around;
+    /* padding: 10px 10%; */
     width: 100%;
-    padding: 10px 10%;
+    > button {
+      width: 40%;
+    }
+    > div {
+      width: 40%;
+    }
   }
   @media screen and (min-width: 500px) {
     h3 {

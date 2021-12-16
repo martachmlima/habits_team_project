@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import { TextField } from "@mui/material";
-import { ButtonChange } from "../ModalChangeUser/styles";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -115,6 +114,7 @@ export default function NewHabit() {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Novo Hábito
         </BootstrapDialogTitle>

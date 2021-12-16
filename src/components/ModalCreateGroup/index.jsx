@@ -85,6 +85,7 @@ const CreateGroup = () => {
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          sx={{ color: "var(--color-cardAside)" }}
         >
           Criar grupo
         </BootstrapDialogTitle>

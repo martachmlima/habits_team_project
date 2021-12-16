@@ -68,6 +68,14 @@ export const SectionsMenu = styled.section`
     justify-content: space-evenly;
     flex-wrap: wrap;
   }
+  .buttonlink .buttonGoal {
+    color: ${(props) => (props.render === 'goals' ? 'var(--color-cardAside)' : "var(--color-ligth-purple)")};
+    border-bottom: ${(props) => (props.render === 'goals' ? '3px solid var(--color-cardAside)' : "3px solid transparent")};
+  }  
+  .buttonlink .buttonActiv {
+    color: ${(props) => (props.render !== 'goals' ? 'var(--color-cardAside)' : "var(--color-ligth-purple)")};
+    border-bottom: ${(props) => (props.render !== 'goals' ? '3px solid var(--color-cardAside)' : "3px solid transparent")};
+  }
   @media (min-width: 500px) {
     .description {
       flex-direction: row;
