@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
+import InputTextField from "../InputTextField";
 import {
   List,
   ListItem,
@@ -22,6 +23,7 @@ import {
   DialogContent,
   FormControlLabel,
   IconButton,
+  Slider,
 } from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -32,6 +34,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
+
+function valuetext(value) {
+  return `${value}%`;
+}
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -62,7 +68,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function EditaGoal({ id, done }) {
+function EditaGoal({ id, done, achieved }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -74,7 +80,10 @@ function EditaGoal({ id, done }) {
   };
 
   const formSchema = yup.object().shape({
-    achieved: yup.boolean()
+    title: yup.string().required('Campo obrigatório'),
+    difficulty: yup.string().required('Campo obrigatório'),
+    achieved: yup.boolean(),
+    how_much_achieved: yup.number('Valor inserido deve ser um número').required('Diga quantas vezes vocêconcluiu esta meta')
   });
 
   const {
@@ -118,7 +127,7 @@ function EditaGoal({ id, done }) {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <form onSubmit={handleSubmit(editGoal)}>
-          <List>
+            <List>
               {
                 <ListItem>
                   <ListItemIcon
@@ -128,7 +137,25 @@ function EditaGoal({ id, done }) {
                       flexDirection: "column",
                     }}
                   >
-                    <Box sx={{ width: 300 }}>
+                    <Box sx={{ m: 0, width: 300, height: 30, p: 0 }}>
+                      <p>Insira um título</p>
+                    </Box>
+                    <InputTextField
+                      label="Novo título"
+                      errors={errors.title?.message}
+                      register={register}
+                      valueRegister={"title"}
+                    />
+                     <Box sx={{ m: 0, width: 300, height: 30, p: 0 }}>
+                      <p>Nível de dificuldade</p>
+                    </Box>
+                    <InputTextField
+                      label="Novo título"
+                      errors={errors.difficulty?.message}
+                      register={register}
+                      valueRegister={"difficulty"}
+                    />
+                    <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
                       <p>Marque caso tenha concluído</p>
                     </Box>
                     <FormGroup>
@@ -149,13 +176,31 @@ function EditaGoal({ id, done }) {
                           {...register("achieved")}
                         />
                       )}
+                      <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
+                        <p>Marque o seu progresso</p>
+                      </Box>
+                      <Slider
+                        color="secondary"
+                        aria-label="Quanto da meta alcançada?"
+                        defaultValue={achieved}
+                        getAriaValueText={valuetext}
+                        valueLabelDisplay="auto"
+                        step={1}
+                        marks
+                        min={0}
+                        max={30}
+                        error={errors.how_much_achieved?.message}
+                        {...register("how_much_achieved")}
+                      />
                     </FormGroup>
                   </ListItemIcon>
                 </ListItem>
               }
             </List>
             <List>
-              <BasicButtons onClick={handleClose} type="submit">Enviar edição</BasicButtons>
+              <BasicButtons onClick={handleClose} type="submit">
+                Enviar edição
+              </BasicButtons>
             </List>
           </form>
         </DialogContent>
@@ -164,4 +209,4 @@ function EditaGoal({ id, done }) {
   );
 }
 
-export default EditaGoal
+export default EditaGoal;

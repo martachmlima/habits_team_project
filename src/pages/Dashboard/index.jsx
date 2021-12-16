@@ -2,7 +2,6 @@ import Header from "../../components/Header";
 import Aside from "../../components/Aside";
 import { DashboardContainer, MainContainer } from "./styles";
 import HabitDisplay from "../../components/HabitsDisplay";
-import NewHabit from "../../components/NewHabit";
 import { useState } from "react";
 
 function Dashboard () {

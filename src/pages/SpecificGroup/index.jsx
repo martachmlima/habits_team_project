@@ -19,7 +19,7 @@ const SpecificGroup = () => {
       .get(`groups/${idGroup}/`)
       .then((resp) => setCardGroup(resp.data))
       .catch((err) => console.log(err));
-  }, [cardGroup.goals, cardGroup.activities]);
+  }, [cardGroup]);
 
   const { goals, activities } = cardGroup;
 

@@ -32,10 +32,12 @@ export const SectionsMenu = styled.section`
   }
   .description_info_title {
     font-size: 1.5rem;
-    color: var(--color-ligth-purple);
+    color: var(--color-cardAside);
     span {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: normal;
+      color: var(--dark-pink);
+      font-weight: inherit;
     }
   }
   .description_button {
@@ -80,7 +82,7 @@ export const SectionsMenu = styled.section`
     .description {
       flex-direction: row;
     }
-    .description_info_title {
+    /* .description_info_title {
       font-size: 2rem;
     }
     span {
@@ -88,6 +90,6 @@ export const SectionsMenu = styled.section`
     }
     button {
       font-size: 2rem;
-    }
+    } */
   }
 `;
