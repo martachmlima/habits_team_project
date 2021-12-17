@@ -21,7 +21,6 @@ const InputTextField = ({ errors, label, register, valueRegister, type }) => {
         fullWidth
         label={errors ? errors : label}
         error={errors}
-        id="fullWidth"
         {...register(valueRegister)}
         type={type}
       />

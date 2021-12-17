@@ -64,16 +64,18 @@ const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    api
-      .get("habits/personal/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setHabits(response.data);
-      })
-      .catch((err) => console.log(err));
+    if (token) {
+      api
+        .get("habits/personal/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setHabits(response.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }, [token, habits]);
 
   const deleteHabit = (id) => {

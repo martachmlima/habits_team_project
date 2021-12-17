@@ -13,7 +13,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import {
   List,
-  Box,
   ListItem,
   ListItemIcon,
   Dialog,
@@ -88,6 +87,11 @@ function EditaActivite({ id }) {
 
   const editActivitie = (data) => {
     setOpenDrop(true);
+
+    data.realization_time = data.realization_time
+      .split("/")
+      .reverse()
+      .join("/");
     data.realization_time = new Date(data.realization_time);
     data.realization_time = data.realization_time.toISOString();
 
@@ -132,22 +136,18 @@ function EditaActivite({ id }) {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
-                  <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
-                    <p>Insira um título</p>
-                  </Box>
                   <InputTextField
                     label="Novo título"
                     errors={errors.title?.message}
                     register={register}
                     valueRegister={"title"}
                   />
-                  <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
-                    <p>Insira uma data</p>
-                  </Box>
+
                   <InputTextField
-                    label="ex: 25 December 2021"
+                    label="ex: 17/12/2021"
                     errors={errors.realization_time?.message}
                     register={register}
                     valueRegister={"realization_time"}

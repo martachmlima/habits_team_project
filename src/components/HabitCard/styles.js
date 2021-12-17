@@ -61,11 +61,11 @@ export const ContainerCard = styled.div`
 export const ContainerButton = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 100%;
+  align-items: center;
   > button {
-    width: 40%;
+    width: 49%;
   }
   > div {
-    width: 40%;
+    width: 50%;
   }
 `;

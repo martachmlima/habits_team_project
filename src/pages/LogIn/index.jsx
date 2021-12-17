@@ -58,7 +58,9 @@ const LogIn = () => {
           >
             Entrar
           </Button>
-          <span> Não possui cadastro? </span>
+          <span onClick={() => history.push("/signup")}>
+            Não possui cadastro?
+          </span>
           <Button
             sx={{
               background: "#9C27B0",

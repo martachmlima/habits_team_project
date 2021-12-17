@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import BasicButtons from "../Button";
-import { Container } from "./styles";
+import { Container, ConteinerUl } from "./styles";
 import { useUser } from "../../providers/User";
 import api from "../../services/api";
 import * as yup from "yup";
@@ -189,9 +189,11 @@ function CustomizedDialogs({ id, achievedValue, done }) {
               }
             </List>
             <Divider />
-            <List>
-              <BasicButtons type="submit">Enviar edição</BasicButtons>
-            </List>
+            <ConteinerUl>
+              <List>
+                <BasicButtons type="submit">Enviar edição</BasicButtons>
+              </List>
+            </ConteinerUl>
           </form>
         </DialogContent>
       </BootstrapDialog>
