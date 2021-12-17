@@ -88,6 +88,11 @@ function EditaActivite({ id }) {
 
   const editActivitie = (data) => {
     setOpenDrop(true);
+
+    data.realization_time = data.realization_time
+      .split("/")
+      .reverse()
+      .join("/");
     data.realization_time = new Date(data.realization_time);
     data.realization_time = data.realization_time.toISOString();
 
@@ -147,7 +152,7 @@ function EditaActivite({ id }) {
                     <p>Insira uma data</p>
                   </Box>
                   <InputTextField
-                    label="ex: 25 December 2021"
+                    label="ex: 17/12/2021"
                     errors={errors.realization_time?.message}
                     register={register}
                     valueRegister={"realization_time"}

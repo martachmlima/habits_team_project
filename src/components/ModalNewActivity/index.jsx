@@ -88,9 +88,12 @@ export default function NewActivities() {
 
   const handleOnSubmit = (dado) => {
     setOpenDrop(true);
+
     dado.group = cardGroup.id;
-    const newDate = new Date("20 December 2021");
-    dado.realization_time = newDate.toISOString();
+    dado.realization_time = dado.realization_time
+      .split("/")
+      .reverse()
+      .join("/");
     dado.realization_time = new Date(dado.realization_time);
     dado.realization_time = dado.realization_time.toISOString();
 
@@ -140,7 +143,7 @@ export default function NewActivities() {
               valueRegister={"title"}
             />
             <InputTextField
-              label={<>ex: 25 December 2021</>}
+              label={<>ex: 25/12/2021</>}
               errors={errors.realization_time?.message}
               register={register}
               valueRegister={"realization_time"}

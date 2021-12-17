@@ -141,20 +141,14 @@ function EditaGoal({ id, done, achieved }) {
                       flexDirection: "column",
                     }}
                   >
-                    <Box sx={{ m: 0, width: 300, height: 30, p: 0 }}>
-                      <p>Insira um título</p>
-                    </Box>
                     <InputTextField
                       label="Novo título"
                       errors={errors.title?.message}
                       register={register}
                       valueRegister={"title"}
                     />
-                    <Box sx={{ m: 0, width: 300, height: 30, p: 0 }}>
-                      <p>Nível de dificuldade</p>
-                    </Box>
                     <InputTextField
-                      label="Novo título"
+                      label="Nível de dificuldade"
                       errors={errors.difficulty?.message}
                       register={register}
                       valueRegister={"difficulty"}
