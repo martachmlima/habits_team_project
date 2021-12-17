@@ -20,7 +20,7 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import InputTextField from "../InputTextField";
-import { ConteinerUl } from "./styles";
+import { BoxButton, Container, ConteinerUl } from "./styles";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -104,8 +104,10 @@ export default function CustomizedDialogs({ id }) {
   };
 
   return (
-    <div>
-      <BasicButtons onClick={handleClickOpen}>Editar</BasicButtons>
+    <Container>
+      <BoxButton>
+        <BasicButtons onClick={handleClickOpen}>Editar</BasicButtons>
+      </BoxButton>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -128,6 +130,7 @@ export default function CustomizedDialogs({ id }) {
                       width: "100%",
                       display: "flex",
                       flexDirection: "column",
+                      alignItems: "center",
                     }}
                   >
                     <InputTextField
@@ -158,6 +161,6 @@ export default function CustomizedDialogs({ id }) {
           </form>
         </DialogContent>
       </BootstrapDialog>
-    </div>
+    </Container>
   );
 }

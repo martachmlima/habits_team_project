@@ -13,7 +13,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import {
   List,
-  Box,
   ListItem,
   ListItemIcon,
   Dialog,
@@ -137,20 +136,16 @@ function EditaActivite({ id }) {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
-                  <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
-                    <p>Insira um título</p>
-                  </Box>
                   <InputTextField
                     label="Novo título"
                     errors={errors.title?.message}
                     register={register}
                     valueRegister={"title"}
                   />
-                  <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
-                    <p>Insira uma data</p>
-                  </Box>
+
                   <InputTextField
                     label="ex: 17/12/2021"
                     errors={errors.realization_time?.message}

@@ -139,6 +139,7 @@ function EditaGoal({ id, done, achieved }) {
                       width: "100%",
                       display: "flex",
                       flexDirection: "column",
+                      alignItems: "center",
                     }}
                   >
                     <InputTextField
@@ -153,7 +154,7 @@ function EditaGoal({ id, done, achieved }) {
                       register={register}
                       valueRegister={"difficulty"}
                     />
-                    <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
+                    <Box sx={{ m: 0, mt: 3, width: 210, height: 30, p: 0 }}>
                       <p>Marque caso tenha concluído</p>
                     </Box>
                     <FormGroup>
@@ -174,7 +175,7 @@ function EditaGoal({ id, done, achieved }) {
                           {...register("achieved")}
                         />
                       )}
-                      <Box sx={{ m: 0, mt: 3, width: 300, height: 30, p: 0 }}>
+                      <Box sx={{ m: 0, mt: 3, width: 210, height: 30, p: 0 }}>
                         <p>Marque o seu progresso</p>
                       </Box>
                       <Slider

@@ -6,7 +6,6 @@ export const Container = styled.div`
   min-height: 500px;
   max-height: 600px;
   background: red;
-  margin: 30px 0 20px 20px;
   padding: 15px;
   border-radius: 8px;
   background-color: var(--white);
@@ -62,6 +61,9 @@ export const Container = styled.div`
     border-top: 2px solid var(--color-aside);
     margin-top: 20px;
     padding-top: 10px;
+  }
+  @media screen and (min-width: 800px) {
+    margin: 30px 0 20px 20px;
   }
 `;
 
