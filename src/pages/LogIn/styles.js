@@ -114,6 +114,7 @@ export const StyledForm = styled.form`
   span {
     transition: 0.5s;
     color: #9320c2;
+    cursor: pointer;
   }
   button {
     width: 250px;

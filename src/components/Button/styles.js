@@ -5,7 +5,12 @@ export const Button = styled.button`
   height: 40px;
   border-radius: 4px;
   border: none;
-  background-image: linear-gradient(to right, #9f65e1 51%, #6760ea 100%);
+  background-image: linear-gradient(
+    to right,
+    var(--fuscia) 0%,
+    var(--dark-purple) 51%,
+    var(--rosa) 100%
+  );
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;

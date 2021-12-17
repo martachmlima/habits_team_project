@@ -45,6 +45,6 @@ export const ContainerButton = styled.div`
     width: 40%;
   }
   > div {
-    width: 40%;
+    width: 48%;
   }
 `;

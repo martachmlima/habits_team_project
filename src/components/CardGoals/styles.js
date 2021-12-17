@@ -29,10 +29,10 @@ export const Container = styled.div`
     justify-content: space-around;
     width: 100%;
     > button {
-      width: 40%;
+      width: 48%;
     }
     > div {
-      width: 40%;
+      width: 48%;
     }
   }
 `;

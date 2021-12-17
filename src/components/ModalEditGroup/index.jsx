@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 import { useUser } from "../../providers/User";
+import { useGroups } from "../../providers/Groups";
 import {
   Dialog,
   DialogTitle,
@@ -19,6 +20,7 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import InputTextField from "../InputTextField";
+import { ConteinerUl } from "./styles";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -61,6 +63,7 @@ BootstrapDialogTitle.propTypes = {
 export default function CustomizedDialogs({ id }) {
   const [open, setOpen] = React.useState(false);
   const { token, setOpenDrop } = useUser();
+  const { setFiltred } = useGroups();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,6 +97,7 @@ export default function CustomizedDialogs({ id }) {
       .then((response) => {
         toast.success("Edição feita com sucesso!");
         setOpenDrop(false);
+        setFiltred([]);
       })
       .catch((err) => console.log(err));
     handleClose();
@@ -101,18 +105,7 @@ export default function CustomizedDialogs({ id }) {
 
   return (
     <div>
-      <BasicButtons
-        style={{
-          color: "var(--dark-purple)",
-          backgroundColor: "var(--secondary-purple)",
-          width: "200px",
-          fontSize: "1rem",
-          height: "36px",
-        }}
-        onClick={handleClickOpen}
-      >
-        Editar
-      </BasicButtons>
+      <BasicButtons onClick={handleClickOpen}>Editar</BasicButtons>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -159,7 +152,9 @@ export default function CustomizedDialogs({ id }) {
                 </ListItem>
               }
             </List>
-            <BasicButtons type="submit">Salvar alterações</BasicButtons>
+            <ConteinerUl>
+              <BasicButtons type="submit">Salvar alterações</BasicButtons>
+            </ConteinerUl>
           </form>
         </DialogContent>
       </BootstrapDialog>
