@@ -48,7 +48,7 @@ function Home() {
           img={
             "https://ca.slack-edge.com/TQZR39SET-U01PZPR3HPH-151802fec91c-512"
           }
-          link={"https://www.linkedin.com/in/filipe-melo-389404222"}
+          link={"https://www.linkedin.com/in/filipegusmaomelo/"}
         />
         <CardContact
           name={"Gustavo"}
